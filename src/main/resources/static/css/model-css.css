@@ -1,0 +1,144 @@
+/*-----------header 區 start-------*/
+.jumbotron{
+    margin-bottom: 0px;
+    background-color: #fff;
+    padding-bottom: 2rem;
+}
+.jumbotron .container-fluid li{
+    list-style: none;
+    padding: 0 10px;
+}
+.user:hover{
+    height: 38px; 
+}
+.cart:hover{
+    height: 35px;
+}
+.login:hover{
+    height: 35px;
+}
+.msg:hover{
+    height: 35px;
+}
+.jumbotron .container-fluid{
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.jumbotron .container-fluid .icon-3{
+    display: flex;
+    flex-direction: row; 
+}
+.container-fluid div{
+    display: inline-block;
+}
+@media (max-width: 576px){
+    .logo{
+        width: 60px;
+    }
+    .jumbotron{
+        padding-bottom: 2rem;
+    }
+}
+@media (min-width: 576px){
+.jumbotron {
+    padding-top: 2rem;
+
+}
+}
+/*-----------header 區-end------*/
+
+/*-------導覽列 區 start--------*/
+.bg-light {
+    background-color: #fff!important;
+}
+.navbar{
+    padding-right: 2rem;
+    padding-left: 2rem;
+    border-bottom:1px solid rgba(201, 201, 201, 0.514); 
+}
+.line:hover{
+   transform:rotate(20deg);
+ }
+ .dropdown-menu a:active{
+     background-color:#EAC100;
+ }
+
+.btn.focus, .btn:focus {
+    outline: none; 
+    box-shadow:none;
+} 
+.btn-line{
+    background-color:transparent;
+   
+}
+.btn-search{
+    padding:5px 10px !important;
+}
+
+.modal-content{
+    align-items: center;
+    position: relative;
+}
+.modal-content .btn-x{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    background-color: #fff;
+    border:2px solid rgb(20, 20, 20);
+    color:rgb(22, 22, 22);
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    line-height: 25px;
+    text-align: center;
+    top:-8px;
+    right:-8px;
+    border-radius: 50px;
+}
+.modal-content .btn-x:hover{
+    background-color: rgb(179, 179, 179);
+}
+.modal-content img{
+    width: 90%;
+}
+.form-control::placeholder{
+    initial-value: "ddd";
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #808080;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(108 108 108 / 25%);
+}
+/*-------導覽列 區 end-------*/
+
+/*-------footer 區 start --------*/
+footer{
+    margin-top: 300px;
+    width: 100%;
+    text-align: center; 
+}
+footer .co{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-family:arial;
+    border-top:1px solid rgba(201, 201, 201, 0.514); 
+}
+footer .co .backhome{
+    text-decoration: none;
+    color:#000;
+}
+
+/*-------footer 區 end --------*/
+
+/*-----登入與帳號切換 start --------*/
+.login-none{
+    display: none;
+} 
+.user-none{
+    /* display: none; */
+}
+/*-----登入與帳號切換 end--------*/

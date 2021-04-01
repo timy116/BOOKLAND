@@ -1,0 +1,125 @@
+/* -- 登入註冊  start -- */
+.wrap{
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+}
+.tab-all{
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+.tab-all .username-info{
+    text-align: left;
+    padding: 30px 30px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.tab-all .user-edit{
+    text-align: left;
+    padding:10px 30px 0px ;
+    font-weight: bold;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+}
+.memberform{
+    padding: 20px 40px 40px;
+}
+.name-form,.email-form,.phone-form,.address-form,.cgpassword-form{
+    text-align: left;
+    margin-top: 20px;
+    font-size: small;
+    font-family: Arial, Helvetica, "微軟正黑體","黑體","宋體",sans-serif;
+}
+.cgpassword-form label{
+padding: 10px 20px 10px 0px;
+}
+.cgpassword-form a{
+    text-decoration: none;
+}
+.mb-button{
+    text-align: right;
+}
+.mb-button .btn-block{
+    display: inline-block;
+    width: 80px;
+    font-size: small;   
+}
+.mb-button .btn-block+.btn-block {
+    margin-top:0rem;
+}
+
+.inputerror .order-query{
+    width: 150px;
+    height: 33px;
+    vertical-align: bottom;
+}
+.or-button{
+    text-align: left;
+    
+}
+.or-button input{
+    display: inline-block;
+    
+}
+.or-button .or-btn{
+    display: inline-block;
+    width: 80px;
+    font-size: small;   
+}
+.nav-item a{
+    color:#495057;
+}
+@media screen and (max-width: 767px){
+    .wrap{
+        width: 100%;
+    }
+}
+/* -- 登入註冊  end -- */
+
+/* 表格正常樣式 start */
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #808080;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(108 108 108 / 25%);
+}
+/* 表格正常樣式 end */
+
+/* 表格錯誤樣式 start*/
+.is-invalid{ 
+    border-color: rgb(220, 53, 69);
+    box-shadow: rgb(220 53 69 / 25%) 0px 0px 0px 0.2rem;
+    background-image: url(icon/warning.svg);
+    background-size:20px;
+    background-repeat: no-repeat;
+    background-position-x:98%;
+    background-position-y: 50%; 
+}
+.text-muted{
+    visibility: hidden;
+    font-size:10px;
+    color:#dc3545 !important;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    text-align: left;
+}
+.is-invalid + .text-muted{
+    visibility: visible;
+}
+/* 表格錯誤樣式 end*/
+
+

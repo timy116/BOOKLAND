@@ -1,0 +1,100 @@
+/* -- 登入註冊  start -- */
+.wrap{
+    width: 600px;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+}
+.tab-all{
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+.loginform{
+    padding: 40px;
+}
+.fb-btn{
+    background-color: #3a5ba0; 
+    border-color: #3a5ba0;
+    font-size: small;
+}
+.go-btn{
+    font-size: small;
+}
+.lo-btn{
+    background-color:#747474; 
+    border-color: #747474;
+}
+.go-btn img{
+    margin-right: 10px;
+}
+.fb-btn img{
+    margin-right: 10px;
+}
+.email-form{
+    margin-top: 20px;
+}
+
+.links-container{   
+    font-size: 10px; 
+    margin-top: 10px;
+}
+.links-container a{
+    color:#707881;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    text-decoration: none;
+}
+.links-container a:hover{
+    color:#212529;
+}
+.nav-item a{
+    color:#495057;
+}
+@media screen and (max-width: 767px){
+    .wrap{
+        width: 100%;
+    }
+}
+/* -- 登入註冊  end -- */
+
+/* 表格正常樣式 */
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+/* 表格錯誤樣式 start*/
+.is-invalid{ 
+    border-color: rgb(220, 53, 69);
+    box-shadow: rgb(220 53 69 / 25%) 0px 0px 0px 0.2rem;
+    background-image: url(icon/warning.svg);
+    background-size:20px;
+    background-repeat: no-repeat;
+    background-position-x:98%;
+    background-position-y: 50%; 
+}
+.text-muted{
+    visibility: hidden;
+    font-size:10px;
+    color:#dc3545 !important;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    text-align: left;
+}
+.is-invalid + .text-muted{
+    visibility: visible;
+}
+/* 表格錯誤樣式 end*/
+
+
+

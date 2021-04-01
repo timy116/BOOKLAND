@@ -1,0 +1,142 @@
+/* 購物車訂單明細  start */
+
+.detail{
+    padding: 20px 15px 10px;    
+}
+.bow{
+    border-top: 2px solid #5e5e5e;
+}
+.total{
+    padding: 20px 10px 10px;
+    
+}
+.cart-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+.bcov-text, .price, .amount-price{
+    display: flex;
+    align-items: center;   
+    
+     
+}
+.bcov-text img{
+    padding-right: 10px;
+}
+.quantity{
+    padding-right: 10px;
+}
+.input-qty{
+    width: 35px;
+    height: 25px;
+    border:1px solid #aaa;
+    border-radius: 10%;
+}
+p{
+    font-size: 13px;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif; 
+    margin: 0;
+}
+.bookname{
+    margin: 0;
+}
+.actions{
+    list-style: none;
+    font-size:10px;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    text-align: left;
+}
+.actions a{
+    text-decoration: none;
+    color:rgb(34, 34, 34);
+}
+.actions a:hover{
+    color:#fc4445;
+}
+.remove{ 
+    padding-bottom: 10px;
+}
+@media(max-width:420px){
+    .cart-item{
+        flex-direction: column;
+        align-items: flex-start;
+        background-color:#ececec;
+        padding: 10px;
+    }
+    .bcov-text, .price , .amount-price , .actions{
+        padding-bottom: 10px;
+    }   
+}
+/* 購物車訂單明細  end */
+
+/* 結帳小計 start */
+.total{
+    padding: 0 15px;
+}
+.total-bow{
+    border-top: 2px solid #5e5e5e;
+    padding-bottom: 10px;
+}
+.cart-summary,.cart-shipping,.order-total,.cart-discount{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+.shipping-price b{
+    display: flex;
+    align-items: center;
+}
+.order-bow{
+    padding-top: 10px;
+}
+.description{
+    text-align:left;
+}
+.cart-discount{
+    color:#f00;
+    /* 隱藏 運費折扣訊息,總金額超過2000元以上,才會顯示 */
+    visibility: hidden;
+}
+.btn-dark{
+    width: 100%;
+    margin-top: 20px;
+}
+@media(max-width:420px){
+    .total{
+        padding: 0 20px;
+    }
+}
+/* 結帳小計 end */
+
+/* 收藏清單  start */
+.row-wish{
+    justify-content: flex-start;
+}
+.wish-list{
+    width: 100%;
+    margin-top: 80px;
+    text-align: center; 
+}
+/* 收藏清單  end */
+
+
+/* 購物車為空的時 之樣式 */
+.cart-item{
+    /* display: none; */
+}
+
+.cart-empty, .wish-empty{
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    display:none; /* 購物車不為空的時,顯示display:none */
+}
+.cart-empty p{
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    font-size: 18px;
+}
+.wish-empty p{
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    font-size: 18px;
+}

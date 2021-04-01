@@ -1,0 +1,427 @@
+/* --------logo & icon start----------------- */
+.jumbotron{
+    margin-bottom: 0px;
+    background-color: #fff;
+}
+.jumbotron .container-fluid li{
+    list-style: none;
+    padding: 0 10px;
+}
+.user:hover{
+    height: 38px; 
+}
+.cart:hover{
+    height: 35px;
+}
+.login:hover{
+    height: 35px;
+}
+.msg:hover{
+    height: 35px;
+}
+.jumbotron .container-fluid{
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.jumbotron .container-fluid .icon-3{
+    display: flex;
+    flex-direction: row;
+   
+}
+.container-fluid div{
+    display: inline-block;
+}
+@media (max-width: 576px){
+    .logo{
+        width: 60px;
+    }
+    .jumbotron{
+        padding-bottom: 4rem;
+    }
+}
+@media (min-width: 576px){
+.jumbotron {
+    padding-top: 2rem;
+
+}
+}
+/* --------logo & icon end----------------- */
+
+/* ----------導覽列 區 start-------------- */
+.bg-light {
+    background-color: #fff!important;
+}
+.navbar{
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+.line:hover{
+   transform:rotate(20deg);
+ }
+ .dropdown-menu a:active{
+     background-color:#EAC100;
+ }
+
+.btn.focus, .btn:focus {
+    outline: none;  
+    box-shadow:none;
+} 
+.btn-line{
+    background-color:transparent;
+   
+}
+.btn-search{
+    padding:5px 10px !important;
+}
+.btn-outline-success{
+    border-color: #28a745;
+}
+
+.modal-content{
+    align-items: center;
+    position: relative;
+}
+.modal-content .btn-x{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    background-color: #fff;
+    border:2px solid rgb(20, 20, 20);
+    color:rgb(22, 22, 22);
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    line-height: 25px;
+    text-align: center;
+    top:-8px;
+    right:-8px;
+    border-radius: 50px;
+}
+.modal-content .btn-x:hover{
+    background-color: rgb(179, 179, 179);
+}
+.modal-content img{
+    width: 90%;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #808080;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(108 108 108 / 25%);
+}
+/* ----------導覽列 區 end-------------- */
+
+/* ----------banner 區 start-------------- */
+ .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /*圖片圓點*/
+}
+/* ----------banner 區 end-------------- */
+
+/*-------------News 區  start-----------------*/
+.title-1 h2{
+   color:	#4F4F4F;
+   width: 100%;
+   height: 200px;
+   text-align: center;
+   line-height: 200px;
+   font-family: Arial, Helvetica, sans-serif;
+   border-bottom:1px solid rgba(201, 201, 201, 0.514);
+/*news 標題設定*/
+}
+@media (max-width: 575.98px){
+    /*news & recommended標題*/
+    .title-1 h2{
+    height: 150px;
+    line-height: 150px;
+    font-size:x-large;
+    }
+    
+}
+@media (max-width: 768px){
+    /*保羅高更的標題*/
+    .card-body h5{
+        font-size:18px;
+        
+    }
+}
+.container .card-body .card-text{
+    /*保羅高更的內文*/
+    font-family: Arial, Helvetica,"微軟正黑體","黑體","宋體",sans-serif;
+    font-size:14px;
+    
+}
+.card-body{
+    padding-top: .8rem;
+}
+.card-body h5{
+    /*保羅高更的標題*/
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+    /*news 上方距離*/
+    margin-top:15px;
+}
+.arrow-1{
+    /*箭頭icon1的設定*/
+   position: absolute;
+   right: 10px;
+   bottom: 10px;
+}
+
+.arrow-2{
+    /*箭頭icon2的設定*/ 
+   position: absolute;
+   right: 10px;
+   bottom: 10px;
+   
+}
+.brspace{/*段行*/
+    width: 100%;
+    height: 30px;
+}
+.btn{
+    /*拿掉news的預設button*/
+    padding:0;
+    border: 0px;
+}
+.modal-body{
+    /*展覽訊息設定*/
+    text-align: center;
+    padding: 25px;
+}
+.modal-body a{
+    /*展覽訊息設定*/
+    text-decoration: none;
+}
+/*-------------News 區  end----------------*/
+
+/*---------主題書  start--------------*/
+.title-2{
+    width: 100%;
+    margin-top: 50px;
+}
+.title-2 h2{
+    /*主題書區標題文字設定*/
+   color:	#4F4F4F;
+   width: 100% ;
+   height: 150px;
+   text-align: center;
+   line-height: 150px;
+   font-family: Arial, Helvetica, sans-serif;
+   border-bottom:2px solid #e27d60;
+   
+}
+@media (max-width: 575.98px){
+    /*主題書區標題文字設定*/
+    .title-2 h2{
+    height: 100px;
+    line-height: 100px;
+    font-size:x-large;
+    }
+}
+.obj-books img{
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.obj-books img:hover{
+    transform:scale(1.1,1.1);
+    transition: 0.4s;
+}
+.container .obj-books{
+    margin-bottom: 30px;
+}
+.showall{
+    width: 100%;
+    text-align: center;   
+}
+.showall .btn{
+    border-radius:0;
+    background-color:transparent!important;
+}
+.showall .btn-secondary{
+    background-color:#fff;
+    color:#000;
+    font-size: 18px;
+}
+.showall .btn-secondary:hover{
+    border-bottom: 1px solid #000;  
+}
+.showall .btn-secondary:active{
+    color: #fff !important;
+    background-color:rgb(189, 188, 188) !important; 
+    border-bottom: 1px solid #fff !important; 
+   
+}   
+.showall button{
+    background-color:transparent;   
+}
+
+/*---------主題書  end--------------*/
+
+/*---------TOP 10書籍  start-------------------*/
+.title-3{
+    width: 100%;
+    margin-top: 100px;
+}
+.wrap-bg{
+    width: 100%;
+    background-color: #ececec;   
+}
+.top10{
+    width: 100%;
+    background-color: #ececec;
+    padding-top: 10px;
+    margin-top: 0px;
+
+}
+.top10 img{
+    width: 100%;
+}
+.top10 img:hover{
+    opacity: 50%;
+}
+.title-3{
+    width: 100%;
+}
+.title-3 h2{
+    /*top 10標題文字設定*/
+   color:	rgb(39, 39, 39);
+   width: 100% ;
+   height: 200px;
+   text-align: center;
+   line-height: 200px;
+   font-family: Arial, Helvetica, sans-serif;
+   border-bottom:4px solid #fff;
+   background-color: #f3d250;
+   margin-bottom: 0;
+}
+@media (max-width: 575.98px){
+    /*top10標題文字設定*/
+    .title-3 h2{
+    height: 150px;
+    line-height: 150px;
+    font-size:x-large;
+    }
+   
+}
+.top10 .card{
+    /*卡片圖片區*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:8px;
+    text-align: center;
+    background-color:transparent;
+    border:none;
+    
+}
+
+.top10 .card-body{
+    /*卡片文字區*/
+     padding: 5px; 
+     background-color:transparent;
+}
+.top10 .card-text{
+    /*卡片文字區*/
+    margin: 0;
+    padding-bottom: 10px;  
+}
+.top10 .row{
+    align-items: flex-end;
+}
+/*---------TOP 10書籍  end-------------------*/
+
+ /*---------預告書區  start-----------*/
+
+ .title-4{
+    color:	#4F4F4F;
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom:1px solid rgba(201, 201, 201, 0.514);
+    margin-top: 80px;
+ /*預告書標題設定*/
+ }
+
+ @media (max-width: 575.98px){
+    /*預告書標題*/
+    .title-4{
+    height: 150px;
+    font-size:x-large;
+    } 
+}
+@media (max-width: 767.98px){
+    /*預告書文字*/
+    .date{
+        font-size: large;
+    }
+    .text-booklaunch h4{
+        font-size: large;
+    }
+    .text-booklaunch p{
+        font-size: 12px;
+    }
+}
+.text-booklaunch{
+    padding: 30px 15px 0;
+   
+}
+.text-booklaunch p{
+    
+    font-family:Arial, Helvetica,"微軟正黑體","黑體","宋體",sans-serif;
+    font-size: 16px;
+    line-height:2rem;  
+}
+.detail{
+    margin-bottom :3px;   
+}
+.date{
+    font-family:Arial, Helvetica,"微軟正黑體","黑體","宋體",sans-serif;
+    color:#fc4445;
+    margin-bottom: 30px;
+}
+.orderbook{
+    text-align: right;
+    margin-right: 25px;
+    margin-bottom: 10px;
+}
+.orderbook .btn-secondary{
+ padding: 5px 20px;
+ background-color: #fff;
+ color:#4F4F4F;
+ border:1px solid #4f4f4f;
+}
+/*---------預告書區  end-----------*/
+
+/*-------footer 區 start--------*/
+footer{
+    margin-top: 300px;
+    width: 100%;
+    text-align: center;
+}
+footer .co{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-family:arial;
+    border-top:1px solid rgba(201, 201, 201, 0.514); 
+}
+footer .co .backhome{
+    text-decoration: none;
+    color:#000;
+}
+/*-------footer 區 end--------*/
+
+/*-----登入與帳號切換 start --------*/
+.login-none{
+    display: none;
+} 
+.user-none{
+    /* display: none; */
+}
+/*-----登入與帳號切換 end--------*/

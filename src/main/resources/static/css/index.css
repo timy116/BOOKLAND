@@ -75,7 +75,8 @@
 .btn-search{
     padding:5px 10px !important;
 }
-.btn-outline-success{
+.form-inline .btn-outline-success{
+    border: 1px solid transparent;
     border-color: #28a745;
 }
 

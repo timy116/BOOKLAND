@@ -2,6 +2,7 @@ package com.bookland.service;
 
 import com.bookland.dao.BookDAO;
 import com.bookland.entity.Book;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,24 @@ public class BookServiceImpl implements BookService {
     private BookDAO bookDAO;
 
     @Override
-    public List<Book> all() {
-        return bookDAO.all();
+    public List<Book> retrieveAll() {
+        return bookDAO.retrieveAll();
+    }
+
+    @Override
+    public List<Book> retrieveBooks(String category) {
+        return bookDAO.retrieveBooks(category);
+    }
+
+    @Override
+    public List<Book> listAllBooksByPage(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return bookDAO.listAllBooksByPage();
+    }
+
+    @Override
+    public List<Book> listBooksByPage(String category, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return bookDAO.listBooksByPage(category);
     }
 }

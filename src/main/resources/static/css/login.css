@@ -13,6 +13,10 @@
 .loginform{
     padding: 40px;
 }
+.loginform ::placeholder{
+    font-size: small;
+    color:rgb(141, 141, 141);
+}
 .fb-btn{
     background-color: #3a5ba0; 
     border-color: #3a5ba0;

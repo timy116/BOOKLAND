@@ -1,0 +1,74 @@
+.passform{
+   margin: auto; 
+   margin-top: 40px;
+   max-width: 60%;
+}
+.changepass-form .card-header{
+    color:#17a2b8;
+    font-weight: bold;
+}
+.changepass-form .text-info label{
+    color:rgb(77, 77, 77);
+    font-weight: bold;
+}
+.changepass-form .card-body{
+    padding: 20px 40px 40px;
+}
+.loginform ::placeholder{
+    font-size: small;
+    color:rgb(141, 141, 141);
+}
+.newpass-btn{
+    width: 150px;
+    display:inline-block;
+}
+.new-btn{
+    text-align: right;
+}
+
+@media (max-width:992px){
+    .passform{
+        max-width: 80%;
+    }
+
+}
+
+/* 表格正常樣式 */
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+/* 表格錯誤樣式 start*/
+.is-invalid{ 
+    border-color: rgb(220, 53, 69);
+    box-shadow: rgb(220 53 69 / 25%) 0px 0px 0px 0.2rem;
+    background-image: url(icon/warning.svg);
+    background-size:20px;
+    background-repeat: no-repeat;
+    background-position-x:98%;
+    background-position-y: 50%; 
+}
+.text-muted{
+    visibility: hidden;
+    font-size:10px;
+    color:#dc3545 !important;
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    text-align: left;
+}
+.is-invalid + .text-muted{
+    visibility: visible;
+}
+/* 表格錯誤樣式 end*/
+

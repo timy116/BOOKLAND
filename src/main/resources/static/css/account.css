@@ -32,7 +32,15 @@
     padding: 20px 40px 40px;
 }
 
+
 /* 會員帳號樣式 start */
+label{
+    font-weight: bold;
+}
+.memberform ::placeholder{
+    font-size: small;
+    color:rgb(141, 141, 141);
+}
 .tab-all .username-info{
     text-align: left;
     padding: 30px 30px 10px;

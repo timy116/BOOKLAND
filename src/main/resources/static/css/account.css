@@ -1,15 +1,38 @@
-/* -- 登入註冊  start -- */
+/* -- 會員資訊 & 會員訂單  start -- */
+
 .wrap{
+     /* 共用方框樣式 */
     width: 70%;
     text-align: center;
     margin: auto;
     margin-top: 50px;
 }
-.tab-all{
-    border-left: 1px solid #dee2e6;
-    border-right: 1px solid #dee2e6;
-    border-bottom: 1px solid #dee2e6;
+.nav-tabs .nav-link:hover{
+    /* 滑鼠滑到選單的樣式 */
+    border:1px solid ;
+   border-color:#fff #fff #17a2b8 #fff; 
 }
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    /* 選單被選到的樣式 */
+    background-color: rgb(255, 255, 255);
+    border-color: #17a2b8 #17a2b8 #fff #17a2b8;
+}
+.nav-tabs {
+    /* 共用方框樣式 */
+    border-bottom: 1px solid #17a2b8;
+}
+.tab-all{
+    /* 共用方框樣式 */
+    border-left: 1px solid #17a2b8;
+    border-right: 1px solid #17a2b8;
+    border-bottom: 1px solid #17a2b8;
+}
+.memberform{
+    /* 會員訂單共用樣式 */
+    padding: 20px 40px 40px;
+}
+
+/* 會員帳號樣式 start */
 .tab-all .username-info{
     text-align: left;
     padding: 30px 30px 10px;
@@ -21,9 +44,7 @@
     font-weight: bold;
     font-family: "微軟正黑體","黑體","宋體",sans-serif;
 }
-.memberform{
-    padding: 20px 40px 40px;
-}
+
 .name-form,.email-form,.phone-form,.address-form,.cgpassword-form{
     text-align: left;
     margin-top: 20px;
@@ -47,7 +68,9 @@ padding: 10px 20px 10px 0px;
 .mb-button .btn-block+.btn-block {
     margin-top:0rem;
 }
+/* 會員帳號樣式 end */
 
+/* 會員訂單樣式 start*/
 .inputerror .order-query{
     width: 150px;
     height: 33px;
@@ -66,15 +89,35 @@ padding: 10px 20px 10px 0px;
     width: 80px;
     font-size: small;   
 }
+.order-table{
+    margin-top: 20px;
+}
+.order-table th, td{
+    font-size: small;
+}
+.order-no .cancel{
+    color:#dc3545;
+}
+.order-no .complete{
+    font-weight: bold;
+}
+.order-no img:hover{
+  border:.5px solid #dc3545;
+  border-radius: 50%;
+}
+/* 會員訂單樣式 end*/
+
 .nav-item a{
+    /* 共用選單樣式 */
     color:#495057;
 }
 @media screen and (max-width: 767px){
+    /* 會員訂單共用樣式 */
     .wrap{
         width: 100%;
     }
 }
-/* -- 登入註冊  end -- */
+/* -- 會員資訊 & 會員訂單  end -- */
 
 /* 表格正常樣式 start */
 .form-control {

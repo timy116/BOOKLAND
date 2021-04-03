@@ -108,6 +108,7 @@
   </navbar>
   <!-- 導覽列 end -->
 
+
   <!-- 會員資訊 & 會員訂單 start -->
   <!-- 會員資訊 -->
   <div class="wrap">
@@ -200,7 +201,126 @@
                         <td scope="row">#00001</td>
                         <td>2021/04/02</td>
                         <td class="complete">完成</td>
-                        <td><a href="#"><img src="/static/css/icon/order.svg" width="25px"></a></td>
+                        <!-- 訂單一明細彈出視窗 start -->
+                        <td><button type="button" class="btn btn-primarynew" data-toggle="modal"
+                            data-target=".bd-example-modal-lg">
+                            <img src="/static/css/icon/order.svg" width="25px">
+                          </button>
+
+                          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="btn-close">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="item-order">
+                                  <div class="item-orderdetail">
+                                    <div class="order">
+                                      <p class="number">訂單編號 : #00001</p>
+                                    </div>
+                                    <div class="order-items">
+                                      <table class="table">
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">訂單日期</th>
+                                            <td>2021/04/02</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">訂單狀態</th>
+                                            <td>完成</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">收件人姓名</th>
+                                            <td>虎子</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">收件人電話</th>
+                                            <td>0913111000</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">收件人地址</th>
+                                            <td>台北市大安區仁愛路三段122號B1</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">留言</th>
+                                            <td>中午前送達</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">付款卡號</th>
+                                            <td>111**********000</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">運費</th>
+                                            <td>0</td>
+                                            <!-- 訂單金額2000元以上,顯示0元運費 -->
+                                            <!-- 訂單金額2000元以下,顯示80元運費 -->
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">結帳金額</th>
+                                            <td>3270</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <div class="item-productdetail">
+                                    <div class="pro-items">
+                                      <p class="products">商品明細</p>
+                                    </div>
+                                    <div class="products-detail">
+                                      <table class="table">
+                                        <thead>
+                                          <tr class="titcolor">
+                                            <th scope="col">書名</th>
+                                            <th scope="col">書號</th>
+                                            <th scope="col">單價</th>
+                                            <th scope="col">數量</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr class="bgcolor">
+                                            <td><a href="#">Paul Gauguin</a></td>
+                                            <td>f01</td>
+                                            <td>700</td>
+                                            <td>1</td>
+                                          </tr>
+                                          <tr class="bgcolor">
+                                            <td><a href="#">Alfred Sisley 1839-1899</a></td>
+                                            <td>f18</td>
+                                            <td>1090</td>
+                                            <td>1</td>
+                                          </tr>
+                                          <tr class="bgcolor">
+                                            <td><a href="#">The Boston</a></td>
+                                            <td>d15</td>
+                                            <td>790</td>
+                                            <td>1</td>
+                                          </tr>
+                                          <tr class="bgcolor">
+                                            <td><a href="#">Cat Daily</a></td>
+                                            <td>p04</td>
+                                            <td>690</td>
+                                            <td>1</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="order-footer">
+                                  <img src="/static/css/icon/msg3.svg">
+                                  <p><a href="#">聯絡客服</a></p>
+                                  <img src="/static/css/icon/print.svg">
+                                  <p><a href="#">列印明細</a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- 訂單一明細彈出視窗 end -->
                       </tr>
                       <tr>
                         <td scope="row">#00002</td>
@@ -225,6 +345,10 @@
     </div>
   </div>
   <!-- 會員資訊 & 會員訂單 end -->
+
+
+
+
 
   <!-- footer 區 start -->
   <footer>

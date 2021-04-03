@@ -115,6 +115,117 @@ padding: 10px 20px 10px 0px;
 }
 /* 會員訂單樣式 end*/
 
+/* 彈出視窗 start */
+.btn-close{
+    /* button-x的位置 */
+    width: 100%;
+    padding: 10px 10px 0px;
+}
+.close:focus{
+    /* button-x的邊框 */
+    outline:none;
+}
+.btn-primarynew {
+    padding: 0px;
+    background-color:transparent;
+}
+.item-order{
+    display: flex;
+    padding: 20px 10px;
+    
+}
+.item-orderdetail, .item-productdetail{ 
+    width:350px;
+    padding: 5px;
+}
+.item-productdetail{
+    border-left: 1px dashed #17a2b8;
+}
+.order .number{
+    background-color: #17a2b8;
+    color:#fff;
+    padding: 10px;
+    font-weight: bold;
+}
+.pro-items .products{
+    background-color: #dc3545;
+    color:#fff;
+    padding:10px;
+    font-weight: bold;
+}
+.order-items .table tr:nth-of-type(odd) {
+ background-color: transparent;
+}
+.products-detail .table tr:nth-of-type(odd){
+    background-color:transparent;
+}
+.products-detail .table .titcolor:nth-of-type(n+1){
+    background-color:#e3e2df;
+}
+.products-detail .table .bgcolor:nth-of-type(2n+2){
+    background-color:#e3e2df;
+}
+.order-footer img:hover{
+    border:none;
+}
+.order-footer{
+    display: flex;
+    width: 100%;
+    padding: 0px 30px 30px;
+    justify-content: flex-start;
+    
+}
+.order-footer img{
+    width: 40px;
+    height: 40px;
+}
+.order-footer p{
+    margin-bottom: 0px;
+    line-height: 40px;
+    padding-right: 10px;
+}
+.order-footer a{
+    text-decoration: none;
+}
+.bgcolor a{
+    text-decoration: none;
+    color:#131313;
+}
+.bgcolor a:hover{
+    color:#dc3545;
+}
+@media(max-width:991.98px){
+    .item-orderdetail, .item-productdetail{
+        width:400px;  
+    }
+    .item-order{
+        flex-direction: column;
+        align-items: center;
+     }
+     .item-productdetail{
+        border-top: 1px dashed #17a2b8;
+        border-left:none;
+    }
+    .order-footer{
+        justify-content:center;
+    }
+}
+@media(max-width:768px){
+    .item-orderdetail, .item-productdetail{
+        width:400px;
+    }
+    
+}
+@media(max-width:450px){
+    .item-orderdetail, .item-productdetail{
+        width:300px;
+    }
+}
+
+/* 彈出視窗 end */
+
+
+
 .nav-item a{
     /* 共用選單樣式 */
     color:#495057;

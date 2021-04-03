@@ -29,6 +29,21 @@ public class BookController {
         } else {
             model.addAttribute("books", bookService.retrieveBooks(category));
         }
+
+        switch (category) {
+            case "fine-art":
+                category = "Fine Art";
+                break;
+            case "photography":
+                category = "Photography";
+                break;
+            case "poster-design":
+                category = "Poster & Design";
+                break;
+            default:
+                category = "All";
+        }
+        model.addAttribute("category", category);
         return "all";
     }
 

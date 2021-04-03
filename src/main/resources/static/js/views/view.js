@@ -8,7 +8,6 @@ class BaseView {
     const makeup = this._generateMarkup()
     if (!render) return makeup
 
-    this._clear()
     this._parentElement.insertAdjacentHTML('beforeend', makeup)
   }
 

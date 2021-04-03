@@ -33,3 +33,5 @@ class BookView extends BaseView {
     return this._data.map(result => this._generateBookMarkup(result)).join('')
   }
 }
+
+const bookView = new BookView()

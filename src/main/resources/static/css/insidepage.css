@@ -1,0 +1,112 @@
+/* 內頁圖片 書訊區 start */
+.container{
+    margin-top: 40px;
+    padding-bottom: 40px;
+    
+}
+.inpage-msg{
+    border-bottom: 2px dotted #747474;
+}
+.pic{
+    width: 100%;
+    margin: 0 0 50px;
+}
+.txt{
+    width: 100%;
+    margin: 0 0 20px;
+    border-top: 2px solid #747474;
+}
+.txt h4,h5{
+    margin-top: 20px;
+}
+.cart-btn button{
+    width: 100%;
+    margin: 15px 0px;
+    font-weight: bold;
+    color:#fff;
+    background-color: #ffbf00;
+    
+}
+.cart-btn button:hover{
+    color:#fff;
+    background-color: #f7941d;
+    border-color: #f7941d;
+    
+}
+.btn-warning:not(:disabled):not(.disabled).active, .btn-warning:not(:disabled):not(.disabled):active{
+    color: #fff;
+    background-color: #f7941d;
+    border-color: #f7941d;
+    
+}
+
+
+/* 書介與書訊 文字區 start */
+.accordion{
+    margin-top: 40px;
+}
+.card{
+    border: none;
+}
+.card h5{
+    margin-top: 0;  
+}
+.card .btn-link{
+    color:#000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 17px;
+}
+.card .btn-link:hover{
+    color:#dc3545;
+}
+.card button{
+    padding: 0px;
+}
+.card-header{
+    background-color: transparent;
+    padding-left: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.booktxt{
+    font-size: 15px;
+}
+
+
+
+/* 書介與書訊 文字區 end */
+/* 內頁圖片 書訊區 end */
+
+/* 購書條款 start */
+.b-terms{
+   justify-content: center;
+}
+.terms-detail{
+    font-size: 14px;
+}
+.terms-detail h5{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+/* 購書條款 end */
+
+/* 推薦書區 start */
+.title-bestbooks{
+    margin-top: 100px;
+    text-align: center;
+    border-top: 1px solid rgba(201, 201, 201, 0.514);
+}
+.title-bestbooks h5{
+    margin-top: 50px;
+    font-size: 17px; 
+}
+.bestbook-img img:hover{
+    opacity: 50%;
+
+}
+.card-sty{
+    text-align: center;
+}
+/* 推薦書區 end */

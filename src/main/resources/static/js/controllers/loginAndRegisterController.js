@@ -1,7 +1,7 @@
 async function controlFormValidate(obj, form) {
   // 表單基本驗證
   const errors = validate(form, form.classList.contains('reg-form') ? regConstraints : constraints)
-  console.log(obj, errors)
+  console.log(obj.classList)
 
   // 若有欄位驗證失敗
   if(errors != null && Object.keys(errors).length !==0) {
@@ -16,8 +16,14 @@ async function controlFormValidate(obj, form) {
       obj.renderAJAXFormError(errors)
       return
     }
-    form.submit()
   }
+
+  if (form.classList.contains('login-form')) {
+    const el = `<input type="checkbox" name="remember-me" style="display: none;" checked>`
+    form.insertAdjacentHTML('beforeend', el)
+  }
+
+  form.submit()
 }
 
 function init() {

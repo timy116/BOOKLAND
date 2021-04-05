@@ -4,7 +4,7 @@ class LoginAndRegisterView {
 
   constructor(formEl) {
     this._formElement = formEl
-    this._btnSubmit = this._formElement.querySelector('button')
+    this._btnSubmit = this._formElement.querySelector('.submit')
     this._addHandlerInput()
   }
 

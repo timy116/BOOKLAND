@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <!-- Required meta tags -->
@@ -21,8 +21,8 @@
         <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
       </div>
       <div class="icon-3">
-        <li class="user-none"><a href="account.html"><img src="/static/css/icon/user.svg" width="33px" class="user"></a></li>
-        <li class="login-none"><a href="/login"><img src="/static/css/icon/login.svg" width="30px" class="login"></a></li>
+        <li sec:authorize="${isAuthenticated()}" class="user-none"><a href="/logout"><img src="/static/css/icon/user.svg" width="33px" class="user"></a></li>
+        <li sec:authorize="${!isAuthenticated()}" class="login-none"><a href="/login"><img src="/static/css/icon/login.svg" width="30px" class="login"></a></li>
         <li><a href="cart.html"><img src="/static/css/icon/cart.svg" width="25px" class="cart"></a></li>
         <li><a href="javascript:void(0);"><img src="/static/css/icon/msg.svg" width="30px" class="msg"></a></li>
       </div>

@@ -24,6 +24,20 @@ class LoginAndRegisterView {
     }.bind(this))
   }
 
+  // 顯示 AJAX 表單錯誤樣式
+  renderAJAXFormError(errors) {
+    if (errors.u) {
+      const el = this._formElement.querySelector('#reg-username')
+      el.classList.add('is-invalid')
+      el.parentElement.querySelector('.form-text').innerText = '* 此帳號名稱已被使用'
+    }
+    if (errors.e) {
+      const el = this._formElement.querySelector('#email')
+      el.classList.add('is-invalid')
+      el.parentElement.querySelector('.form-text').innerText = '* 此 email 已被使用'
+    }
+  }
+
   // 顯示表單錯誤樣式
   renderFormError(errors) {
     this._formElement.querySelectorAll('input').forEach(function (el) {
@@ -36,6 +50,13 @@ class LoginAndRegisterView {
         el.parentElement.querySelector('.form-text').innerText = errors[el.name][0]
       }
     })
+  }
+
+  getInspectQuery() {
+    return [
+      this._formElement.querySelector('#reg-username').value.trim(),
+      this._formElement.querySelector('#email').value.trim(),
+    ]
   }
 }
 

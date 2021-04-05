@@ -14,7 +14,7 @@ const constraints = {
 
 // register form validate object
 const regConstraints = {
-  'reg-username': {
+  'username': {
     presence: {
       message: '^* 此欄位不可空白'
     },
@@ -27,7 +27,7 @@ const regConstraints = {
       tooShort: '^* 帳號至少 4 位英文或數字',
     },
   },
-  'password1': {
+  'password': {
     presence: {
       message: '^* 此欄位不可空白'
     },
@@ -41,7 +41,7 @@ const regConstraints = {
       message: '^* 此欄位不可空白'
     },
     equality: {
-      attribute: 'password1',
+      attribute: 'password',
       message: '^* 密碼不相符'
     }
   },
@@ -52,5 +52,18 @@ const regConstraints = {
     email: {
       message: '^* Email 格式不正確'
     },
+  }
+}
+
+async function userInspect(username, email) {
+  try {
+    return await AJAX(
+      AJAX_USER_INSPECT_URL
+        .replace("{username}", username)
+        .replace("{email}", email)
+    )
+  } catch (error) {
+    console.log(error)
+    throw error
   }
 }

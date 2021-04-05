@@ -149,11 +149,11 @@
         </div>
         <!-- 註冊內容 -->
         <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form class="loginform reg-form">
+          <form class="loginform reg-form" action="/register" method="post">
             <div class="form-froup">
               <label for="reg-username">User Name</label>
               <div class="inputerror">
-                <input type="text" name="reg-username" id="reg-username" class="form-control" placeholder="帳號至少 4 位英文或數字">
+                <input type="text" name="username" id="reg-username" class="form-control" placeholder="帳號至少 4 位英文或數字">
                 <small id="usererror" class="form-text text-muted">* 請輸入使用者帳號</small>
               </div>
             </div>
@@ -168,7 +168,7 @@
             <div class="form-group">
               <label for="password1">Password</label>
               <div class="inputerror">
-                <input type="password" class="form-control" name="password1" id="password1" placeholder="密碼至少 6 位英文或數字">
+                <input type="password" class="form-control" name="password" id="password1" placeholder="密碼至少 6 位英文或數字">
                 <small class="form-text text-muted">* 密碼至少8個字符</small>
               </div>
               <br>

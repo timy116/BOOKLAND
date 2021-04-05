@@ -4,11 +4,15 @@ import com.bookland.entity.User;
 import com.bookland.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -38,5 +45,15 @@ public class UserController {
         if (!ObjectUtils.isEmpty(user))
             status.put("e", 1);
         return status;
+    }
+
+    @PostMapping("/register")
+    public String register(HttpServletRequest request) {
+        User user = new User();
+        user.setUserName(request.getParameter("username"));
+        user.setPassword(passwordEncoder.encode(request.getParameter("password")));
+        user.setEmail(request.getParameter("email"));
+        userService.create(user);
+        return "redirect:login";
     }
 }

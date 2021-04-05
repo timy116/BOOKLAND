@@ -64,6 +64,12 @@ padding: 10px 20px 10px 0px;
 }
 .cgpassword-form a{
     text-decoration: none;
+    color:#0074e1;
+    font-weight: bold;
+    
+}
+.cgpassword-form a:hover{
+    color:#e79e02;
 }
 .mb-button{
     text-align: right;
@@ -186,6 +192,11 @@ padding: 10px 20px 10px 0px;
 }
 .order-footer a{
     text-decoration: none;
+    color:#0074e1;
+    font-weight: bold;
+}
+.order-footer a:hover{
+    color:#e79e02;
 }
 .bgcolor a{
     text-decoration: none;

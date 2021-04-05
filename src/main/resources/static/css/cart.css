@@ -5,6 +5,7 @@
 }
 .bow{
     border-top: 2px solid #5e5e5e;
+    margin-bottom: 0rem;
 }
 .total{
     padding: 20px 10px 10px;
@@ -13,7 +14,9 @@
 .cart-item{
     display: flex;
     align-items: center;
-    justify-content: space-between;   
+    justify-content: space-between;  
+    padding: 10px 0px 10px; 
+    border-bottom: 1px solid #5e5e5e;
 }
 .bcov-text, .price, .amount-price{
     display: flex;
@@ -23,6 +26,8 @@
 }
 .bcov-text img{
     padding-right: 10px;
+    height: 80px;
+    
 }
 .quantity{
     padding-right: 10px;
@@ -57,6 +62,9 @@ p{
 .remove{ 
     padding-bottom: 10px;
 }
+.con-shop{
+    margin-top: 5px;
+}
 @media(max-width:420px){
     .cart-item{
         flex-direction: column;
@@ -67,6 +75,11 @@ p{
     .bcov-text, .price , .amount-price , .actions{
         padding-bottom: 10px;
     }   
+}
+@media(max-width:767.98px){
+    .con-shop{
+        margin-bottom: 50px;
+    }
 }
 /* 購物車訂單明細  end */
 
@@ -102,6 +115,17 @@ p{
     width: 100%;
     margin-top: 20px;
 }
+.con-shop{
+    text-align: left;
+}
+.con-shop a{
+    text-decoration: none;
+    color:#0074e1;
+    font-weight: bold;
+}
+.con-shop a:hover{
+    color:#e79e02;
+}
 @media(max-width:420px){
     .total{
         padding: 0 20px;
@@ -115,23 +139,42 @@ p{
 }
 .wish-list{
     width: 100%;
-    margin-top: 80px;
+    margin-top: 100px;
     text-align: center; 
+    padding-left: 0px;
 }
 /* 收藏清單  end */
 
 
-/* 購物車為空的時 之樣式 */
-.cart-item{
-    /* display: none; */
+/* 購物車 與 收藏清單 顯示與不顯示  start */
+.cart-v{
+    /* 購物車為空的時之樣式 顯示 display: none;*/
+    display: none;
+}
+.wish-v{
+     /* 收藏清單為空的時之樣式 顯示 display: none;*/
+     /* display: none; */
 }
 
-.cart-empty, .wish-empty{
+.cart-empty{
     height: 200px;
     text-align: center;
     line-height: 200px;
-    display:none; /* 購物車不為空的時,顯示display:none */
+    border-bottom: 1px solid #5e5e5e;
+    /* display:none;  */
+    /* 購物車不為空的時,不隱藏 display:none */
 }
+.wish-empty{
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    border-bottom: 1px solid #5e5e5e;
+    display:none; 
+    /* 收藏清單不為空的時,不隱藏 display:none */
+}
+/* 購物車 與 收藏清單 顯示與不顯示  end */
+
+/* 購物車 與 收藏清單  空樣式的字體 start */
 .cart-empty p{
     font-family: "微軟正黑體","黑體","宋體",sans-serif;
     font-size: 18px;
@@ -140,3 +183,4 @@ p{
     font-family: "微軟正黑體","黑體","宋體",sans-serif;
     font-size: 18px;
 }
+/* 購物車 與 收藏清單  空樣式的字體 end */

@@ -8,18 +8,44 @@
     list-style: none;
     padding: 0 10px;
 }
-.user:hover{
-    height: 38px; 
+
+/* 會員帳號管理 start */
+.user-none a{
+    display: flex;
+    text-decoration: none;
+    color:#495057;
 }
-.cart:hover{
-    height: 35px;
+.user-none p{
+    margin-bottom: 0px;
+    line-height: 30px;
+    color:#3aafa9;
+    
 }
-.login:hover{
-    height: 35px;
+.list-group{
+    /* 會員帳號管理 定位 */
+    position: fixed;
+    z-index: 100;    
 }
-.msg:hover{
-    height: 35px;
+.list-group .list-group-item{
+    /* 會員帳號管理細目選項 */
+    font-family:"微軟正黑體","黑體","宋體",sans-serif;
+    font-size: 10px;
 }
+.list-group .list-group-item:hover{
+    /* 會員帳號管理細目選項 */
+    background-color: #EAC100;
+    border-color: #EAC100;    
+}
+.list-group .list-group-item a:hover{
+    /* 會員帳號管理細目選項 */
+    color:#fff;
+}
+.hide{
+    /* 會員帳號管理 一開始是隱藏的 */
+   display: none;
+}
+/* 會員帳號管理 end */
+
 .jumbotron .container-fluid{
     padding: 0 30px;
     display: flex;
@@ -33,6 +59,7 @@
 .container-fluid div{
     display: inline-block;
 }
+
 @media (max-width: 576px){
     .logo{
         width: 60px;

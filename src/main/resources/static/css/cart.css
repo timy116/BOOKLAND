@@ -38,7 +38,7 @@
     border:1px solid #aaa;
     border-radius: 10%;
 }
-p{
+.container p{
     font-size: 13px;
     font-family: "微軟正黑體","黑體","宋體",sans-serif; 
     margin: 0;

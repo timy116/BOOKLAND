@@ -23,9 +23,14 @@ async function controlFormValidate(obj, form) {
   form.submit()
 }
 
+function controlFacebookLogin(form) {
+  form.submit()
+}
+
 function init() {
   registerView.addHandlerSubmit(controlFormValidate)
   loginView.addHandlerSubmit(controlFormValidate)
+  addHandlerFacebook(controlFacebookLogin)
 }
 
 init()

@@ -1,3 +1,15 @@
+function addHandlerFacebook(handler) {
+  document.querySelector('.fb-btn').addEventListener('click', function () {
+    const markup = `
+      <form method="post" action="/signin/facebook" class="fb-form" style="display:none;">
+        <input type="hidden" name="scope" value="public_profile">
+      </form>
+    `
+    document.querySelector('footer').insertAdjacentHTML('beforeend', markup)
+    handler(document.querySelector('.fb-form'))
+  })
+}
+
 class LoginAndRegisterView {
   _formElement
   _btnSubmit

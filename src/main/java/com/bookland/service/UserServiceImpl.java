@@ -17,6 +17,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateTime(String username) {
+        userDAO.updateLoginTime(username);
+    }
+
+    @Override
     public User retrieveByUserName(String username) {
         return userDAO.retrieveByUserName(username);
     }

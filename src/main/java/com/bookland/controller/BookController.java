@@ -44,7 +44,7 @@ public class BookController {
                 category = "All";
         }
         model.addAttribute("category", category);
-        return "all";
+        return "book-cat";
     }
 
     @GetMapping("/{category}/page{num}")

@@ -1,5 +1,6 @@
 package com.bookland.config;
 
+import com.bookland.handler.CustomSavedRequestAwareAuthenticationSuccessHandler;
 import com.bookland.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
+    @Autowired
+    private CustomSavedRequestAwareAuthenticationSuccessHandler customSavedRequestAwareAuthenticationSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -45,9 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
+                .successHandler(customSavedRequestAwareAuthenticationSuccessHandler)
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/", true)
+//                .defaultSuccessUrl("/")
                 .failureUrl("/login?error=true")
                 .and()
                 .rememberMe()
@@ -67,5 +72,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
         jdbcTokenRepository.setDataSource(dataSource);
         return jdbcTokenRepository;
+    }
+
+    @Bean
+    public CustomSavedRequestAwareAuthenticationSuccessHandler customSavedRequestAwareAuthenticationSuccessHandler() {
+        return new CustomSavedRequestAwareAuthenticationSuccessHandler();
     }
 }

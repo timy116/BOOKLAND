@@ -6,6 +6,12 @@
     VALUES (#{userName}, #{password}, #{email})
     </insert>
 
+    <update id="updateLoginTime" parameterType="java.lang.String">
+    UPDATE `user`
+    SET `lastLogin` = now()
+    WHERE `userName` = #{userName}
+    </update>
+
     <select id="retrieveByUserName" resultType="User" parameterType="java.lang.String">
         SELECT `id`, `userName`, `password`, `email`, `phone`, `address`, `birthDate`, `lastLogin`, `createTime`
         FROM `user`

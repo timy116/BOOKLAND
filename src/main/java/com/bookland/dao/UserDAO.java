@@ -6,4 +6,5 @@ public interface UserDAO {
     void create(User user);
     User retrieveByUserName(String username);
     User retrieveByEmail(String email);
+    void updateLoginTime(String username);
 }

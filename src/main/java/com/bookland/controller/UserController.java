@@ -4,6 +4,8 @@ import com.bookland.entity.User;
 import com.bookland.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -59,12 +63,16 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(HttpServletRequest request) {
+    public ModelAndView register(HttpServletRequest request) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         User user = new User();
-        user.setUserName(request.getParameter("username"));
-        user.setPassword(passwordEncoder.encode(request.getParameter("password")));
+        user.setUserName(username);
+        user.setPassword(passwordEncoder.encode(password));
         user.setEmail(request.getParameter("email"));
         userService.create(user);
-        return "redirect:login";
+
+        request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+        return new ModelAndView("redirect:/perform_login");
     }
 }

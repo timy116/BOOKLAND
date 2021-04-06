@@ -18,11 +18,8 @@ async function controlFormValidate(obj, form) {
     }
   }
 
-  if (form.classList.contains('login-form')) {
-    const el = `<input type="checkbox" name="remember-me" style="display: none;" checked>`
-    form.insertAdjacentHTML('beforeend', el)
-  }
-
+  const el = `<input type="checkbox" name="remember-me" style="display: none;" checked>`
+  form.insertAdjacentHTML('beforeend', el)
   form.submit()
 }
 

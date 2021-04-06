@@ -21,7 +21,17 @@
         <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
       </div>
       <div class="icon-3">
-        <li sec:authorize="${isAuthenticated()}" class="user-none"><a href="/logout"><img src="/static/css/icon/user.svg" width="33px" class="user"></a></li>
+        <li sec:authorize="${isAuthenticated()}" class="user-none">
+          <a href="javascript:void(0);">
+          <img src="/static/css/icon/user.svg" width="33px" class="user">
+          <p>username</p>
+        </a>
+        <ul class="list-group hide">
+          <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
+          <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
+          <li class="list-group-item"><a href="/logout">登出</a></li>
+        </ul>
+      </li>
         <li sec:authorize="${!isAuthenticated()}" class="login-none"><a href="/login"><img src="/static/css/icon/login.svg" width="30px" class="login"></a></li>
         <li><a href="cart.html"><img src="/static/css/icon/cart.svg" width="25px" class="cart"></a></li>
         <li><a href="javascript:void(0);"><img src="/static/css/icon/msg.svg" width="30px" class="msg"></a></li>
@@ -397,6 +407,13 @@
   <script src="/static/vendor/jquery/jquery-3.5.1.min.js"></script>
   <script src="/static/vendor/bootstrap-4.1.3/js/popper.min.js"></script>
   <script src="/static/vendor/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+
+  <!-- 會員帳號管理 icon button -->
+<script>
+  $('.user-none').hover(function(){
+    $('.hide').toggle();
+  })
+</script>
 
 </body>
 </html>

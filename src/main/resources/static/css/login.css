@@ -38,12 +38,11 @@
 .email-form{
     margin-top: 20px;
 }
-
-.links-container{   
-    font-size: 10px; 
+.links-container{     
     margin-top: 10px;
 }
 .links-container a{
+    font-size: 10px; 
     color:#707881;
     font-family: "微軟正黑體","黑體","宋體",sans-serif;
     text-decoration: none;
@@ -54,6 +53,48 @@
 .nav-item a{
     color:#495057;
 }
+/* modal style start */
+.modal-header{
+    position: relative;
+}
+.modal-header , .modal-footer{
+    width: 100%;
+    justify-content: center;
+}
+.modal-header .close{
+    margin-left: 0px;
+}
+
+.modal-header h5{
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    font-weight: bold;
+    
+}
+.modal-header span{
+    color:#f00;
+    
+}
+.modal-content img{
+    width: 40px;
+    padding-right:10px;
+}
+.modal-header button{
+    position: absolute;
+    right: 20px;
+}
+.modal-body p{
+    font-family: "微軟正黑體","黑體","宋體",sans-serif;
+    font-size: 16px;
+    color:#495057;
+}
+
+.modal-content input{
+    width: 250px;
+    margin-bottom: 20px;
+
+}
+/* modal style end */
+
 @media screen and (max-width: 767px){
     .wrap{
         width: 100%;

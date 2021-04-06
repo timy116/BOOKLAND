@@ -25,7 +25,16 @@
             <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
           </div>
           <div class="icon-3">
-            <li class="user-none"><a href="account.html"><img src="/static/css/icon/user.svg" width="33px" class="user"></a></li>
+            <li class="user-none"><a href="account.html">
+              <img src="/static/css/icon/user.svg" width="33px" class="user">
+              <p>username</p>
+            </a>
+            <ul class="list-group hide">
+              <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
+              <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
+              <li class="list-group-item"><a href="/logout">登出</a></li>
+            </ul>
+          </li>
             <li class="login-none"><a href="login.html"><img src="/static/css/icon/login.svg" width="30px" class="login"></a></li>
             <li><a href="cart.html"><img src="/static/css/icon/cart.svg" width="25px" class="cart"></a></li>
             <li><a href="javascript:void(0);"><img src="/static/css/icon/msg.svg" width="30px" class="msg"></a></li>
@@ -178,6 +187,14 @@
   <script src="/static/js/views/bookView.js"></script>
   <script src="/static/js/models/bookModel.js"></script>
   <script src="/static/js/controllers/bookController.js"></script>
+
+<!-- 會員帳號管理 icon button -->
+<script>
+  $('.user-none').hover(function(){
+    $('.hide').toggle();
+  })
+</script>
+
 </body>
 
 

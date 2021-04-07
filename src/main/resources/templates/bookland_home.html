@@ -24,7 +24,7 @@
         <li sec:authorize="${isAuthenticated()}" class="user-none">
           <a href="javascript:void(0);">
           <img src="/static/css/icon/user.svg" width="33px" class="user">
-          <p>username</p>
+          <p sec:authentication="name"></p>
         </a>
         <ul class="list-group hide">
           <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>

@@ -20,7 +20,7 @@ class BookView extends BaseView {
           <div class="card-body">
             <p class="card-text">${book.name}</p>
             <p><strong>NT ${book.price}</strong></p>
-            <button type="button" class="btn btn-outline-dark">more</button>
+            <a href="/book/insidepage/${book.slug}" class="btn btn-outline-dark">more</a>
             <button type="button" class="btn btn-outline-danger">Add to Cart</button>
           </div>
         </div>

@@ -154,7 +154,7 @@
           <div class="card-body">
             <p class="card-text"><span th:text="${book.name}"></span></p>
             <p><strong>NT <span th:text="${book.price}"></span></strong></p>
-            <button type="button" class="btn btn-outline-dark">more</button>
+            <a th:href="${'/book/insidepage/'+book.slug}" class="btn btn-outline-dark">more</a>
             <button type="button" class="btn btn-outline-danger">Add to Cart</button>
           </div>
         </div>

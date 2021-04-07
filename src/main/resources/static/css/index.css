@@ -23,16 +23,23 @@
     /* 會員帳號管理 定位 */
     position: fixed;
     z-index: 100;    
+    transform: translateX(6px); 
+    box-shadow: 5px 5px 8px #adadad81; 
 }
 .list-group .list-group-item{
     /* 會員帳號管理細目選項 */
     font-family:"微軟正黑體","黑體","宋體",sans-serif;
     font-size: 10px;
+    width: 102px;
+}
+li .list-group .list-group-item{
+    padding: 10px;
 }
 .list-group .list-group-item:hover{
     /* 會員帳號管理細目選項 */
     background-color: #EAC100;
-    border-color: #EAC100;    
+    border-color: #EAC100; 
+   
 }
 .list-group .list-group-item a:hover{
     /* 會員帳號管理細目選項 */
@@ -43,6 +50,30 @@
    display: none;
 }
 /* 會員帳號管理 end */
+
+/* 購物車 數量 start */
+.order-num{
+    position: relative;
+}
+.order-number{
+    position: absolute;
+    margin: 0px;
+    background-color: #fc4445;
+    color:#fff;
+    width: 18px;
+    line-height: 20px;
+    font-size: small;
+    text-align: center;
+    align-items: center;
+    transform: translate(-60%, -25%);
+    /* 隱藏購物車樣式 start */
+    /* display: none; */
+     /* 隱藏購物車樣式 end */
+
+}
+
+/* 購物車 數量 end */
+
 .jumbotron .container-fluid{
     padding: 0 30px;
     display: flex;
@@ -62,7 +93,7 @@
         width: 60px;
     }
     .jumbotron{
-        padding-bottom: 4rem;
+        padding-bottom: 2rem;
     }
 }
 @media (min-width: 576px){
@@ -393,7 +424,7 @@
     }
 }
 .text-booklaunch{
-    padding: 30px 15px 0;
+    padding: 30px 30px 0;
    
 }
 .text-booklaunch p{
@@ -402,6 +433,7 @@
     font-size: 16px;
     line-height:2rem;  
 }
+
 .detail{
     margin-bottom :3px;   
 }

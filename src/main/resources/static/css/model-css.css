@@ -24,12 +24,18 @@
 .list-group{
     /* 會員帳號管理 定位 */
     position: fixed;
-    z-index: 100;    
+    z-index: 100;  
+    transform: translateX(6px);  
+    box-shadow: 5px 5px 8px #adadad81;
 }
 .list-group .list-group-item{
     /* 會員帳號管理細目選項 */
     font-family:"微軟正黑體","黑體","宋體",sans-serif;
     font-size: 10px;
+    width: 102px;
+}
+li .list-group .list-group-item{
+    padding: 10px;
 }
 .list-group .list-group-item:hover{
     /* 會員帳號管理細目選項 */
@@ -59,6 +65,28 @@
 .container-fluid div{
     display: inline-block;
 }
+/* 購物車 icon start */
+.order-num{
+    position: relative;
+}
+.order-number{
+    position: absolute;
+    margin: 0px;
+    background-color: #fc4445;
+    color:#fff;
+    width: 18px;
+    line-height: 20px;
+    font-size: small;
+    text-align: center;
+    align-items: center;
+    transform: translate(-60%, -25%);
+    /* 隱藏購物車樣式 start */
+    /* display: none; */
+     /* 隱藏購物車樣式 end */
+
+}
+
+/* 購物車icon end */
 
 @media (max-width: 576px){
     .logo{

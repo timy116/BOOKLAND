@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <!-- Required meta tags -->
@@ -22,20 +22,26 @@
         <div>
           <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
         </div>
-        <div class="icon-3">
-          <li class="user-none"><a href="account.html">
+        <div class="icon-3 order-num">
+          <li sec:authorize="${isAuthenticated()}" class="user-none">
+            <a href="javascript:void(0);">
               <img src="/static/css/icon/user.svg" width="33px" class="user">
-              <p>username</p>
+              <p sec:authentication="name"></p>
             </a>
             <ul class="list-group hide">
-              <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
-              <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
-              <li class="list-group-item"><a href="/logout">登出</a></li>
+              <li class="list-group-item list-item"><a href="account.html">帳戶資訊</a></li>
+              <li class="list-group-item list-item"><a href="newpass.html">更改密碼</a></li>
+              <li class="list-group-item list-item"><a href="/logout">登出</a></li>
             </ul>
           </li>
-          <li class="login-none"><a href="login.html"><img src="/static/css/icon/login.svg" width="30px"
-                class="login"></a></li>
-          <li><a href="cart.html"><img src="/static/css/icon/cart.svg" width="25px" class="cart"></a></li>
+          <li sec:authorize="${!isAuthenticated()}" class="login-none">
+            <a href="/login"><img src="/static/css/icon/login.svg" width="30px" class="login"></a></li>
+          <li>
+            <p class="order-number">0</p>
+            <a href="cart.html">
+              <img src="/static/css/icon/cart.svg" width="25px" class="cart">
+            </a>
+          </li>
           <li> <a href="javascript:void(0);"> <img src="/static/css/icon/msg3.svg" width="30px" class="msg"></a></li>
         </div>
         </ul>
@@ -80,7 +86,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="new.html">NEW</a>
+            <a class="nav-link" href="/new">NEW</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -88,13 +94,13 @@
               BOOKS
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="all.html">全部 All</a>
+              <a class="dropdown-item" href="/book/all">全部 All</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="fineart.html">美術 Fine Art</a>
+              <a class="dropdown-item" href="/book/fine-art">美術 Fine Art</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="photography.html">攝影 Photography</a>
+              <a class="dropdown-item" href="/book/photography">攝影 Photography</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="posterbook.html">海報 & 設計 Poster & Design</a>
+              <a class="dropdown-item" href="/book/poster-design">海報 & 設計 Poster & Design</a>
             </div>
           </li>
           <li class="nav-item">

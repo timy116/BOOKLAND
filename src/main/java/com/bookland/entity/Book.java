@@ -14,6 +14,7 @@ import java.util.Date;
 public class Book {
     Integer id;
     String name;
+    String slug;
     String bookNumber;
     Integer price;
     String publisher;

@@ -15,6 +15,11 @@ public class BookServiceImpl implements BookService {
     private BookDAO bookDAO;
 
     @Override
+    public Book retrieveBySlug(String slug) {
+        return bookDAO.retrieveBySlug(slug);
+    }
+
+    @Override
     public List<Book> retrieveAll() {
         return bookDAO.retrieveAll();
     }

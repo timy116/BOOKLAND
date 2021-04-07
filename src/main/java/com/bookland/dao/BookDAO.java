@@ -5,6 +5,7 @@ import com.bookland.entity.Book;
 import java.util.List;
 
 public interface BookDAO {
+    Book retrieveBySlug(String slug);
     List<Book> retrieveAll();
     List<Book> retrieveBooks(String category);
     List<Book> listAllBooksByPage();

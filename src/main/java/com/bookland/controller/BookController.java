@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -66,5 +67,12 @@ public class BookController {
         }
         log.debug("books pagination: " + books);
         return books;
+    }
+
+    @GetMapping("/insidepage/{slug}")
+    // 書籍內頁
+    public String bookDetail(Model model, @PathVariable String slug) {
+        model.addAttribute("book", bookService.retrieveBySlug(slug));
+        return "insidepage";
     }
 }

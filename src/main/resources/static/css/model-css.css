@@ -1,8 +1,17 @@
 /*-----------header 區 start-------*/
+header{
+    width: 100%;
+    height: 134px;
+}
 .jumbotron{
     margin-bottom: 0px;
-    background-color: #fff;
-    padding-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.589);
+    padding-bottom: 1rem;
+    padding-top:1.5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    
 }
 .jumbotron .container-fluid li{
     list-style: none;
@@ -90,20 +99,22 @@ li .list-group .list-group-item{
 
 /* 購物車icon end */
 
-@media (max-width: 576px){
+@media (max-width: 768px){
+    header{
+        height: 100px;
+    }
     .logo{
-        width: 60px;
+        width: 50px;
     }
     .jumbotron{
-        padding-bottom: 2rem;
+        padding-bottom: 0.5rem;
+        padding-top:1.5rem;
     }
+    .jumbotron .container-fluid{
+        padding: 0 20px;
+        }
 }
-@media (min-width: 576px){
-.jumbotron {
-    padding-top: 2rem;
 
-}
-}
 /*-----------header 區-end------*/
 
 /*-------導覽列 區 start--------*/
@@ -203,6 +214,7 @@ footer .co .backhome{
 /* loading 圖示 start */
 .load-item{
     position: fixed;
+    z-index: 100;
         /* 畫面正中央 */
     bottom: 50%;
     right: 50%;

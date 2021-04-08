@@ -73,9 +73,11 @@ li .list-group .list-group-item{
     position: absolute;
     margin: 0px;
     background-color: #fc4445;
+    border:1px solid #fc4445;
+    border-radius: 2px;
     color:#fff;
-    width: 18px;
-    line-height: 20px;
+    width: 14px;
+    line-height: 14px;
     font-size: small;
     text-align: center;
     align-items: center;
@@ -200,7 +202,6 @@ footer .co .backhome{
 
 /* loading 圖示 start */
 .load-item{
-    display: inline-block;
     position: fixed;
         /* 畫面正中央 */
     bottom: 50%;

@@ -1,6 +1,6 @@
 <!-- 開頭模板區 start -->
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <!-- Required meta tags -->
@@ -25,9 +25,9 @@
           <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
         </div>
         <div class="icon-3 order-num">
-          <li class="user-none "><a href="account.html">
+          <li sec:authorize="${isAuthenticated()}" class="user-none "><a href="account.html">
             <img src="/static/css/icon/user.svg" width="33px" class="user">
-            <p>username</p>
+            <p sec:authentication="name"></p>
           </a>
           <ul class="list-group hide">
             <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
@@ -35,7 +35,7 @@
             <li class="list-group-item"><a href="/logout">登出</a></li>
           </ul>
         </li>
-          <li class="login-none"><a href="login.html"><img src="/static/css/icon/login.svg" width="30px"
+          <li sec:authorize="${!isAuthenticated()}" class="login-none"><a href="login.html"><img src="/static/css/icon/login.svg" width="30px"
                 class="login"></a></li>
           <li>
             <p class="order-number">0</p>
@@ -288,13 +288,11 @@
 
 <!-- 會員帳號管理 icon button -->
 <script>
-  $('.user-none').hover(function(){
-    $('.hide').toggle();
-  })
+  $('.user-none').hover(() => $('.user-none .hide').toggle())
 </script>
 
 <!-- loading 圖示 start  -->
-<div class="load-item">
+<div class="load-item hide">
   <div class="load-pic">
     <img src="/static/css/icon/colorbook-load.png" class="book-p">
   </div>

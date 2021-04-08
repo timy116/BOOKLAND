@@ -18,7 +18,7 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container-fluid">
       <div>
-        <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
+        <a href="/"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
       </div>
       <div class="icon-3 order-num">
         <li sec:authorize="${isAuthenticated()}" class="user-none">
@@ -402,7 +402,7 @@
   <!---------footer--start----------------->
   <footer>
     <div class="co">
-      <span>Copyright &copy; 2021 <a class="backhome" href="bookland_home.html"><strong>BookLand</strong></a> </span>
+      <span>Copyright &copy; 2021 <a class="backhome" href="/"><strong>BookLand</strong></a> </span>
     </div>
   </footer>
 <!---------footer--end----------------->
@@ -415,13 +415,11 @@
 
   <!-- 會員帳號管理 icon button -->
 <script>
-  $('.user-none').hover(function(){
-    $('.hide').toggle();
-  })
+  $('.user-none').hover(() => $('.user-none .hide').toggle())
 </script>
 
 <!-- loading 圖示 start  -->
-<div class="load-item">
+<div class="load-item hide">
   <div class="load-pic">
     <img src="/static/css/icon/colorbook-load.png" class="book-p">
   </div>

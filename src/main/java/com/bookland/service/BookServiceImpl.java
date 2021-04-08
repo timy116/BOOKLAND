@@ -40,4 +40,9 @@ public class BookServiceImpl implements BookService {
         PageHelper.startPage(pageNum, pageSize);
         return bookDAO.listBooksByPage(category);
     }
+
+    @Override
+    public List<Book> searchBook(String keyword) {
+        return bookDAO.searchBook(keyword);
+    }
 }

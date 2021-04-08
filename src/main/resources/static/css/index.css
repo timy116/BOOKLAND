@@ -4,6 +4,9 @@
     border: 1px solid transparent;
     border-color: #28a745;
 }
+.navbar .btn-line-home{
+    padding: .375rem .75rem;
+}
 /* 首頁的搜尋button 樣式 end */
 
 /* ----------banner 區 start-------------- */

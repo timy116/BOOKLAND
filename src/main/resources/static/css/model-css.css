@@ -123,7 +123,7 @@ li .list-group .list-group-item{
 }
 .navbar{
     padding-right: 2rem;
-    padding-left: 2rem;
+    
     border-bottom:1px solid rgba(201, 201, 201, 0.514); 
 }
 .line:hover{
@@ -139,10 +139,12 @@ li .list-group .list-group-item{
 } 
 .btn-line{
     background-color:transparent;
+    
    
 }
 .btn-search{
     padding:5px 10px !important;
+
 }
 
 .modal-content{

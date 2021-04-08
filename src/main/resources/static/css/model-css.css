@@ -197,3 +197,48 @@ footer .co .backhome{
     /* display: none; */
 }
 /*-----登入與帳號切換 end--------*/
+
+/* loading 圖示 start */
+.load-item{
+    display: inline-block;
+    position: fixed;
+        /* 畫面正中央 */
+    bottom: 50%;
+    right: 50%;
+    transform: translateX(50%);
+      /* 畫面正下方 */
+    /* bottom: 20%;
+    right: 50%;
+    transform: translateX(50%); */
+
+}
+.load-pic{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: 1.5s infinite linear;
+    animation-name: rotation; 
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0);    
+    }
+    to {
+        transform: rotate(360deg);   
+    } ;
+}
+.book-p{
+    width: 100px;
+    position: absolute;
+}
+@media(max-width:767.98px){
+    .load-pic{
+        width: 60px;
+        height: 60px;
+    }
+    .book-p{
+        width: 60px;
+        
+    }  
+}
+/* loading 圖示 end */

@@ -19,7 +19,7 @@
 .txt h4,h5{
     margin-top: 20px;
 }
-.cart-btn button{
+.cart-btn a{
     width: 100%;
     margin: 15px 0px;
     font-weight: bold;
@@ -27,7 +27,7 @@
     background-color: #ffbf00;
     
 }
-.cart-btn button:hover{
+.cart-btn a:hover{
     color:#fff;
     background-color: #f7941d;
     border-color: #f7941d;

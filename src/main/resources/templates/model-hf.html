@@ -35,7 +35,8 @@
             </ul>
           </li>
           <li sec:authorize="${!isAuthenticated()}" class="login-none">
-            <a href="/login"><img src="/static/css/icon/login.svg" width="30px" class="login"></a></li>
+            <a href="/login"><img src="/static/css/icon/login.svg" width="30px" class="login"></a>
+          </li>
           <li>
             <p class="order-number">0</p>
             <a href="cart.html">
@@ -119,6 +120,14 @@
     </nav>
   </navbar>
   <!-- 導覽列 end -->
+
+  <!-- loading 圖示 start  -->
+  <div class="load-item">
+    <div class="load-pic">
+      <img src="/static/css/icon/colorbook-load.png" class="book-p">
+    </div>
+  </div>
+  <!-- loading 圖示 end  -->
 
   <!-- footer 區 start -->
   <footer>

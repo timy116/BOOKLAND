@@ -157,7 +157,7 @@
         <h5><small>NT</small> <span th:text="${book.price}"></span></h5>
         <div class="cart-btn">
           <!-- 按下button 增加到購物車  -->
-          <button type="button" class="btn btn-warning">Add to cart</button>
+          <a href="#" class="btn btn-warning">Add to cart</a>
         </div>
         <div class="accordion" id="accordionExample">
           <div class="card">
@@ -292,6 +292,14 @@
     $('.hide').toggle();
   })
 </script>
+
+<!-- loading 圖示 start  -->
+<div class="load-item">
+  <div class="load-pic">
+    <img src="/static/css/icon/colorbook-load.png" class="book-p">
+  </div>
+</div>
+<!-- loading 圖示 end  -->
 
 </body>
 

@@ -41,6 +41,9 @@ public class BookController {
             case "poster-design":
                 category = "Poster & Design";
                 break;
+            case "magazine":
+                category = "Magazine";
+                break;
             default:
                 category = "All";
         }

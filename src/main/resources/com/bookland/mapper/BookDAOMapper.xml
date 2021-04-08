@@ -41,4 +41,14 @@
         FROM book
         WHERE slug = #{slug}
     </select>
+
+    <!-- 關鍵字查詢 -->
+    <select id="searchBook" resultType="Book" parameterType="java.lang.String">
+        SELECT `name`, `slug`, `price`, `imageUrl`
+        FROM book
+        where name like CONCAT('%','${keyword}','%')
+           OR
+              description like CONCAT('%','${keyword}','%') LIMIT 12;
+    </select>
+
 </mapper>

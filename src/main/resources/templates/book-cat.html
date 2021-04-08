@@ -111,8 +111,8 @@
             <a class="nav-link " href="about.html">ABOUT</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Key Words" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Key Words" aria-label="Search">
           <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -126,7 +126,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb alig">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><span th:text="${category}"></span></li>
+        <li class="breadcrumb-item active" aria-current="page"><span th:if="${category!=null}" th:text="${category}"></span></li>
       </ol>
     </nav>
   </div>
@@ -134,7 +134,8 @@
 
   <!--------------------title start----------------------------->
   <div class="title">
-    <h3><span th:text="${category.toUpperCase()}"></span></h3>
+    <h3><span th:text="${category}==null ? '搜尋與 \''+ ${keyword} +'\' 有關的項目' : ${category.toUpperCase()}"></span></h3>
+<!--    <h3><span th:if="${category!=null}" th:text="${category.toUpperCase()}" ></span></h3>-->
   </div>
   <!--------------------title end---------------------------->
 

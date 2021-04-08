@@ -10,4 +10,5 @@ public interface BookDAO {
     List<Book> retrieveBooks(String category);
     List<Book> listAllBooksByPage();
     List<Book> listBooksByPage(String category);
+    List<Book> searchBook(String keyword);
 }

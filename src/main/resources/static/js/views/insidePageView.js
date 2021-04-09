@@ -3,14 +3,16 @@ class InsidePageView extends CartView {
 
   constructor() {
     super()
-    this._btnCart= document.querySelector('.btn-cart')
+    this._btnCart = document.querySelector('.btn-cart')
     this._btnCart.style.transition = 'opacity 0.5s'
   }
 
   addHandlerToCart(handler) {
     this._btnCart.addEventListener('click', function (e) {
-      e.preventDefault()
-      handler(this.href)
+      if (!this.href.endsWith('cart')) {
+        e.preventDefault()
+        handler(this.href)
+      }
     })
   }
 

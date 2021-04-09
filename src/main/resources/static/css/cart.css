@@ -165,8 +165,6 @@
     text-align: center;
     line-height: 200px;
     border-bottom: 1px solid #5e5e5e;
-    display:none; 
-    /* 購物車不為空的時,不隱藏 display:none */
 }
 .wish-empty{
     height: 200px;

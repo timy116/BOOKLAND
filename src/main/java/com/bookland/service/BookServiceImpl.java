@@ -45,4 +45,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> searchBook(String keyword) {
         return bookDAO.searchBook(keyword);
     }
+
+    @Override
+    public List<Book> retrieveBooksById(List<Integer> idList) {
+        return bookDAO.retrieveBooksById(idList);
+    }
 }

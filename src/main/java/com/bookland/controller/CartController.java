@@ -1,10 +1,14 @@
 package com.bookland.controller;
 
+import com.bookland.entity.Book;
+import com.bookland.service.BookService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,39 @@ import java.util.stream.Collectors;
 @RequestMapping("/cart")
 public class CartController {
 
+    @Autowired
+    BookService bookService;
+
+    public Optional<Cookie> getCookie(HttpServletRequest request, String cookieName) {
+        return Arrays.stream(request.getCookies())
+                .filter(c -> c.getName().equals(cookieName))
+                .findAny();
+    }
+
+    public Map<String, Integer> getCartItems(Cookie cookie) throws JsonProcessingException {
+        return new ObjectMapper()
+                .readValue(cookie.getValue(), new TypeReference<HashMap<String, Integer>>() {});
+    }
+
+    @GetMapping("")
+    public String cartPage(HttpServletRequest request, Model model) throws JsonProcessingException {
+        Optional<Cookie> opt = getCookie(request, "cart");
+        List<Integer> idList = new ArrayList<>();
+
+        if (opt.isPresent()) {
+            Map<String, Integer> cart = getCartItems(opt.get());
+            cart.keySet().forEach(s -> idList.add(Integer.parseInt(s)));
+            List<Book> books = bookService.retrieveBooksById(idList);
+            log.debug("books: {}", books);
+            model.addAttribute("items", cart);
+            model.addAttribute("books", books);
+        } else {
+            model.addAttribute("items", null);
+            model.addAttribute("books", null);
+        }
+        return "cart";
+    }
+
     @GetMapping("/add")
     @ResponseBody
     public String addItemAJAX(HttpServletRequest request, HttpServletResponse response, String id)
@@ -31,16 +68,14 @@ public class CartController {
         ObjectMapper objectMapper = new ObjectMapper();
 
         // 得到 cart cookie
-        Optional<Cookie> opt = Arrays.stream(request.getCookies())
-                .filter(c -> c.getName().equals("cart"))
-                .findAny();
+        Optional<Cookie> opt = getCookie(request, "cart");
 
         // 判斷 cookie 是否存在
         if(opt.isPresent()) {
             cookie = opt.get();
 
             // 得到 cart 內容並轉換回 Map Object
-            cart = objectMapper.readValue(cookie.getValue(), new TypeReference<HashMap<String, Integer>>() {});
+            cart = getCartItems(cookie);
 
             // 根據 book id 得到數量
             Integer quantity = cart.get(id);

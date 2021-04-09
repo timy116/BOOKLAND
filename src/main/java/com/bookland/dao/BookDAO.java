@@ -11,4 +11,5 @@ public interface BookDAO {
     List<Book> listAllBooksByPage();
     List<Book> listBooksByPage(String category);
     List<Book> searchBook(String keyword);
+    List<Book> retrieveBooksById(List<Integer> idList);
 }

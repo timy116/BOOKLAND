@@ -50,8 +50,8 @@ public class CartController {
                 // 數量 +1 並且更新
                 cart.put(id, quantity + 1);
             }
-            // 如果數量不為 null，表示使用者第一次新增該書本到購物車
-            else if (!ObjectUtils.isEmpty(quantity)) {
+            // 如果數量為 null，表示使用者第一次新增該書本到購物車
+            else if (ObjectUtils.isEmpty(quantity)) {
                 // 設定數量為 1
                 cart.put(id, 1);
             }

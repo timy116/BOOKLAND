@@ -32,8 +32,23 @@ async function controlBook(entries, observer) {
 
 }
 
+async function controlAddToCart(url) {
+  try {
+    const result = await addToCart(url)
+    console.log(result)
+
+    if(result.cart) {
+      bookView.updateCartNumber(result.cart)
+    }
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 function init() {
   bookView.addHandlerRender(controlBook)
+  bookView.addHandlerToCart(controlAddToCart)
 }
 
 init()

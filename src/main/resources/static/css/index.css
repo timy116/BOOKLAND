@@ -10,7 +10,32 @@
 /* 首頁的搜尋button 樣式 end */
 
 /* ----------banner 區 start-------------- */
- .carousel-indicators li {
+@keyframes fadein {
+    0% {opacity: 0;}
+    50% {opacity:1;}
+    100% {opacity:0;}
+  }
+.as-txt{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgba(255, 255, 255, 0.384);
+    position: absolute;
+    bottom:40%;
+    left:50%;
+    transform:translateX(-50%);
+    animation: fadein 8s infinite;  
+}
+@media (max-width:991.98px){
+    .as-txt{
+        font-size:30px;
+    }
+}
+@media (max-width:576px){
+    .as-txt{
+        font-size:20px;
+    }
+}
+.carousel-indicators li {
     width: 10px;
     height: 10px;
     border-radius: 50%;

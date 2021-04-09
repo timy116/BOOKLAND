@@ -9,6 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/static/vendor/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendor/bootstrap-4.1.3/css/bootstrap-icons.css">
     <link rel="stylesheet" href="/static/css/model-css.css">
     <link rel="stylesheet" href="/static/css/message.css">
    
@@ -195,18 +196,25 @@
    
     <!-- 會員帳號管理 icon button -->
     <script>
-      $('.user-none').hover(function(){
-        $('.hide').toggle();
-      })
+      $('.user-none').hover(() => $('.user-none .hide').toggle())
     </script>
 
     <!-- loading 圖示 start  -->
-  <div class="load-item">
+  <div class="load-item hide">
     <div class="load-pic">
       <img src="/static/css/icon/colorbook-load.png" class="book-p">
     </div>
   </div>
   <!-- loading 圖示 end  -->
+
+  <!-- message box start  -->
+  <div class="message-box">
+    <div>
+      <i class="bi-chat-dots-fill"></i>
+      <small>&nbsp;您的留言已送出</small>
+    </div>
+  </div>
+  <!-- message box end  -->
 
 </body>
 

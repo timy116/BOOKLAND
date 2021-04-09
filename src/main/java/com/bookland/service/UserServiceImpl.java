@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
     public User retrieveByEmail(String email) {
         return userDAO.retrieveByEmail(email);
     }
+
+    @Override
+    public void updateUser(String userName,String name, String email, String phone, String address) {
+        userDAO.updateUser(userName,name,email,phone,address);
+    }
 }

@@ -23,4 +23,12 @@
         FROM `user`
         WHERE `email` = #{email}
     </select>
+
+    <update id="updateUser" parameterType="com.bookland.entity.User">
+        UPDATE user
+        SET `name`='${name}',`email`='${email}', `phone`='${phone}',`address`='${address}'
+        WHERE `userName`= '${userName}'
+    </update>
+
+
 </mapper>

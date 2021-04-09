@@ -387,13 +387,11 @@
 
   <!-- 會員帳號管理 icon button -->
   <script>
-    $('.user-none').hover(function(){
-      $('.hide').toggle();
-    })
+    $('.user-none').hover(() => $('.user-none .hide').toggle())
   </script>
  
  <!-- loading 圖示 start  -->
- <div class="load-item">
+ <div class="load-item hide">
   <div class="load-pic">
     <img src="/static/css/icon/colorbook-load.png" class="book-p">
   </div>

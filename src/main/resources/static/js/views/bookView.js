@@ -1,7 +1,7 @@
-class BookView extends BaseView {
+class BookView extends CartView {
   _parentElement = document.querySelector('.container .row')
   _messageBox = document.querySelector('.message-box')
-  _orderNumber = document.querySelector('.order-number')
+
   _timerDelay
   _timerMsgBox
   _delay = false
@@ -14,39 +14,6 @@ class BookView extends BaseView {
     })
 
     observer.observe(el)
-  }
-
-  // 新增書本至購物車
-  addHandlerToCart(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      if (!e.target.classList.contains('btn-cart')) return
-
-      e.preventDefault()
-      if (this._delay) return
-
-      handler(e.target.href)
-      this._delay = true
-      console.log(e.target)
-      if (!this._timerDelay) {
-        console.log('set timer')
-        this._timerDelay = setTimeout(
-          function () {
-            this._delay = false
-            this._timerDelay = null
-            console.log('clear timer', this._delay)
-          }.bind(this)
-          , 1500
-        )
-      }
-    }.bind(this))
-  }
-
-  // 更新購物車數量
-  updateCartNumber(quantity) {
-    const el = this._orderNumber
-    if (el.classList.contains('hide')) el.classList.remove('hide')
-    el.innerText = quantity
-    this._showMessageBox()
   }
 
   _showMessageBox() {

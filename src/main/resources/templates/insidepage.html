@@ -1,4 +1,5 @@
 <!-- 開頭模板區 start -->
+<!-- 開頭模板區 start -->
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -47,8 +48,11 @@
               </svg>
             </a>
           </li>
-          <li>
-            <p class="order-number">0</p>
+          <li class="list-cart">
+            <p th:each="cookie:${#httpServletRequest.getCookies()}"
+               th:if="${cookie.getName().equals('cart')}"
+               th:class="'order-number'"
+               th:text="${cookie.getValue().split(',').length}"></p>
             <a href="cart.html">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -173,7 +177,7 @@
         <h5><small>NT</small> <span th:text="${book.price}"></span></h5>
         <div class="cart-btn">
           <!-- 按下button 增加到購物車  -->
-          <a href="#" class="btn btn-warning">Add to cart</a>
+          <a th:href="'/cart/add?id='+${book.id}" class="btn btn-warning btn-cart">Add to cart</a>
         </div>
         <div class="accordion" id="accordionExample">
           <div class="card">
@@ -216,7 +220,7 @@
     <!-- 內頁圖片 書訊區 end  -->
 
     <!-- 購書條款 start -->
-    <div class="accordion " id="accordionExample">
+    <div class="accordion">
       <div class="card">
         <div class="card-header b-terms" id="headingThree">
           <h5 class="mb-0">
@@ -296,25 +300,33 @@
   </footer>
   <!-- footer 區 end -->
 
+
+  <!-- loading 圖示 start  -->
+  <div class="load-item hide">
+    <div class="load-pic">
+      <img src="/static/css/icon/colorbook-load.png" class="book-p">
+    </div>
+  </div>
+  <!-- loading 圖示 end  -->
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="/static/vendor/jquery/jquery-3.5.1.min.js"></script>
   <script src="/static/vendor/bootstrap-4.1.3/js/popper.min.js"></script>
   <script src="/static/vendor/bootstrap-4.1.3/js/bootstrap.min.js"></script>
 
-<!-- 會員帳號管理 icon button -->
-<script>
-  $('.user-none').hover(() => $('.user-none .hide').toggle())
-</script>
-
-<!-- loading 圖示 start  -->
-<div class="load-item hide">
-  <div class="load-pic">
-    <img src="/static/css/icon/colorbook-load.png" class="book-p">
-  </div>
-</div>
-<!-- loading 圖示 end  -->
-
+  <!-- 會員帳號管理 icon button -->
+  <script>
+    $('.user-none').hover(() => $('.user-none .hide').toggle())
+  </script>
+  <script src="/static/js/global.js"></script>
+  <script src="/static/js/config.js"></script>
+  <script src="/static/js/helpers.js"></script>
+  <script src="/static/js/views/view.js"></script>
+  <script src="/static/js/views/cartView.js"></script>
+  <script src="/static/js/views/insidePageView.js"></script>
+  <script src="/static/js/models/bookModel.js"></script>
+  <script src="/static/js/controllers/insidePageController.js"></script>
 </body>
 
 

@@ -19,6 +19,30 @@ header{
 }
 
 /* 會員帳號管理 start */
+.bi{
+    color:rgb(107, 107, 107);
+    
+}
+.bi-person-circle{
+    margin-top: 5px;
+    margin-right: 2px;
+}
+.bi-person-circle:hover{
+    color:#fc4445;
+    
+}
+.bi-door-closed:hover{
+    color:#fc4445;
+}
+.bi-cart:hover{
+    color:#fc4445;
+}
+.bi-chat-dots-fill:hover{
+    color:#fc4445;
+}
+.user-none{
+    height: 38px;
+}
 .user-none a{
     display: flex;
     text-decoration: none;
@@ -28,14 +52,16 @@ header{
     margin-bottom: 0px;
     line-height: 30px;
     color:#3aafa9;
+
     
 }
 .list-group{
     /* 會員帳號管理 定位 */
     position: fixed;
     z-index: 100;  
-    transform: translateX(6px);  
+    /* transform: translateX(6px);   */
     box-shadow: 5px 5px 8px #adadad81;
+    transform: translate(0% , 5%);
 }
 .list-group .list-group-item{
     /* 會員帳號管理細目選項 */
@@ -90,7 +116,7 @@ li .list-group .list-group-item{
     font-size: small;
     text-align: center;
     align-items: center;
-    transform: translate(-60%, -25%);
+    transform: translate(90% , -30%);
     /* 隱藏購物車樣式 start */
     /* display: none; */
      /* 隱藏購物車樣式 end */

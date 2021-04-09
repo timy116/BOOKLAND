@@ -3,12 +3,16 @@
 .detail{
     padding: 20px 15px 10px;    
 }
+.detail h5{
+    text-align: center;
+}
 .bow{
     border-top: 2px solid #5e5e5e;
     margin-bottom: 0rem;
 }
 .total{
     padding: 20px 10px 10px;
+    margin-top: 43px;
     
 }
 .cart-item{
@@ -149,7 +153,7 @@
 /* 購物車 與 收藏清單 顯示與不顯示  start */
 .cart-v{
     /* 購物車為空的時之樣式 顯示 display: none;*/
-    display: none;
+    /* display: none; */
 }
 .wish-v{
      /* 收藏清單為空的時之樣式 顯示 display: none;*/
@@ -161,7 +165,7 @@
     text-align: center;
     line-height: 200px;
     border-bottom: 1px solid #5e5e5e;
-    /* display:none;  */
+    display:none; 
     /* 購物車不為空的時,不隱藏 display:none */
 }
 .wish-empty{

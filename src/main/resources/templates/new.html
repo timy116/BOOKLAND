@@ -1,6 +1,6 @@
 <!-- 開頭模板區 start -->
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <!-- Required meta tags -->
@@ -22,13 +22,16 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container-fluid">
         <div>
-          <a href="bookland_home.html"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
+          <a href="/"><img src="/static/css/icon/booklogo.svg" width="70px" class="logo"></a>
         </div>
         <div class="icon-3 order-num">
-          <li class="user-none">
+          <li sec:authorize="${isAuthenticated()}" class="user-none">
             <a href="javascript:void(0);">
-              <img src="/static/css/icon/user.svg" width="33px" class="user" id="user">
-              <p>username</p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg>
+              <p sec:authentication="name"></p>
             </a>
             <ul class="list-group hide">
               <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
@@ -37,15 +40,28 @@
             </ul>
 
           </li>
-          <li class="login-none"><a href="login.html"><img src="/static/css/icon/login.svg" width="30px"
-                class="login"></a></li>
+          <li sec:authorize="${!isAuthenticated()}" class="login-none">
+            <a href="/login">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
+                <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
+                <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+              </svg>
+            </a>
+          </li>
           <li>
             <p class="order-number">0</p>
             <a href="cart.html">
-              <img src="/static/css/icon/cart.svg" width="25px" class="cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
             </a>
           </li>
-          <li><a href="message.html"><img src="/static/css/icon/msg3.svg" width="30px" class="msg"></a></li>
+          <li><a href="message.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+              <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+          </a>
+        </li>
         </div>
         </ul>
       </div>
@@ -87,7 +103,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="new.html">NEW</a>
+            <a class="nav-link" href="/new">NEW</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -95,25 +111,25 @@
               BOOKS
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="all.html">全部 All</a>
+              <a class="dropdown-item" href="/book/all">全部 All</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="fineart.html">美術 Fine Art</a>
+              <a class="dropdown-item" href="/book/fine-art">美術 Fine Art</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="photography.html">攝影 Photography</a>
+              <a class="dropdown-item" href="/book/photography">攝影 Photography</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="posterbook.html">海報 & 設計 Poster & Design</a>
+              <a class="dropdown-item" href="/book/poster-design">海報 & 設計 Poster & Design</a>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="magazine.html">MAGAZINES</a>
+            <a class="nav-link" href="/book/magazine">MAGAZINES</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link " href="about.html">ABOUT</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Key Words" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Key Words" aria-label="Search">
           <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -125,7 +141,7 @@
   <div class="col-12 text-center">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb alig">
-        <li class="breadcrumb-item"><a href="bookland_home.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">New</li>
       </ol>
     </nav>
@@ -305,7 +321,7 @@
   <!-- footer start -->
   <footer>
     <div class="co">
-      <span>Copyright &copy; 2021 <a class="backhome" href="bookland_home.html"><strong>BookLand</strong></a> </span>
+      <span>Copyright &copy; 2021 <a class="backhome" href="/"><strong>BookLand</strong></a> </span>
     </div>
   </footer>
   <!-- footer end -->
@@ -319,13 +335,11 @@
 
   <!-- 會員帳號管理 icon button -->
   <script>
-    $('.user-none').hover(function(){
-      $('.hide').toggle();
-    })
+    $('.user-none').hover(() => $('.user-none .hide').toggle())
   </script>
 
   <!-- loading 圖示 start  -->
-  <div class="load-item">
+  <div class="load-item hide">
     <div class="load-pic">
       <img src="/static/css/icon/colorbook-load.png" class="book-p">
     </div>

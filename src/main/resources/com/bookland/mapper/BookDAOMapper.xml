@@ -12,39 +12,39 @@
 
     <!-- 用於 PageHelper，做分頁所使用的 SQL -->
     <select id="listAllBooksByPage" resultMap="BaseResultMap">
-        SELECT `name`, `slug`, `price`, `imageUrl`
+        SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
     </select>
 
     <select id="listBooksByPage" resultMap="BaseResultMap" parameterType="java.lang.String">
-        SELECT `name`, `slug`, `price`, `imageUrl`
+        SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         WHERE category = #{category}
     </select>
 
     <!-- 查詢所有書籍 -->
     <select id="retrieveAll" resultType="Book" parameterType="java.lang.String">
-        SELECT `name`, `slug`, `price`, `imageUrl`
+        SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book LIMIT 12
     </select>
 
     <!-- 根據類別查詢書籍 -->
     <select id="retrieveBooks" resultType="Book" parameterType="java.lang.String">
-        SELECT `name`, `slug`, `price`, `imageUrl`
+        SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         WHERE category = #{category} LIMIT 12
     </select>
 
     <!-- 根據 slug 查詢書籍 -->
     <select id="retrieveBySlug" resultType="Book" parameterType="java.lang.String">
-        SELECT `name`, `slug`, `bookNumber`, `price`, `publisher`, `description`, `category`, `imageUrl`
+        SELECT `id`, `name`, `slug`, `bookNumber`, `price`, `publisher`, `description`, `category`, `imageUrl`
         FROM book
         WHERE slug = #{slug}
     </select>
 
     <!-- 關鍵字查詢 -->
     <select id="searchBook" resultType="Book" parameterType="java.lang.String">
-        SELECT `name`, `slug`, `price`, `imageUrl`
+        SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         where name like CONCAT('%','${keyword}','%')
            OR

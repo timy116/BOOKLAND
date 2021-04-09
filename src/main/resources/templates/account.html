@@ -168,17 +168,18 @@
             <img src="/static/css/icon/edit.svg" alt="" width="20px">
             <span class="user-info">編輯個人資料</span>
           </div>
-          <form class="memberform">
+          <form class="memberform" action="/accountUpdate" method="post">
             <div class="form-froup name-form">
+              <input type="hidden" name="userName" th:value="${#authentication.name}">
               <label for="exampleInputname">姓名 (選填)</label>
               <div class="inputerror">
-                <input type="text" id="name" class="form-control " placeholder="Name">
+                <input type="text" id="name" name="name" class="form-control " placeholder="Name">
               </div>
             </div>
             <div class="form-group email-form">
               <label for="exampleInputEmail1">Email address</label>
               <div class="inputerror">
-                <input type="email" class="form-control is-invalid" id="email" aria-describedby="email"
+                <input type="email" class="form-control is-invalid" id="email" name="email" aria-describedby="email"
                   placeholder="Enter email">
                 <small id="emailerror" class="form-text text-muted">* Email不是正確格式</small>
               </div>
@@ -186,14 +187,14 @@
             <div class="form-group phone-form">
               <label for="exampleInputPhone">手機號碼 (選填)</label>
               <div class="inputerror">
-                <input type="text" class="form-control is-invalid" id="phone" placeholder="0913111000">
+                <input type="text" class="form-control is-invalid" id="phone" name="phone" placeholder="0913111000">
                 <small id="phoneerror" class="form-text text-muted">* 手機號碼長度不對</small>
               </div>
             </div>
             <div class="form-group address-form">
               <label for="exampleInputAddress">收貨地址 (選填)</label>
               <div class="inputerror">
-                <input type="text" class="form-control " id="address" placeholder="Add address">
+                <input type="text" class="form-control " id="address" name="address" placeholder="Add address">
               </div>
             </div>
             <div class="form-group cgpassword-form">
@@ -202,7 +203,7 @@
             </div>
             <div class="mb-button">
               <button type="button" class="btn btn-outline-secondary btn-block mb-btn">取消</button>
-              <button type="button" class="btn btn-secondary btn-block mb-btn">儲存變更</button>
+              <button type="submit" class="btn btn-secondary btn-block mb-btn">儲存變更</button>
             </div>
           </form>
         </div>

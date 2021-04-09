@@ -7,4 +7,5 @@ public interface UserDAO {
     User retrieveByUserName(String username);
     User retrieveByEmail(String email);
     void updateLoginTime(String username);
+    void updateUser(String userName,String name,String email,String phone,String address);
 }

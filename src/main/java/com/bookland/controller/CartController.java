@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -29,10 +27,11 @@ public class CartController {
     @Autowired
     BookService bookService;
 
-    public Optional<Cookie> getCookie(HttpServletRequest request, String cookieName) {
-        return Arrays.stream(request.getCookies())
+    public Cookie getCookie(HttpServletRequest request, String cookieName) {
+        Optional<Cookie> opt = Arrays.stream(request.getCookies())
                 .filter(c -> c.getName().equals(cookieName))
                 .findAny();
+        return opt.orElse(null);
     }
 
     public Map<String, Integer> getCartItems(Cookie cookie) throws JsonProcessingException {
@@ -43,14 +42,16 @@ public class CartController {
 
     @GetMapping("")
     public String cartPage(HttpServletRequest request, Model model) throws JsonProcessingException {
-        Optional<Cookie> opt = getCookie(request, "cart");
+        Cookie cookie = getCookie(request, "cart");
         List<Integer> idList = new ArrayList<>();
 
-        if (opt.isPresent()) {
-            Map<String, Integer> cart = getCartItems(opt.get());
+        if (!ObjectUtils.isEmpty(cookie)) {
+            int total;
+            Map<String, Integer> cart = getCartItems(cookie);
             cart.keySet().forEach(s -> idList.add(Integer.parseInt(s)));
             List<Book> books = bookService.retrieveBooksById(idList);
-            log.debug("books: {}", books);
+            total = books.stream().mapToInt(book -> book.getPrice() * cart.get(Integer.toString(book.getId()))).sum();
+            model.addAttribute("total", total);
             model.addAttribute("items", cart);
             model.addAttribute("books", books);
         } else {
@@ -64,17 +65,11 @@ public class CartController {
     @ResponseBody
     public String addItemAJAX(HttpServletRequest request, HttpServletResponse response, String id)
             throws JsonProcessingException {
-        Cookie cookie;
+        Cookie cookie = getCookie(request, "cart");
         Map<String, Integer> cart = new HashMap<>();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // 得到 cart cookie
-        Optional<Cookie> opt = getCookie(request, "cart");
-
-        // 判斷 cookie 是否存在
-        if (opt.isPresent()) {
-            cookie = opt.get();
-
+        if (!ObjectUtils.isEmpty(cookie)) {
             // 得到 cart 內容並轉換回 Map Object
             cart = getCartItems(cookie);
 
@@ -114,10 +109,9 @@ public class CartController {
     @ResponseBody
     public String removeItemAJAX(HttpServletRequest request, HttpServletResponse response, String id)
             throws JsonProcessingException {
-        Optional<Cookie> opt = getCookie(request, "cart");
+        Cookie cookie = getCookie(request, "cart");
 
-        if (opt.isPresent()) {
-            Cookie cookie = opt.get();
+        if (!ObjectUtils.isEmpty(cookie)) {
             Map<String, Integer> cart = getCartItems(cookie);
             cart.remove(id);
             cookie.setValue(new ObjectMapper().writeValueAsString(cart));
@@ -128,6 +122,26 @@ public class CartController {
                 // 刪除 cookie 必須設定期限為 0
                 cookie.setMaxAge(0);
             }
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            return "{\"cart\":" + cart.size() + "}";
+        }
+        return "";
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public String updateItemAJAX(HttpServletRequest request, HttpServletResponse response,
+                                 @RequestBody Map<String, Integer> params) throws JsonProcessingException {
+        Cookie cookie = getCookie(request, "cart");
+
+        if (!ObjectUtils.isEmpty(cookie)) {
+            Integer qty;
+            qty = params.get("qty") > 5 ? new Integer(5) : params.get("qty");
+            Map<String, Integer> cart = getCartItems(cookie);
+            cart.put(params.get("id").toString(), qty);
+            cookie.setValue(new ObjectMapper().writeValueAsString(cart));
             cookie.setHttpOnly(true);
             cookie.setPath("/");
             response.addCookie(cookie);

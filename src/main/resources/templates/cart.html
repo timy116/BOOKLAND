@@ -205,7 +205,7 @@
             </div>
             <div class="price">
               <p class="unit-price">
-                <b><span class="money"><p><small>NT</small></p><p th:text="${book.price}"></p></span></b>
+                <b><span class="money"><p><small>NT</small></p><p th:text="${book.price}" class="book-price"></p></span></b>
               </p>
               <p class="quantity">
                 <span class="x">x</span>
@@ -214,7 +214,7 @@
             </div>
             <div class="amount-price">
               <p>
-                <b><span class="money"><p><small>NT </small></p><p th:text="${items.get(book.id+'') * book.price}"></p></span></b>
+                <b><span class="money"><p><small>NT </small></p><p th:text="${items.get(book.id+'') * book.price}" class="item-price"></p></span></b>
               </p>
             </div>
             <div class="actions">
@@ -243,7 +243,7 @@
           <div class="total-price">
             <b>
               <span class="money">
-                <p><small>NT</small>880</p>
+                <p><small>NT</small><span th:text="${total}"></span></p>
               </span>
             </b>
           </div>
@@ -278,7 +278,7 @@
           <div class="order-price">
             <b>
               <span class="money">
-                <p><small>NT</small>960</p>
+                <p><small>NT</small><span th:text="${total + 80}"></span></p>
               </span>
             </b>
           </div>

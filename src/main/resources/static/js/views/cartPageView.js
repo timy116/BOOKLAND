@@ -1,5 +1,9 @@
 class CartPageView extends CartView {
+  _currentQty
+  _currentItemEl
   _toRemoveEl
+  _totalPriceEl = document.querySelector('.total-price .money span')
+  _orderPriceEl = document.querySelector('.order-price .money span')
   _parentElement = document.querySelector('.cart-item-container')
   _cartItemRemoveBtn = document.querySelectorAll('.remove-btn')
   _cartEmptyEl = document.querySelector('.cart-empty')
@@ -17,9 +21,47 @@ class CartPageView extends CartView {
     })
   }
 
+  addHandlerCartItemUpdate(handler) {
+    const self = this
+    this._quantityNum.forEach(function (el) {
+      // 一進入 input 時立刻存下當前數量
+      el.addEventListener('focus', function () {
+        self._currentQty = el.value
+      })
+      el.addEventListener('blur', function () {
+        if (+el.value <= 0) el.value = 1
+        if (self._currentQty === el.value) return
+
+        self._currentItemEl = el.closest('.cart-item')
+
+        // AJAX post data
+        handler({
+          id: self._currentItemEl.id.split('-')[2],
+          qty: +el.value,
+        })
+      })
+    })
+  }
+
   updateCartItem() {
     // 將該書本從購物車中移除
     this._parentElement.removeChild(this._toRemoveEl)
+  }
+
+  // 更新書本金額
+  updatePrice() {
+    const bookPriceEl = this._currentItemEl.querySelector('.book-price b')
+    const qtyEl = this._currentItemEl.querySelector('.input-qty')
+    const priceEl = this._currentItemEl.querySelector('.item-price b')
+    priceEl.innerText = +qtyEl.value * +bookPriceEl.innerHTML
+  }
+
+  // 更新總金額
+  updateTotalPrice() {
+    let total = 0
+    document.querySelectorAll('.item-price b').forEach(el => total += +el.innerText)
+    this._totalPriceEl.innerText = total
+    this._orderPriceEl.innerText = total + 80
   }
 
   // 購物車為空時，將某些元素顯示/隱藏
@@ -27,6 +69,8 @@ class CartPageView extends CartView {
     this._orderNumber.classList.add('hide')
     this._parentElement.classList.add('hide')
     this._cartEmptyEl.classList.remove('hide')
+    this._totalPriceEl.innerText = ''
+    this._orderPriceEl.innerText = ''
   }
 }
 

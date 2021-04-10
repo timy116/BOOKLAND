@@ -197,7 +197,7 @@
 <!--        </div>-->
 
         <!-- 第一本書明細 end -->
-        <div th:if="${books}">
+        <div th:if="${books}" class="cart-item-container">
           <div th:each="book, stat:${books}" class="cart-item cart-v" th:id="'cart-item-'+${book.id}">
             <div class="bcov-text">
               <a th:href="'/book/insidepage/'+${book.slug}"><img th:src="${book.imageUrl}"></a>
@@ -218,7 +218,7 @@
               </p>
             </div>
             <div class="actions">
-              <a href="javascript:void(0);">
+              <a th:href="'/cart/remove?id='+${book.id}" class="remove-btn">
                 <li class="remove">&otimes;刪除</li>
               </a>
               <a href="javascript:void(0);">
@@ -390,7 +390,10 @@
   <script src="/static/js/global.js"></script>
   <script src="/static/js/config.js"></script>
   <script src="/static/js/helpers.js"></script>
-
+  <script src="/static/js/views/view.js"></script>
+  <script src="/static/js/views/cartView.js"></script>
+  <script src="/static/js/views/cartPageView.js"></script>
+  <script src="/static/js/controllers/cartPageController.js"></script>
 </body>
 
 </html>

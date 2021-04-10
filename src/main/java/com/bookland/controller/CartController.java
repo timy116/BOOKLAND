@@ -37,7 +37,8 @@ public class CartController {
 
     public Map<String, Integer> getCartItems(Cookie cookie) throws JsonProcessingException {
         return new ObjectMapper()
-                .readValue(cookie.getValue(), new TypeReference<HashMap<String, Integer>>() {});
+                .readValue(cookie.getValue(), new TypeReference<HashMap<String, Integer>>() {
+                });
     }
 
     @GetMapping("")
@@ -71,7 +72,7 @@ public class CartController {
         Optional<Cookie> opt = getCookie(request, "cart");
 
         // 判斷 cookie 是否存在
-        if(opt.isPresent()) {
+        if (opt.isPresent()) {
             cookie = opt.get();
 
             // 得到 cart 內容並轉換回 Map Object
@@ -104,7 +105,34 @@ public class CartController {
             cookie.setMaxAge(3600 * 24 * 14);
         }
 
+        cookie.setHttpOnly(true);
         response.addCookie(cookie);
         return "{\"cart\":" + cart.size() + "}";
+    }
+
+    @GetMapping("/remove")
+    @ResponseBody
+    public String removeItemAJAX(HttpServletRequest request, HttpServletResponse response, String id)
+            throws JsonProcessingException {
+        Optional<Cookie> opt = getCookie(request, "cart");
+
+        if (opt.isPresent()) {
+            Cookie cookie = opt.get();
+            Map<String, Integer> cart = getCartItems(cookie);
+            cart.remove(id);
+            cookie.setValue(new ObjectMapper().writeValueAsString(cart));
+
+            if (cart.size() == 0) {
+                cookie = new Cookie("cart", null);
+
+                // 刪除 cookie 必須設定期限為 0
+                cookie.setMaxAge(0);
+            }
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            return "{\"cart\":" + cart.size() + "}";
+        }
+        return "";
     }
 }

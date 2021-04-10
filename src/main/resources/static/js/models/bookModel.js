@@ -14,12 +14,3 @@ async function loadBook(category) {
     throw error
   }
 }
-
-async function addToCart(url) {
-  try {
-    return await AJAX(url)
-  } catch (error) {
-    console.log(error)
-    throw error
-  }
-}

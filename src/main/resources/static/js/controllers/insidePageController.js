@@ -1,6 +1,6 @@
 async function controlAddToCart(url) {
   try {
-    const result = await addToCart(url)
+    const result = await AJAX(url)
     console.log(result)
 
     if(result.cart) {

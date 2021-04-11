@@ -29,8 +29,19 @@ async function controlCartItemUpdate(data) {
   }
 }
 
+async function controlCheckout() {
+  const stripe = Stripe(STRIPE_PUBLIC_KEY);
+  try {
+    const session = await CheckoutAJAX()
+    return stripe.redirectToCheckout({ sessionId: session.id });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
 function init() {
   cartPageView.addHandlerCartItemRemove(controlCartItemRemove)
   cartPageView.addHandlerCartItemUpdate(controlCartItemUpdate)
+  cartPageView.addHandlerCheckout(controlCheckout)
 }
 init()

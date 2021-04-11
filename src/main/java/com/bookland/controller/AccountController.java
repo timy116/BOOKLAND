@@ -7,11 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @Slf4j
 public class AccountController {
     @Autowired
     private UserService userService;
+
+
+    @GetMapping("/success")
+    public String accountPage(HttpServletRequest request, String sessionId) {
+        return "redirect:account";
+    }
 
     @GetMapping("/account")
     public String accountInformation(String username){

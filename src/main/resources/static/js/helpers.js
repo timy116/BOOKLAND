@@ -33,3 +33,17 @@ async function AJAX(url, formData = undefined) {
     throw error
   }
 }
+
+async function CheckoutAJAX() {
+  try {
+    const fetchPro = fetch(AJAX_STRIPE_URL, {
+      method: "POST",
+    })
+
+    const result = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)])
+    return await result.json()
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+

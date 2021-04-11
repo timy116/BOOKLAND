@@ -3,7 +3,6 @@ package com.bookland.controller;
 import com.bookland.entity.Book;
 import com.bookland.service.BookService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static com.bookland.utils.CookUtil.getCartItems;
+import static com.bookland.utils.CookUtil.getCookie;
 
 @Controller
 @Slf4j
@@ -26,19 +26,6 @@ public class CartController {
 
     @Autowired
     BookService bookService;
-
-    public Cookie getCookie(HttpServletRequest request, String cookieName) {
-        Optional<Cookie> opt = Arrays.stream(request.getCookies())
-                .filter(c -> c.getName().equals(cookieName))
-                .findAny();
-        return opt.orElse(null);
-    }
-
-    public Map<String, Integer> getCartItems(Cookie cookie) throws JsonProcessingException {
-        return new ObjectMapper()
-                .readValue(cookie.getValue(), new TypeReference<HashMap<String, Integer>>() {
-                });
-    }
 
     @GetMapping("")
     public String cartPage(HttpServletRequest request, Model model) throws JsonProcessingException {

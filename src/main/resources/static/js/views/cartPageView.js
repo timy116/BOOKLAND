@@ -1,13 +1,14 @@
 class CartPageView extends CartView {
+  _parentElement = document.querySelector('.cart-item-container')
   _currentQty
   _currentItemEl
   _toRemoveEl
   _totalPriceEl = document.querySelector('.total-price .money span')
   _orderPriceEl = document.querySelector('.order-price .money span')
-  _parentElement = document.querySelector('.cart-item-container')
-  _cartItemRemoveBtn = document.querySelectorAll('.remove-btn')
   _cartEmptyEl = document.querySelector('.cart-empty')
   _quantityNum = document.querySelectorAll('.input-qty')
+  _cartItemRemoveBtn = document.querySelectorAll('.remove-btn')
+  _checkoutBtn = document.querySelector('.btn-checkout')
 
   // 所有購物車刪除按鈕註冊事件
   addHandlerCartItemRemove(handler) {
@@ -40,6 +41,14 @@ class CartPageView extends CartView {
           qty: +el.value,
         })
       })
+    })
+  }
+
+  addHandlerCheckout(handler) {
+    this._checkoutBtn.addEventListener('click', () => {
+      document.querySelector('.container').style.visibility = 'hidden'
+      document.querySelector('.load-item').classList.remove('hide')
+      handler()
     })
   }
 

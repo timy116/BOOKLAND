@@ -81,7 +81,7 @@ public class CheckoutController {
             });
 
             Map<String, Object> params = new HashMap<>();
-            params.put("success_url", domain + "/success?session_id={CHECKOUT_SESSION_ID}");
+            params.put("success_url", domain + "/success?sessionId={CHECKOUT_SESSION_ID}");
             params.put("cancel_url", domain + "/cart");
             params.put("payment_method_types", paymentMethodTypes);
             params.put("line_items", lineItems);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookland.dao.CreditCardDAO">
+    <select id="retrieveByLast4" resultType="CreditCard" parameterType="String">
+        SELECT `id`, `last4`, `cardExpMonth`, `cardExpYear`, `brand`
+        FROM bookstore.credit_card
+        WHERE exists(SELECT id FROM bookstore.credit_card WHERE last4 = #{last4})
+        LIMIT 1
+    </select>
+
+    <insert id="create" parameterType="CreditCard">
+        INSERT INTO `credit_card` (`last4`, `cardExpMonth`, `cardExpYear`, `brand`)
+        VALUES (#{last4}, #{cardExpMonth}, #{cardExpYear}, #{brand})
+    </insert>
+</mapper>

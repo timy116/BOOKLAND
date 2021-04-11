@@ -15,4 +15,9 @@ public class OrderServiceImpl implements OrderService {
     public void create(Order order) {
         orderDAO.create(order);
     }
+
+    @Override
+    public Order retrieveByLatest() {
+        return orderDAO.retrieveByLatest();
+    }
 }

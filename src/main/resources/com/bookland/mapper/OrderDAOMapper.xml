@@ -5,4 +5,11 @@
         INSERT INTO `order` (`orderNumber`, `price`, `quantity`, `userId`, `creditCardId`, `createTime`)
         VALUES (#{orderNumber}, #{price}, #{quantity}, #{userId}, #{creditCardId}, now())
     </insert>
+
+    <select id="retrieveByLatest" resultType="Order">
+        SELECT `id`
+        FROM `order`
+        ORDER BY `createTime` DESC
+        LIMIT 1
+    </select>
 </mapper>

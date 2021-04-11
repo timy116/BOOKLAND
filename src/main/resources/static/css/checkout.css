@@ -1,0 +1,202 @@
+/* 訂單總價 與 回購物車連結 區 start  */
+.totalprice-bar{
+    margin: 5px;
+   
+}
+.alert{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.alert-info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+}
+.bi-cart-fill{
+    color:#17a2b8;
+}
+.backcart-bar a{
+text-decoration: none;
+color:#17a2b8;
+font-size: 17px;
+}
+.price-bar{
+    display: flex;
+    color:#17a2b8; 
+}
+.price-bar p{
+    margin: 0;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.t-price{
+    color:#fc4445;
+    font-weight: bold;
+}
+@media(max-width:767.98px){
+    .price-bar p{
+        font-size: 15px;
+    }
+    .backcart-bar a{
+        font-size: 15px;
+    }
+}
+/* 訂單總價 與 回購物車連結 區 end  */
+
+/* 寄件資料 與 paypal付款 連結 區 start */
+.container{
+    margin-top: 40px;
+}
+.info , .payment{
+    width: 100%;
+    height: auto;
+    border:1px solid rgb(211, 211, 211);
+    border-radius: 2rem;
+}
+.s-info, .c-pay {
+    margin-top: 20px;
+}
+.container h5{
+    text-align: center;
+    color:#17a2b8;
+}
+.accordion{
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+}
+.card{
+    border:none;
+}
+.card-header{
+    background-color: #fff;    
+}
+.mb-0{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mb-0 button{
+    padding: 0;
+}
+.mb-0 button p{
+    color:#17a2b8;
+    font-weight: bold;
+}
+.mb-0 button p:hover{
+    color:#fc4445;
+    
+}
+.mb-0 p{
+    margin-bottom: 0px;
+    color:rgb(75, 75, 75);
+    
+}
+.text-left{
+    
+    background-color: #fff;
+}
+.mb-0 .address-txt{
+    width:50%;
+}
+.card-bottom{
+    margin-bottom: 30px;
+}
+@media(max-width:576px){
+   .mb-0{
+       display:block;
+   }
+   .mb-0 .address-txt{
+    width:100%;
+}
+}
+/* 訂單明細 start */
+.order-content .order-item{
+   width: 60%;
+    margin: auto;
+    margin-top: 30px;
+}
+.order-item h6{
+    color:rgb(97, 97, 97);
+    text-align: center;
+}
+.order-item i{
+    color:#fc4445;
+}
+.order-totalprice{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.table{
+    margin-bottom: 0px;
+}
+.total-prices{
+    font-weight: bold;
+}
+.table{
+    border-bottom: 2px solid rgb(97, 97, 97);
+}
+.pay-btn{
+    width: 100%;
+    padding: 0px;
+    border: none;
+}
+
+.paypal-button{
+    margin-bottom: 10px;
+    width: 100%;
+}
+.paypal-button:hover{
+    box-shadow: #f5bd569a 0px 0px 5px 0.1rem;
+}
+
+.card-pic{
+    padding: 0px 8px;
+    margin-bottom: 30px;
+}
+button:focus {
+    outline: none; 
+    
+}
+/* 訂單明細 end */
+/* 寄件資料 與 paypal付款 連結 區 end */
+
+/* modal paypal 付款 彈出視窗 start  */
+.modal-header, .modal-footer{
+    width: 90%;
+    color:rgb(102, 102, 102);
+}
+.modal-header{
+    align-items:center;
+}
+.modal-header img{
+    width: 20px;
+}
+.pay-btn-bo{
+    width:150px;
+    height:38px;
+    padding: 5px;
+}
+.pay-btn-bo img{
+    height: 100%;
+}
+.modal-body{
+    width: 90%;
+    color:rgb(102, 102, 102);
+    background-color: rgb(238, 238, 238);
+    border-top: 2px solid rgb(102, 102, 102);
+}
+.cardnum{
+    padding: 10px 0px 20px;
+}
+.carddate{
+    padding-bottom: 20px;
+}
+.carddate,.cardnum span{
+    color:rgb(161, 161, 161);
+}
+/* modal paypal 付款 彈出視窗 end  */
+
+
+

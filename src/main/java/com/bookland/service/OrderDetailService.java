@@ -7,5 +7,5 @@ import java.util.List;
 public interface OrderDetailService {
     void create(OrderDetail orderDetail);
     List<OrderDetail> retrieveByOrderId(Integer orderId);
-    List<OrderDetail> OrderDetail(Integer orderId);
+    List<OrderDetail> OrderDetail(Integer orderNumber);
 }

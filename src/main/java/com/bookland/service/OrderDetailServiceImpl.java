@@ -24,7 +24,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-    public List<OrderDetail> OrderDetail(Integer orderId) {
-        return orderDetailDAO.OrderDetail(orderId);
+    public List<OrderDetail> OrderDetail(Integer orderNumber) {
+        return orderDetailDAO.OrderDetail(orderNumber);
     }
 }

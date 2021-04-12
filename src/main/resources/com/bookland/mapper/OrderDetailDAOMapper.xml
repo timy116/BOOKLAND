@@ -52,6 +52,6 @@
         FROM (((bookstore.order_detail as a LEFT JOIN bookstore.book as b ON a.bookId = b.id)
             LEFT JOIN bookstore.order as c ON a.orderId = c.id)
                  RIGHT JOIN bookstore.credit_card as d ON  c.creditCardId=d.id)
-        WHERE c.id = #{orderId};
+        WHERE c.orderNumber = #{orderNumber};
     </select>
 </mapper>

@@ -46,9 +46,12 @@
             </svg>
           </a>
         </li>
-          <li>
-            <p class="order-number">0</p>
-            <a href="cart.html">
+          <li class="list-cart">
+            <p th:each="cookie:${#httpServletRequest.getCookies()}"
+               th:if="${cookie.getName().equals('cart')}"
+               th:class="'order-number'"
+               th:text="${cookie.getValue().split(',').length}"></p>
+            <a href="/cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
               </svg>
@@ -144,13 +147,13 @@
   <div class="wrap">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member"
+        <a th:class="${#request.getSession().getAttribute('isSuccess')} ? 'nav-link' : 'nav-link active show'" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member"
           aria-selected="true">個人資訊</a>
       </li>
 
       <!-- 會員訂單 -->
       <li class="nav-item">
-        <a class="nav-link" id="order-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order"
+        <a th:class="${#request.getSession().getAttribute('isSuccess')} ? 'nav-link active show' : 'nav-link'" id="order-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order"
           aria-selected="false">訂單查詢</a>
       </li>
     </ul>
@@ -160,11 +163,11 @@
       <!-- 會員資訊 -->
       <div class="username-info">
         <img src="/static/css/icon/account.svg" alt="" width="20px">
-        <span class="user-name">username</span>
+        <span class="user-name"><span sec:authentication="name"></span></span>
       </div>
 
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="member" role="tabpanel" aria-labelledby="member-tab">
+        <div th:class="${#request.getSession().getAttribute('isSuccess')} ? 'tab-pane fade' : 'tab-pane fade show active'" id="member" role="tabpanel" aria-labelledby="member-tab">
           <div class="user-edit">
             <img src="/static/css/icon/edit.svg" alt="" width="20px">
             <span class="user-info">編輯個人資料</span>
@@ -172,13 +175,13 @@
           <form class="memberform" action="/accountUpdate" method="post">
             <div class="form-froup name-form">
               <input type="hidden" name="userName" th:value="${#authentication.name}">
-              <label for="exampleInputname">姓名 (選填)</label>
+              <label>姓名 (選填)</label>
               <div class="inputerror">
                 <input type="text" id="name" name="name" class="form-control " placeholder="Name">
               </div>
             </div>
             <div class="form-group email-form">
-              <label for="exampleInputEmail1">Email address</label>
+              <label>Email address</label>
               <div class="inputerror">
                 <input type="email" class="form-control is-invalid" id="email" name="email" aria-describedby="email"
                   placeholder="Enter email">
@@ -186,20 +189,20 @@
               </div>
             </div>
             <div class="form-group phone-form">
-              <label for="exampleInputPhone">手機號碼 (選填)</label>
+              <label>手機號碼 (選填)</label>
               <div class="inputerror">
                 <input type="text" class="form-control is-invalid" id="phone" name="phone" placeholder="0913111000">
                 <small id="phoneerror" class="form-text text-muted">* 手機號碼長度不對</small>
               </div>
             </div>
             <div class="form-group address-form">
-              <label for="exampleInputAddress">收貨地址 (選填)</label>
+              <label>收貨地址 (選填)</label>
               <div class="inputerror">
                 <input type="text" class="form-control " id="address" name="address" placeholder="Add address">
               </div>
             </div>
             <div class="form-group cgpassword-form">
-              <label for="exampleInputPass">密碼</label>
+              <label>密碼</label>
               <a href="newpass.html">設定新的密碼</a>
             </div>
             <div class="mb-button">
@@ -210,7 +213,7 @@
         </div>
 
         <!--  會員訂單  -->
-        <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="order-tab">
+        <div th:class="${#request.getSession().getAttribute('isSuccess')} ? 'tab-pane fade show active' : 'tab-pane fade'" id="order" role="tabpanel" aria-labelledby="order-tab">
           <form class="memberform">
             <div class="form-group orderquery-form">
               <div class="inputerror or-button">
@@ -228,9 +231,9 @@
                       </tr>
                     </thead>
                     <tbody class="order-no">
-                      <tr>
-                        <td scope="row">#00001</td>
-                        <td>2021/04/02</td>
+                      <tr th:each="order:${orders}" th:id="${order.orderNumber}">
+                        <td scope="row"><span th:text="${order.orderNumber}"></span></td>
+                        <td><span th:text="${#dates.format(order.createTime, 'yyyy/MM/dd hh:mm:ss')}"></span></td>
                         <td class="complete">完成</td>
                         <!-- 訂單一明細彈出視窗 start -->
                         <td><button type="button" class="btn btn-primarynew" data-toggle="modal"
@@ -352,18 +355,6 @@
                           </div>
                         </td>
                         <!-- 訂單一明細彈出視窗 end -->
-                      </tr>
-                      <tr>
-                        <td scope="row">#00002</td>
-                        <td>2021/04/03</td>
-                        <td class="cancel">取消</td>
-                        <td><a href="#"><img src="/static/css/icon/order.svg" width="25px"></a></td>
-                      </tr>
-                      <tr>
-                        <td scope="row">#00003</td>
-                        <td>2021/04/03</td>
-                        <td class="complete">完成</td>
-                        <td><a href="#"><img src="/static/css/icon/order.svg" width="25px"></a></td>
                       </tr>
                     </tbody>
                   </table>

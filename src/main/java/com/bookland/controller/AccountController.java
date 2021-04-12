@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,8 +51,8 @@ public class AccountController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @GetMapping("/success")
-    public String paymentSuccess(HttpServletRequest request, HttpServletResponse response, String sessionId)
+    @GetMapping("/account/success")
+    public String paymentSuccess(HttpServletRequest request, HttpServletResponse response, String sessionId, Model model)
             throws JsonProcessingException {
         if (sessionId == null) return "redirect:/";
         Session session;
@@ -81,6 +82,7 @@ public class AccountController {
 
         // 取得當前使用者
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        com.bookland.entity.User currentUser = userService.retrieveByUserName(user.getUsername());
         String last4 = card.getLast4();
         CreditCard creditCard = creditCardService.retrieveByLast4(last4);
 
@@ -100,7 +102,7 @@ public class AccountController {
         order.setOrderNumber(new SnowFlakeUtil(1, 1).getNextId());
         order.setPrice(total);
         order.setQuantity(quantity.get());
-        order.setUserId(userService.retrieveByUserName(user.getUsername()).getId());
+        order.setUserId(currentUser.getId());
         order.setCreditCardId(creditCard.getId());
         orderService.create(order);
 
@@ -123,12 +125,15 @@ public class AccountController {
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
-
-        return "redirect:account";
+        request.getSession().setAttribute("isSuccess", true);
+        return "redirect:/account";
     }
 
     @GetMapping("/account")
-    public String accountInformation(String username){
+    public String accountInformation(String username, Model model){
+        User userDetail = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        com.bookland.entity.User user = userService.retrieveByUserName(userDetail.getUsername());
+        model.addAttribute("orders", orderService.retrieveOrdersByUserId(user.getId()));
         return "account";
     }
 

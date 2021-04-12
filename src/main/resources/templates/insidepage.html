@@ -11,6 +11,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/static/vendor/bootstrap-4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/vendor/bootstrap-4.1.3/css/bootstrap-icons.css">
   <link rel="stylesheet" href="/static/css/model-css.css">
   <link rel="stylesheet" href="/static/css/insidepage.css">
 
@@ -239,7 +240,7 @@
             請注意，郵政信箱地址不被接受。
             如果運送的物品有明顯的運輸損壞，請盡快向送貨服務部門投訴，並及時與我們聯繫。
             <h5>&diams;支付</h5>
-            除非另有說明，否則所有標價均包含營業稅。我們接受信用卡（AMEX，Master，Visa）和Paypal付款。
+            除非另有說明，否則所有標價均包含營業稅。我們接受Stripe付款。
 
             <h5>&diams;訂單更改</h5>
             請注意：提交訂單後，我們無法對您的訂單進行任何更改。如果您需要更新送貨地址或希望更改訂購的書，則需要取消訂單並再次訂購。如果包裹已經寄出，並且您需要更改寄送地址，您將需要與送貨公司聯繫。
@@ -247,7 +248,7 @@
             <h5>&diams;退貨政策</h5>
             您可以在交貨後的7天內撤銷購買合同。我們很樂意向您發送退貨標籤，以免費退貨。我們將在收到商品後的最多14天內退還您購買金額，包括原始運費（標準運費）。
 
-            <h5>&diams;如果您還有其他關於訂單的問題，請與我們<a href="#">聯繫</a>。</h5>
+            <h5>&diams;如果您還有其他關於訂單的問題，請與我們<a href="message.html">聯繫</a>。</h5>
           </div>
         </div>
       </div>
@@ -256,8 +257,12 @@
   <!-- 購書條款 end -->
 
   <div class="title-bestbooks">
-    <h5>&lt; The Best Books: Recommended List &gt;</h5>
-    <h5>&loz; 好書推薦 &loz;</h5>
+    <h5>
+      <i class="bi-bookmark-star-fill"></i> 
+      The Best Books: Recommended List 
+      <i class="bi-bookmark-star-fill"></i>
+    </h5>
+    <h5><i class="bi bi-hand-thumbs-up"></i>好書推薦</h5>
   </div>
   <div class="container bestbook-img">
     <div class="row ">
@@ -302,10 +307,15 @@
 
 
   <!-- loading 圖示 start  -->
-  <div class="load-item hide">
-    <div class="load-pic">
-      <img src="/static/css/icon/colorbook-load.png" class="book-p">
-    </div>
+  <div class="load-bgc hide">
+    <div class="load-item ">
+      <div class="load-pic">
+        <img src="/static/css/icon/colorbook-load.png" class="book-p">
+      </div>
+      <div class="load-txt">
+        <small><i class="bi-hourglass-split"></i>&nbsp;Loading ...</small>
+      </div>
+    </div> 
   </div>
   <!-- loading 圖示 end  -->
 

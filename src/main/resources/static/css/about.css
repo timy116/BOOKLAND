@@ -1,0 +1,23 @@
+
+.p-txt{
+    text-align: center;
+}
+.p-txt p{
+    text-align: left;
+    padding: 0 20px;
+    margin-top: 20px;
+    line-height: 2rem;
+    
+}
+.hto-txt{
+    padding: 0 20px;
+}
+.hto-txt h4{
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom:1px solid rgb(224, 224, 224) ;
+}
+.hto-txt p{
+    padding-left: 20px;
+}

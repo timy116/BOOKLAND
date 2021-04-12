@@ -222,10 +222,13 @@ footer .co{
     line-height: 50px;
     font-family:arial;
     border-top:1px solid rgba(201, 201, 201, 0.514); 
+   
+
 }
 footer .co .backhome{
     text-decoration: none;
     color:#000;
+   
 }
 
 /*-------footer 區 end --------*/
@@ -240,6 +243,21 @@ footer .co .backhome{
 /*-----登入與帳號切換 end--------*/
 
 /* loading 圖示 start */
+.load-bgc{
+    position: fixed;
+    background-color: rgba(66, 66, 66, 0.432);
+    top:0;
+    bottom:0;
+    right: 0;
+    left: 0;
+}
+.load-txt{
+    text-align: center;
+    color:#fff;
+    padding-top:15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .load-item{
     position: fixed;
     z-index: 100;

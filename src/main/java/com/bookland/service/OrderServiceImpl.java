@@ -20,4 +20,10 @@ public class OrderServiceImpl implements OrderService {
     public Order retrieveByLatest() {
         return orderDAO.retrieveByLatest();
     }
+
+    @Override
+    public Order retrieveByOrderNumber(String orderNumber) {
+        return orderDAO.retrieveByOrderNumber(orderNumber);
+    }
+
 }

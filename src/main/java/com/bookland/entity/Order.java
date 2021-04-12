@@ -20,4 +20,6 @@ public class Order {
     Integer userId;
     Integer creditCardId;
     Date createTime;
+    User user;
+    CreditCard creditCard;
 }

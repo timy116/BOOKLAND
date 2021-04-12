@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,4 +23,5 @@ public class User {
     Date birthDate;
     Date lastLogin;
     Date createTime;
+    List<Order> userOrders;
 }

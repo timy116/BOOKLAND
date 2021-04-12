@@ -2,48 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bookland.dao.BookDAO">
 
-    <resultMap id="BaseResultMap" type="com.bookland.entity.Book">
+    <resultMap id="BookResultMap" type="com.bookland.entity.Book">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="slug" property="slug"/>
+        <result column="bookNumber" property="bookNumber"/>
         <result column="price" property="price"/>
+        <result column="publisher" property="publisher"/>
+        <result column="description" property="description"/>
+        <result column="category" property="category"/>
         <result column="imageUrl" property="imageUrl"/>
+        <result column="createTime" property="createTime"/>
     </resultMap>
 
     <!-- 用於 PageHelper，做分頁所使用的 SQL -->
-    <select id="listAllBooksByPage" resultMap="BaseResultMap">
+    <select id="listAllBooksByPage" resultMap="BookResultMap">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
     </select>
 
-    <select id="listBooksByPage" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="listBooksByPage" resultMap="BookResultMap" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         WHERE category = #{category}
     </select>
 
     <!-- 查詢所有書籍 -->
-    <select id="retrieveAll" resultType="Book" parameterType="java.lang.String">
+    <select id="retrieveAll" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book LIMIT 12
     </select>
 
     <!-- 根據類別查詢書籍 -->
-    <select id="retrieveBooks" resultType="Book" parameterType="java.lang.String">
+    <select id="retrieveBooks" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         WHERE category = #{category} LIMIT 12
     </select>
 
     <!-- 根據 slug 查詢書籍 -->
-    <select id="retrieveBySlug" resultType="Book" parameterType="java.lang.String">
+    <select id="retrieveBySlug" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `bookNumber`, `price`, `publisher`, `description`, `category`, `imageUrl`
         FROM book
         WHERE slug = #{slug}
     </select>
 
     <!-- 關鍵字查詢 -->
-    <select id="searchBook" resultType="Book" parameterType="java.lang.String">
+    <select id="searchBook" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         where name like CONCAT('%','${keyword}','%')
@@ -51,7 +56,7 @@
               description like CONCAT('%','${keyword}','%') LIMIT 12;
     </select>
 
-    <select id="retrieveBooksById" resultType="Book">
+    <select id="retrieveBooksById" resultType="com.bookland.entity.Book">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         WHERE id IN

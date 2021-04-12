@@ -7,6 +7,7 @@ import com.bookland.entity.OrderDetail;
 import com.bookland.service.*;
 import com.bookland.utils.SnowFlakeUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.stripe.model.PaymentIntent;
@@ -19,11 +20,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -136,5 +139,13 @@ public class AccountController {
     public String accountUpdete(String userName,String name,String email,String phone,String address){
         userService.updateUser(userName,name,email,phone,address);
         return "account";
+    }
+
+
+    @GetMapping("/account/order-list")
+    @ResponseBody
+    public List<OrderDetail> orderList(String orderNumber) {
+        List<OrderDetail> orderDetails=orderDetailService.OrderDetail(Integer.parseInt(orderNumber));
+        return orderDetails;
     }
 }

@@ -5,6 +5,8 @@ import com.bookland.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -19,6 +21,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order retrieveByLatest() {
         return orderDAO.retrieveByLatest();
+    }
+
+    @Override
+    public List<Order> retrieveOrdersByUserId(Integer userId) {
+        return orderDAO.retrieveOrdersByUserId(userId);
     }
 
     @Override

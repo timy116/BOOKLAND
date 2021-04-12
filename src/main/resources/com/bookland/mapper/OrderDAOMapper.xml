@@ -41,8 +41,16 @@
         SELECT `id`
         FROM `order`
         ORDER BY `createTime` DESC
-        LIMIT 1
+            LIMIT 1
     </select>
+
+    <select id="retrieveOrdersByUserId" resultType="Order" parameterType="Integer">
+        SELECT `orderNumber`, `createTime`
+        FROM `order`
+        WHERE `userId` = ${userId}
+        ORDER BY `createTime` DESC
+    </select>
+
 
     <select id="retrieveByOrderNumber" resultType="com.bookland.entity.Order" parameterType="java.lang.String">
         SELECT * FROM bookstore.order

@@ -5,6 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.util.ObjectUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +24,11 @@ public class CustomSavedRequestAwareAuthenticationSuccessHandler extends SavedRe
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         userService.updateTime(authentication.getName());
-        super.onAuthenticationSuccess(request, response, authentication);
+        final RequestCache requestCache = new HttpSessionRequestCache();
+        final SavedRequest savedRequest = requestCache.getRequest(request, response);
+        if (!ObjectUtils.isEmpty(savedRequest) && savedRequest.getRedirectUrl().endsWith("checkout"))
+            response.sendRedirect("/cart?next=checkout");
+        else
+            super.onAuthenticationSuccess(request, response, authentication);
     }
 }

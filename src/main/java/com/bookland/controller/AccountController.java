@@ -128,12 +128,12 @@ public class AccountController {
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
-        request.getSession().setAttribute("isSuccess", true);
-        return "redirect:/account";
+        return "redirect:/account?success=true";
     }
 
     @GetMapping("/account")
-    public String accountInformation(String username, Model model){
+    public String accountInformation(String username, Model model, String success){
+        if (!ObjectUtils.isEmpty(success)) model.addAttribute("isSuccess", true);
         User userDetail = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         com.bookland.entity.User user = userService.retrieveByUserName(userDetail.getUsername());
         model.addAttribute("orders", orderService.retrieveOrdersByUserId(user.getId()));

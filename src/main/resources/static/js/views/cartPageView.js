@@ -45,9 +45,18 @@ class CartPageView extends CartView {
   }
 
   addHandlerCheckout(handler) {
+    if (window.location.href.indexOf('checkout') !== -1) {
+      document.querySelector('body').style.display = 'none'
+      handler()
+    }
+
     this._checkoutBtn.addEventListener('click', () => {
+      if (!document.querySelector('.user-none')) {
+        window.location.href = LOGIN_URL
+      }
+
       document.querySelector('.container').style.visibility = 'hidden'
-      document.querySelector('.load-item').classList.remove('hide')
+      document.querySelector('.load-bgc').classList.remove('hide')
       handler()
     })
   }

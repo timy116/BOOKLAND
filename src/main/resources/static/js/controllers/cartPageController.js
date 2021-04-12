@@ -33,7 +33,13 @@ async function controlCheckout() {
   const stripe = Stripe(STRIPE_PUBLIC_KEY);
   try {
     const session = await CheckoutAJAX()
-    return stripe.redirectToCheckout({ sessionId: session.id });
+    const id = { sessionId: session.id };
+
+    if (id)
+      return stripe.redirectToCheckout(id);
+    else
+      window.location = HOME_URL
+
   } catch (error) {
     console.error("Error:", error);
   }

@@ -31,8 +31,10 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
-    public String loginPage(String error, Model model) {
-        if (error == null) {
+    public String loginPage(HttpServletRequest request, String error, String next, Model model) {
+        if (next != null && next.equals("checkout")) {
+            request.getSession().setAttribute("checkout", true);
+        } else if (error == null) {
             model.addAttribute("error", false);
         } else {
             model.addAttribute("error", true);

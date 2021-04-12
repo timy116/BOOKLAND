@@ -12,6 +12,7 @@ import com.stripe.model.checkout.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +44,13 @@ public class CheckoutController {
     @PostMapping("checkout")
     @ResponseBody
     public String checkout(HttpServletRequest request) throws StripeException, JsonProcessingException {
+        HashMap<String, String> responseData = new HashMap<>();
+
+        if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+            responseData.put("id", null);
+            return new ObjectMapper().writeValueAsString(responseData);
+        }
+
         Stripe.apiKey = secretKey;
         Cookie cookie = getCookie(request, "cart");
         List<Object> paymentMethodTypes = new ArrayList<>();
@@ -88,10 +96,10 @@ public class CheckoutController {
             params.put("mode", "payment");
 
             Session session = Session.create(params);
-            HashMap<String, String> responseData = new HashMap<>();
             responseData.put("id", session.getId());
-            return new ObjectMapper().writeValueAsString(responseData);
+        } else {
+            responseData.put("id", null);
         }
-        return "";
+        return new ObjectMapper().writeValueAsString(responseData);
     }
 }

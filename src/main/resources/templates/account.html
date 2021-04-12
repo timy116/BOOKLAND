@@ -147,13 +147,13 @@
   <div class="wrap">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a th:class="${#request.getSession().getAttribute('isSuccess')} ? 'nav-link' : 'nav-link active show'" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member"
+        <a th:class="${isSuccess} ? 'nav-link' : 'nav-link active show'" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member"
           aria-selected="true">個人資訊</a>
       </li>
 
       <!-- 會員訂單 -->
       <li class="nav-item">
-        <a th:class="${#request.getSession().getAttribute('isSuccess')} ? 'nav-link active show' : 'nav-link'" id="order-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order"
+        <a th:class="${isSuccess} ? 'nav-link active show' : 'nav-link'" id="order-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order"
           aria-selected="false">訂單查詢</a>
       </li>
     </ul>
@@ -167,7 +167,7 @@
       </div>
 
       <div class="tab-content" id="myTabContent">
-        <div th:class="${#request.getSession().getAttribute('isSuccess')} ? 'tab-pane fade' : 'tab-pane fade show active'" id="member" role="tabpanel" aria-labelledby="member-tab">
+        <div th:class="${isSuccess} ? 'tab-pane fade' : 'tab-pane fade show active'" id="member" role="tabpanel" aria-labelledby="member-tab">
           <div class="user-edit">
             <img src="/static/css/icon/edit.svg" alt="" width="20px">
             <span class="user-info">編輯個人資料</span>
@@ -213,7 +213,7 @@
         </div>
 
         <!--  會員訂單  -->
-        <div th:class="${#request.getSession().getAttribute('isSuccess')} ? 'tab-pane fade show active' : 'tab-pane fade'" id="order" role="tabpanel" aria-labelledby="order-tab">
+        <div th:class="${isSuccess} ? 'tab-pane fade show active' : 'tab-pane fade'" id="order" role="tabpanel" aria-labelledby="order-tab">
           <form class="memberform">
             <div class="form-group orderquery-form">
               <div class="inputerror or-button">

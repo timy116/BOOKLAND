@@ -8,4 +8,5 @@ public interface UserService {
     User retrieveByUserName(String username);
     User retrieveByEmail(String email);
     void updateUser(String userName,String name,String email,String phone,String address);
+    void updateUserInfo(User user);
 }

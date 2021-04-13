@@ -1,11 +1,14 @@
 package com.bookland.controller;
 
 import com.bookland.entity.Book;
+import com.bookland.entity.User;
 import com.bookland.service.BookService;
+import com.bookland.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -27,8 +30,20 @@ public class CartController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("")
     public String cartPage(HttpServletRequest request, Model model) throws JsonProcessingException {
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!obj.equals("anonymousUser")) {
+            org.springframework.security.core.userdetails.User userDetail
+                    = (org.springframework.security.core.userdetails.User) obj;
+
+            User user = userService.retrieveByUserName(userDetail.getUsername());
+            model.addAttribute("user", user);
+        }
         Cookie cookie = getCookie(request, "cart");
         List<Integer> idList = new ArrayList<>();
 

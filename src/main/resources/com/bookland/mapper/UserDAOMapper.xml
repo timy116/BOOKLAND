@@ -36,7 +36,7 @@
     </update>
 
     <select id="retrieveByUserName" resultType="com.bookland.entity.User" parameterType="java.lang.String">
-        SELECT `id`, `userName`, `password`, `email`, `phone`, `address`, `birthDate`, `lastLogin`, `createTime`
+        SELECT `id`, `userName`, `name`, `password`, `email`, `phone`, `address`, `birthDate`, `lastLogin`, `createTime`
         FROM `user`
         WHERE `userName`= #{userName}
     </select>
@@ -51,6 +51,12 @@
         UPDATE user
         SET `name`='${name}',`email`='${email}', `phone`='${phone}',`address`='${address}'
         WHERE `userName`= '${userName}'
+    </update>
+
+    <update id="updateUserInfo" parameterType="com.bookland.entity.User">
+        UPDATE user
+        SET `name` = #{name}, `phone` = #{phone}, `address`= #{address}
+        WHERE `userName`= #{userName}
     </update>
 
 

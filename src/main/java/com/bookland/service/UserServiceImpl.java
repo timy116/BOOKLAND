@@ -35,4 +35,9 @@ public class UserServiceImpl implements UserService {
     public void updateUser(String userName,String name, String email, String phone, String address) {
         userDAO.updateUser(userName,name,email,phone,address);
     }
+
+    @Override
+    public void updateUserInfo(User user) {
+        userDAO.updateUserInfo(user);
+    }
 }

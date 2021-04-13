@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
@@ -35,7 +36,6 @@ public class UserController {
     public String loginPage(HttpServletRequest request, String error, String next, Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
             return "redirect:/";
-
 
 
         if (next != null && next.equals("checkout")) {
@@ -82,5 +82,24 @@ public class UserController {
 
         request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
         return new ModelAndView("redirect:/perform_login");
+    }
+
+    @PostMapping("/user-info-update")
+    @ResponseBody
+    public String userInfoUpdate(@RequestBody Map<String, String> params) {
+        String username = ((org.springframework.security.core.userdetails.User)
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        User user = new User();
+        user.setUserName(username);
+        user.setName(params.get("name"));
+        user.setPhone(params.get("phone"));
+        user.setAddress(params.get("address"));
+
+        try {
+            userService.updateUserInfo(user);
+            return "{\"status\":" + 200 + "}";
+        } catch (Exception e) {
+            return "{\"status\":" + 500 + "}";
+        }
     }
 }

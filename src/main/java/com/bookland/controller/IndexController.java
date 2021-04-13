@@ -17,7 +17,7 @@ public class IndexController {
         Object obj = request.getSession().getAttribute("checkout");
         if (!ObjectUtils.isEmpty(obj) && (boolean) obj) {
             request.getSession().removeAttribute("checkout");
-            return "redirect:/cart?next=checkout";
+            return "redirect:/cart";
         }
 
         return "bookland_home";

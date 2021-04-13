@@ -78,6 +78,7 @@ public class BookController {
         }
         books.forEach(book -> {
             Map<String, Object> obj = new HashMap<>();
+            obj.put("id", book.getId());
             obj.put("name", book.getName());
             obj.put("slug", book.getSlug());
             obj.put("price", book.getPrice());

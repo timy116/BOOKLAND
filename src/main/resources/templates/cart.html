@@ -15,6 +15,12 @@
   <link rel="stylesheet" href="/static/css/cart.css">
 
   <title>BookLand Bookshop</title>
+
+  <style>
+      @keyframes blink {
+          50% { border-color: #dc3545; }
+      }
+  </style>
 </head>
 
 <body>
@@ -153,7 +159,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-8 detail">
-        <h5><strong>購物車</strong></h5>
+        <h5><strong class="strong-cart">購物車</strong></h5>
         <div class="dropdown-divider bow"></div>
 
         <!-- 購物車為空之樣式 start -->
@@ -242,28 +248,30 @@
           </div>
         </div>
         <div class="con-shop">
-          <a href="/">&larr; 繼續購物</a>
+          <a href="/book/all" class="continue">&larr; 繼續購物</a>
         </div>
       </div>
       <!-- 購物車不為空之樣式 end -->
       <!-- 購物車訂單明細  end -->
 
       <!-- 寄件資料 start -->
-      <div class="col-12 col-lg-4 s-info">
-        <h5><strong>運送資訊</strong></h5>
-        <div class="info">
+      <div sec:authorize="${isAuthenticated()}" class="col-12 col-lg-4 s-info deliver-info">
+        <h5><strong class="strong-deliver-info">運送資訊</strong></h5>
+        <div class="info" th:data-info="${user.name} ? '1' : '0'">
           <!-- 收件人資料 start -->
           <div class="accordion acc-top" id="accordionExample">
             <div class="card">
               <div class="card-header" id="headingTwo">
                 <div class="mb-0">
                   <div>
-                    <p><small>某某某</small></p>
+                    <p><small
+                      th:text="${user.name} ? ${user.name} : '請填寫收件人'"
+                      th:class="${user.name} ? 'input name text-collapseTwo' : 'input name text-danger text-collapseTwo'"></small></p>
                   </div>
                   <div>
-                    <button class="btn  text-left collapsed" type="button" data-toggle="collapse"
+                    <button class="btn text-left collapsed" type="button" data-toggle="collapse"
                       data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <p>Change Name?</p>
+                      <p>Change Name</p>
                     </button>
                   </div>
                 </div>
@@ -271,11 +279,13 @@
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="變更收件人姓名" aria-label="Recipient's username"
+                    <input type="text" class="form-control input-collapseTwo" placeholder="變更收件人姓名" aria-label="Recipient's username"
                       aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-danger" type="button" id="button-addon2"><i
-                          class="bi-person-check-fill"></i></button>
+                      <button class="btn btn-danger btn-collapseTwo" type="button" data-toggle="collapse"
+                              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="bi-person-check-fill"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -283,17 +293,18 @@
             </div>
           </div>
           <!-- 手機資料 start -->
-          <div class="accordion" id="accordionExample">
+          <div class="accordion">
             <div class="card ">
               <div class="card-header" id="headingOne">
                 <div class="mb-0">
                   <div>
-                    <p><small>0913111000</small></p>
+                    <p><small th:text="${user.phone} ? ${user.phone} : '請填寫聯絡電話'"
+                              th:class="${user.phone} ? 'input phone text-collapseOne' : 'input phone text-danger text-collapseOne'"></small></p>
                   </div>
                   <div>
                     <button class="btn  text-left collapsed" type="button" data-toggle="collapse"
                       data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                      <p>Change Phone?</p>
+                      <p>Change Phone</p>
                     </button>
                   </div>
                 </div>
@@ -301,10 +312,11 @@
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="變更手機號碼" aria-label="Recipient's username"
+                    <input type="text" class="form-control input-collapseOne" placeholder="變更聯絡電話" aria-label="Recipient's username"
                       aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-danger" type="button" id="button-addon2"><i
+                      <button class="btn btn-danger btn-collapseOne" type="button" data-toggle="collapse"
+                              data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i
                           class="bi-telephone-fill"></i></button>
                     </div>
                   </div>
@@ -313,17 +325,18 @@
             </div>
           </div>
           <!-- 地址資料 start -->
-          <div class="accordion" id="accordionExample">
+          <div class="accordion">
             <div class="card card-bottom">
               <div class="card-header" id="headingThree">
                 <div class="mb-0">
                   <div class="address-txt">
-                    <p><small>台北市大安區仁愛路三段122號b1</small></p>
+                    <p><small th:text="${user.address} ? ${user.address} : '請填寫收件地址'"
+                              th:class="${user.address} ? 'input address text-collapseThree' : 'input address text-danger text-collapseThree'"></small></p>
                   </div>
                   <div>
                     <button class="btn  text-left collapsed" type="button" data-toggle="collapse"
                       data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      <p>Change Address?</p>
+                      <p>Change Address</p>
                     </button>
                   </div>
                 </div>
@@ -331,10 +344,11 @@
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="變更收件地址" aria-label="Recipient's username"
+                    <input type="text" class="form-control input-collapseThree" placeholder="變更收件地址" aria-label="Recipient's username"
                       aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-danger" type="button" id="button-addon2"><i
+                      <button class="btn btn-danger btn-collapseThree" type="button" id="button-addon2" data-toggle="collapse"
+                              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i
                           class="bi-house-fill"></i></button>
                     </div>
                   </div>
@@ -376,7 +390,7 @@
               </b>
             </div>
           </div>
-          <div class="cart-discount">
+          <div class="cart-discount" th:style="${total gt 1999} ? 'visibility: visible;' : 'visibility:hidden; '">
             <p>運費折扣</p>
             <div class="shipping-price">
               <b>
@@ -396,7 +410,7 @@
             <div class="order-price">
               <b>
                 <span class="money">
-                  <p><small>NT</small><span th:text="${total + 80}"></span></p>
+                  <p><small>NT</small><span th:text="${total gt 1999} ? ${total - 80} : ${total + 80}"></span></p>
                 </span>
               </b>
             </div>
@@ -478,10 +492,6 @@
   </div>
   <!-- 收藏清單  end -->
 
-
-
-
-
   <!-- footer 區 start -->
   <footer>
     <div class="co">
@@ -525,5 +535,4 @@
   <script src="/static/js/views/cartPageView.js"></script>
   <script src="/static/js/controllers/cartPageController.js"></script>
 </body>
-
 </html>

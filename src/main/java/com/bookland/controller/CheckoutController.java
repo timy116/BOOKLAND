@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
@@ -43,7 +44,8 @@ public class CheckoutController {
 
     @PostMapping("checkout")
     @ResponseBody
-    public String checkout(HttpServletRequest request) throws StripeException, JsonProcessingException {
+    public String checkout(HttpServletRequest request, @RequestBody Map<String, Integer> p)
+            throws StripeException, JsonProcessingException {
         HashMap<String, String> responseData = new HashMap<>();
 
         if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
@@ -51,9 +53,14 @@ public class CheckoutController {
             return new ObjectMapper().writeValueAsString(responseData);
         }
 
+        // 設定私鑰
         Stripe.apiKey = secretKey;
+
+        // 取得 Cookie
         Cookie cookie = getCookie(request, "cart");
         List<Object> paymentMethodTypes = new ArrayList<>();
+
+        // 設定付款方式為刷卡
         paymentMethodTypes.add("card");
         List<Object> lineItems = new ArrayList<>();
 
@@ -66,15 +73,22 @@ public class CheckoutController {
 
             books.forEach(book -> {
                 try {
+                    // 設定書籍圖片，可在刷卡頁面看到
                     List<String> imgUrls = new ArrayList<>();
                     imgUrls.add(S3 + book.getImageUrl());
+
                     Map<String, Object> lineItem = new HashMap<>();
+
+                    // 透過 Stripe API 創建商品，目的是讓前端修改無效
                     Map<String, Object> productParams = new HashMap<>();
                     productParams.put("name", book.getName());
                     productParams.put("images", imgUrls);
                     Product product = Product.create(productParams);
 
+                    // 透過 Stripe API 創建價格，並指定商品
                     Map<String, Object> priceParams = new HashMap<>();
+
+                    // * 100 後才是正確的金額
                     priceParams.put("unit_amount", book.getPrice() * 100);
                     priceParams.put("currency", "twd");
                     priceParams.put("product", product.getId());
@@ -87,6 +101,25 @@ public class CheckoutController {
                     e.printStackTrace();
                 }
             });
+
+            // 運費
+            if (p.get("s") == 1) {
+                Map<String, Object> lineItem = new HashMap<>();
+
+                Map<String, Object> productParams = new HashMap<>();
+                productParams.put("name", "運費");
+                Product product = Product.create(productParams);
+
+                Map<String, Object> priceParams = new HashMap<>();
+                priceParams.put("unit_amount", 80 * 100);
+                priceParams.put("currency", "twd");
+                priceParams.put("product", product.getId());
+                Price price = Price.create(priceParams);
+
+                lineItem.put("price", price.getId());
+                lineItem.put("quantity", 1);
+                lineItems.add(lineItem);
+            }
 
             Map<String, Object> params = new HashMap<>();
             params.put("success_url", domain + "/account/success?sessionId={CHECKOUT_SESSION_ID}");

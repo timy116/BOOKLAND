@@ -39,7 +39,7 @@
               <p sec:authentication="name"></p>
             </a>
             <ul class="list-group hide">
-              <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
+              <li class="list-group-item "><a href="/account">帳戶資訊</a></li>
               <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
               <li class="list-group-item"><a href="/logout">登出</a></li>
             </ul>
@@ -53,9 +53,13 @@
               </svg>
             </a>
           </li>
-          <li>
-            <p class="order-number">0</p>
-            <a href="cart.html">
+          <li class="list-cart">
+            <p th:each="cookie:${#httpServletRequest.getCookies()}"
+            th:if="${cookie.getName().equals('cart')}"
+            th:class="'order-number'"
+            th:text="${cookie.getValue().split(',').length}"></p>
+            
+            <a href="/cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart"
                 viewBox="0 0 16 16">
                 <path
@@ -139,8 +143,8 @@
             <a class="nav-link " href="about.html">ABOUT</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Key Words" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Key Words" aria-label="Search">
           <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>

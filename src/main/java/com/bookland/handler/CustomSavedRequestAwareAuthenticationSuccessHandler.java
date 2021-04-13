@@ -27,7 +27,7 @@ public class CustomSavedRequestAwareAuthenticationSuccessHandler extends SavedRe
         final RequestCache requestCache = new HttpSessionRequestCache();
         final SavedRequest savedRequest = requestCache.getRequest(request, response);
         if (!ObjectUtils.isEmpty(savedRequest) && savedRequest.getRedirectUrl().endsWith("checkout"))
-            response.sendRedirect("/cart?next=checkout");
+            response.sendRedirect("/cart");
         else
             super.onAuthenticationSuccess(request, response, authentication);
     }

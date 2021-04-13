@@ -32,7 +32,6 @@ class CartView extends BaseView {
     const el = this._orderNumber
     if (el.classList.contains('hide')) el.classList.remove('hide')
     el.innerText = quantity
-    if (hasMsg) this._showMessageBox()
+    if (hasMsg) this.showMsg('已新增至購物車')
   }
-
 }

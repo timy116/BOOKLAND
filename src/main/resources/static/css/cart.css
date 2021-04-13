@@ -90,6 +90,10 @@
 /* 結帳小計 start */
 .total{
     padding: 0 15px;
+    margin-top: 100px;
+}
+.total h5{
+    text-align: center;
 }
 .total-bow{
     /* border-top: 2px solid #5e5e5e; */
@@ -147,7 +151,7 @@
 
 /* 寄件資料 start */
 .s-info{
-    margin-top: 100px;
+  padding: 20px 10px 0;
 }
 .s-info h5{
     text-align: center;

@@ -152,7 +152,7 @@
   <!-- 購物車訂單明細  start -->
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-8 detail">
+      <div class="col-12 col-lg-8 detail">
         <h5><strong>購物車</strong></h5>
         <div class="dropdown-divider bow"></div>
 
@@ -248,66 +248,7 @@
       <!-- 購物車不為空之樣式 end -->
       <!-- 購物車訂單明細  end -->
 
-      <!-- 結帳小計 start -->
-      <div class="col-12 col-md-4 total">
-        <div class="info info-detail">
-          <!-- <div class="dropdown-divider total-bow"></div> -->
-
-          <div class="cart-summary">
-            <p>小計</p>
-            <div class="total-price">
-              <b>
-                <span class="money">
-                  <p><small>NT</small><span th:text="${total}"></span></p>
-                </span>
-              </b>
-            </div>
-          </div>
-          <div class="cart-shipping">
-            <p>運費</p>
-            <div class="shipping-price">
-              <b>
-                <span class="money">
-                  <p><small>NT</small>80</p>
-                </span>
-              </b>
-            </div>
-          </div>
-          <div class="cart-discount">
-            <p>運費折扣</p>
-            <div class="shipping-price">
-              <b>
-                <span class="minus"> - </span>
-                <span class="money">
-                  <p><small>NT</small>80</p>
-                </span>
-              </b>
-            </div>
-          </div>
-          <div class="description ">
-            <p><small>&lowast;消費滿NT 2,000以上免運</small></p>
-          </div>
-          <div class="dropdown-divider order-bow"></div>
-          <div class="order-total">
-            <p>訂單總計</p>
-            <div class="order-price">
-              <b>
-                <span class="money">
-                  <p><small>NT</small><span th:text="${total + 80}"></span></p>
-                </span>
-              </b>
-            </div>
-          </div>
-          <button type="button" class="btn btn-dark btn-checkout">結帳</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- 結帳小計 end -->
-
-  <!-- 寄件資料 start -->
-  <div class="container">
-    <div class="row">
+      <!-- 寄件資料 start -->
       <div class="col-12 col-lg-4 s-info">
         <h5><strong>運送資訊</strong></h5>
         <div class="info">
@@ -403,8 +344,68 @@
           </div>
         </div>
       </div>
-
       <!-- 寄件資料 end -->
+    </div>
+  </div>
+
+
+
+  <!-- 結帳小計 start -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-4 total">
+        <h5><strong>結帳</strong></h5>
+        <div class="info info-detail">
+          <div class="cart-summary">
+            <p>小計</p>
+            <div class="total-price">
+              <b>
+                <span class="money">
+                  <p><small>NT</small><span th:text="${total}"></span></p>
+                </span>
+              </b>
+            </div>
+          </div>
+          <div class="cart-shipping">
+            <p>運費</p>
+            <div class="shipping-price">
+              <b>
+                <span class="money">
+                  <p><small>NT</small>80</p>
+                </span>
+              </b>
+            </div>
+          </div>
+          <div class="cart-discount">
+            <p>運費折扣</p>
+            <div class="shipping-price">
+              <b>
+                <span class="minus"> - </span>
+                <span class="money">
+                  <p><small>NT</small>80</p>
+                </span>
+              </b>
+            </div>
+          </div>
+          <div class="description ">
+            <p><small>&lowast;消費滿NT 2,000以上免運</small></p>
+          </div>
+          <div class="dropdown-divider order-bow"></div>
+          <div class="order-total">
+            <p>訂單總計</p>
+            <div class="order-price">
+              <b>
+                <span class="money">
+                  <p><small>NT</small><span th:text="${total + 80}"></span></p>
+                </span>
+              </b>
+            </div>
+          </div>
+          <button type="button" class="btn btn-dark btn-checkout">Checkout</button>
+        </div>
+      </div>
+
+      <!-- 結帳小計 end -->
 
       <!-- 收藏清單  start -->
       <div class="col-12 col-lg-8 row-wish wish-list">
@@ -474,8 +475,10 @@
         <!-- 收藏清單不為空之樣式 end -->
       </div>
     </div>
-    <!-- 收藏清單  end -->
   </div>
+  <!-- 收藏清單  end -->
+
+
 
 
 

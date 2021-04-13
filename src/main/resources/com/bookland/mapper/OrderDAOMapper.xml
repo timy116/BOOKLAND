@@ -6,27 +6,18 @@
         <result column="orderNumber" property="orderNumber"/>
         <result column="price" property="price"/>
         <result column="quantity" property="quantity"/>
-        <result column="transactionStatus" property="transactionStatus"/>
-        <result column="userId" property="userId"/>
-        <result column="creditCardId" property="creditCardId"/>
         <result column="createTime" property="createTime"/>
         <association property="user" javaType="com.bookland.entity.User">
             <id column="id" property="id"/>
             <result column="userName" property="userName"/>
-            <result column="password" property="password"/>
             <result column="name" property="name"/>
             <result column="email" property="email"/>
             <result column="phone" property="phone"/>
             <result column="address" property="address"/>
-            <result column="birthDate" property="birthDate"/>
-            <result column="lastLogin" property="lastLogin"/>
-            <result column="createTime" property="createTime"/>
         </association>
         <association property="creditCard" javaType="com.bookland.entity.CreditCard">
             <id column="id" property="id"/>
             <result column="last4" property="last4"/>
-            <result column="cardExpMonth" property="cardExpMonth"/>
-            <result column="cardExpYear" property="cardExpYear"/>
             <result column="brand" property="brand"/>
         </association>
     </resultMap>
@@ -51,10 +42,14 @@
         ORDER BY `createTime` DESC
     </select>
 
-
-    <select id="retrieveByOrderNumber" resultType="com.bookland.entity.Order" parameterType="java.lang.String">
-        SELECT * FROM bookstore.order
-        where orderNumber = #{orderNumber};
+    <select id="retrieveByOrderNumber" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        SELECT a.id, a.orderNumber, a.price, a.quantity, a.createTime,
+               b.userName, b.phone, b.address,
+               c.last4, c.brand
+        FROM `bookstore`.`order` AS a
+        JOIN `bookstore`.`user` AS b ON a.userId = b.id
+        JOIN `bookstore`.`credit_card` AS c ON a.creditCardId = c.id
+        WHERE orderNumber = #{orderNumber};
     </select>
 
 </mapper>

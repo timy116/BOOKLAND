@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order retrieveByOrderNumber(String orderNumber) {
+    public Order retrieveByOrderNumber(Integer orderNumber) {
         return orderDAO.retrieveByOrderNumber(orderNumber);
     }
 

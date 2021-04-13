@@ -7,5 +7,5 @@ import java.util.List;
 public interface OrderDetailDAO {
     void create(OrderDetail orderDetail);
     List<OrderDetail> retrieveByOrderId(Integer orderId);
-    List<OrderDetail> OrderDetail(Integer orderNumber);
+    List<OrderDetail> retrieveOrderDetailsByOrderId(Integer orderId);
 }

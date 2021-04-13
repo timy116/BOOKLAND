@@ -149,8 +149,47 @@ public class AccountController {
 
     @GetMapping("/account/order-list")
     @ResponseBody
-    public List<OrderDetail> orderList(String orderNumber) {
-        List<OrderDetail> orderDetails=orderDetailService.OrderDetail(Integer.parseInt(orderNumber));
-        return orderDetails;
+    public String orderList(String orderNumber) throws JsonProcessingException {
+        Order order = orderService.retrieveByOrderNumber(Integer.parseInt(orderNumber));
+        com.bookland.entity.User user = order.getUser();
+        CreditCard card = order.getCreditCard();
+
+        List<OrderDetail> orderDetails = orderDetailService.retrieveOrderDetailsByOrderId(order.getId());
+        List<Object> details = new ArrayList<>();
+
+        Map<String, Object> data = new HashMap<>();
+
+        Map<String, Object> orderObj = new HashMap<>();
+        Map<String, Object> cardObj = new HashMap<>();
+        Map<String, Object> userObj = new HashMap<>();
+
+        orderObj.put("price", order.getPrice());
+        orderObj.put("createTime", order.getCreateTime());
+
+        cardObj.put("last4", card.getLast4());
+        cardObj.put("brand", card.getBrand());
+
+        userObj.put("userName", user.getUserName());
+        userObj.put("phone", user.getPhone());
+        userObj.put("address", user.getAddress());
+
+        orderObj.put("creditCard", cardObj);
+        orderObj.put("user", userObj);
+
+        orderDetails.forEach(orderDetail -> {
+            Map<String, Object> obj = new HashMap<>();
+            Book book = orderDetail.getBook();
+            obj.put("name", book.getName());
+            obj.put("slug", book.getSlug());
+            obj.put("bookNumber", book.getBookNumber());
+            obj.put("price", book.getPrice());
+            obj.put("quantity", orderDetail.getQuantity());
+            details.add(obj);
+        });
+
+        data.put("order", orderObj);
+        data.put("orderDetails", details);
+
+        return new ObjectMapper().writeValueAsString(data);
     }
 }

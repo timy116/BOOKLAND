@@ -16,7 +16,5 @@ public class OrderDetail {
     Integer orderId;
     Integer bookId;
     Integer quantity;
-    Order order;
-    List<Book> bookDetails;
-    CreditCard creditCard;
+    Book book;
 }

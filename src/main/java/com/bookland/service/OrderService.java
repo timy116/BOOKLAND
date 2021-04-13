@@ -8,5 +8,5 @@ public interface OrderService {
     void create(Order order);
     Order retrieveByLatest();
     List<Order> retrieveOrdersByUserId(Integer userId);
-    Order retrieveByOrderNumber(String orderNumber);
+    Order retrieveByOrderNumber(Integer orderNumber);
 }

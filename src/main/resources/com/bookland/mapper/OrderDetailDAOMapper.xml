@@ -3,40 +3,16 @@
 <mapper namespace="com.bookland.dao.OrderDetailDAO">
     <resultMap id="OrderDetailResultMap" type="com.bookland.entity.OrderDetail">
         <id column="id" property="id"/>
-        <result column="orderId" property="orderId"/>
-        <result column="orderId" property="orderId"/>
         <result column="quantity" property="quantity"/>
-        <association property="order" javaType="com.bookland.entity.Order">
-            <id column="id" property="id"/>
-            <result column="orderNumber" property="orderNumber"/>
-            <result column="price" property="price"/>
-            <result column="quantity" property="quantity"/>
-            <result column="transactionStatus" property="transactionStatus"/>
-            <result column="userId" property="userId"/>
-            <result column="creditCardId" property="creditCardId"/>
-            <result column="createTime" property="createTime"/>
-            <association property="creditCard" javaType="com.bookland.entity.CreditCard">
-                <id column="id" property="id"/>
-                <result column="last4" property="last4"/>
-                <result column="cardExpMonth" property="cardExpMonth"/>
-                <result column="cardExpYear" property="cardExpYear"/>
-                <result column="brand" property="brand"/>
-            </association>
-        </association>
-        <collection property="bookDetails" ofType="com.bookland.entity.Book">
+        <association property="book" javaType="com.bookland.entity.Book">
             <id column="id" property="id"/>
             <result column="name" property="name"/>
             <result column="slug" property="slug"/>
             <result column="bookNumber" property="bookNumber"/>
             <result column="price" property="price"/>
-            <result column="publisher" property="publisher"/>
-            <result column="description" property="description"/>
-            <result column="category" property="category"/>
-            <result column="imageUrl" property="imageUrl"/>
-            <result column="createTime" property="createTime"/>
-        </collection>
-
+        </association>
     </resultMap>
+
     <insert id="create" parameterType="com.bookland.entity.OrderDetail">
         INSERT INTO `order_detail` (`orderId`, `bookId`, `quantity`)
         VALUES (#{orderId}, #{bookId}, #{quantity})
@@ -47,11 +23,11 @@
         where orderId = #{orderId};
     </select>
 
-    <select id="OrderDetail" parameterType="java.lang.Integer" resultMap="OrderDetailResultMap">
-        SELECT b.name , b.bookNumber , b.price , a.quantity , c.price , d.last4 , d.brand
-        FROM (((bookstore.order_detail as a LEFT JOIN bookstore.book as b ON a.bookId = b.id)
-            LEFT JOIN bookstore.order as c ON a.orderId = c.id)
-                 RIGHT JOIN bookstore.credit_card as d ON  c.creditCardId=d.id)
-        WHERE c.orderNumber = #{orderNumber};
+    <select id="retrieveOrderDetailsByOrderId" parameterType="java.lang.Integer" resultMap="OrderDetailResultMap">
+        SELECT a.quantity,
+               b.name, b.slug, b.bookNumber, b.price
+        FROM `bookstore`.`order_detail` AS a
+        JOIN `bookstore`.`book` AS b ON a.bookId = b.id
+        WHERE a.orderId = #{orderId}
     </select>
 </mapper>

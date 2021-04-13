@@ -12,8 +12,7 @@
     <select id="retrieveByLast4" resultType="com.bookland.entity.CreditCard" parameterType="String">
         SELECT `id`, `last4`, `cardExpMonth`, `cardExpYear`, `brand`
         FROM bookstore.credit_card
-        WHERE exists(SELECT id FROM bookstore.credit_card WHERE last4 = #{last4})
-        LIMIT 1
+        WHERE `last4` = #{last4}
     </select>
 
     <insert id="create" parameterType="com.bookland.entity.CreditCard">

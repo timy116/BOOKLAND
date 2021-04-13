@@ -36,7 +36,7 @@
               <p sec:authentication="name"></p>
             </a>
             <ul class="list-group hide">
-              <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
+              <li class="list-group-item "><a href="/account">帳戶資訊</a></li>
               <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
               <li class="list-group-item"><a href="/logout">登出</a></li>
             </ul>
@@ -138,8 +138,8 @@
             <a class="nav-link " href="about.html">ABOUT</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Key Words" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Key Words" aria-label="Search">
           <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -190,7 +190,7 @@
             <div class="form-group email-form">
               <label>Email address</label>
               <div class="inputerror">
-                <input type="email" class="form-control is-invalid" id="email" name="email" aria-describedby="email"
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="email"
                   placeholder="Enter email">
                 <small id="emailerror" class="form-text text-muted">* Email不是正確格式</small>
               </div>
@@ -198,7 +198,7 @@
             <div class="form-group phone-form">
               <label>手機號碼 (選填)</label>
               <div class="inputerror">
-                <input type="text" class="form-control is-invalid" id="phone" name="phone" placeholder="0913111000">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="0913111000">
                 <small id="phoneerror" class="form-text text-muted">* 手機號碼長度不對</small>
               </div>
             </div>
@@ -239,14 +239,13 @@
                       </tr>
                     </thead>
                     <tbody class="order-no">
-                      <tr th:each="order:${orders}" th:id="${order.orderNumber}">
+                      <tr th:each="order:${orders}" th:id="${order.orderNumber}" class="row-order">
                         <td scope="row"><span th:text="${order.orderNumber}"></span></td>
                         <td><span th:text="${#dates.format(order.createTime, 'yyyy/MM/dd hh:mm:ss')}"></span></td>
                         <td class="complete">完成</td>
                         <!-- 訂單一明細彈出視窗 button start -->
                         <td>
-                          <button type="button" class="btn btn-primarynew" data-toggle="modal"
-                            data-target=".bd-example-modal-lg">
+                          <button type="button" class="btn btn-primarynew order-btn" data-toggle="modal">
                             <img src="/static/css/icon/order.svg" width="25px">
                           </button> 
                         </td>
@@ -265,7 +264,7 @@
   <!-- 會員資訊 & 會員訂單 end -->
 
 <!-- 訂單明細 modal start-->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+<div class="modal fade bd-example-modal-lg order-modal" tabindex="-1" role="dialog"
 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
@@ -274,90 +273,75 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="item-order">
-      <div class="item-orderdetail">
-        <div class="order">
-          <p class="number">訂單編號 : #00001</p>
-        </div>
-        <div class="order-items">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th scope="row">訂單日期</th>
-                <td>2021/04/02</td>
-              </tr>
-              <tr>
-                <th scope="row">訂單狀態</th>
-                <td>完成</td>
-              </tr>
-              <tr>
-                <th scope="row">收件人姓名</th>
-                <td>虎子</td>
-              </tr>
-              <tr>
-                <th scope="row">收件人電話</th>
-                <td>0913111000</td>
-              </tr>
-              <tr>
-                <th scope="row">收件人地址</th>
-                <td>台北市大安區仁愛路三段122號B1</td>
-              </tr>
-              <tr>
-                <th scope="row">付款卡號</th>
-                <td>111**********000</td>
-              </tr>
-              <tr>
-                <th scope="row">結帳金額</th>
-                <td>3270</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="item-productdetail">
-        <div class="pro-items">
-          <p class="products">商品明細</p>
-        </div>
-        <div class="products-detail">
-          <table class="table">
-            <thead>
-              <tr class="titcolor">
-                <th scope="col">書名</th>
-                <th scope="col">書號</th>
-                <th scope="col">單價</th>
-                <th scope="col">數量</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="bgcolor">
-                <td><a href="#">Paul Gauguin</a></td>
-                <td>f01</td>
-                <td>700</td>
-                <td>1</td>
-              </tr>
-              <tr class="bgcolor">
-                <td><a href="#">Alfred Sisley 1839-1899</a></td>
-                <td>f18</td>
-                <td>1090</td>
-                <td>1</td>
-              </tr>
-              <tr class="bgcolor">
-                <td><a href="#">The Boston</a></td>
-                <td>d15</td>
-                <td>790</td>
-                <td>1</td>
-              </tr>
-              <tr class="bgcolor">
-                <td><a href="#">Cat Daily</a></td>
-                <td>p04</td>
-                <td>690</td>
-                <td>1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="order-container">
+
     </div>
+<!--    <div class="item-order">-->
+<!--      <div class="item-orderdetail">-->
+<!--        <div class="order">-->
+<!--          <p class="number">訂單編號 : #00001</p>-->
+<!--        </div>-->
+<!--        <div class="order-items">-->
+<!--          <table class="table">-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <th scope="row">訂單日期</th>-->
+<!--                <td class="order-date">2021/04/02</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <th scope="row">訂單狀態</th>-->
+<!--                <td>完成</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <th scope="row">收件人姓名</th>-->
+<!--                <td class="order-name">虎子</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <th scope="row">收件人電話</th>-->
+<!--                <td class="order-phone">0913111000</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <th scope="row">收件人地址</th>-->
+<!--                <td class="order-address">台北市大安區仁愛路三段122號B1</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <th scope="row">付款卡號</th>-->
+<!--                <td class="order-credit-card">111**********000</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <th scope="row">結帳金額</th>-->
+<!--                <td class="order-payment">3270</td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="item-productdetail">-->
+<!--        <div class="pro-items">-->
+<!--          <p class="products">商品明細</p>-->
+<!--        </div>-->
+<!--        <div class="products-detail">-->
+<!--          <table class="table">-->
+<!--            <thead>-->
+<!--              <tr class="titcolor">-->
+<!--                <th scope="col">書名</th>-->
+<!--                <th scope="col">書號</th>-->
+<!--                <th scope="col">單價</th>-->
+<!--                <th scope="col">數量</th>-->
+<!--              </tr>-->
+<!--            </thead>-->
+<!--            <tbody class="order-details">-->
+<!--              <tr class="bgcolor order-detail-item">-->
+<!--                <td><a href="#">Paul Gauguin</a></td>-->
+<!--                <td>f01</td>-->
+<!--                <td>700</td>-->
+<!--                <td>1</td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="order-footer">
       <img src="/static/css/icon/msg3.svg">
       <p><a href="message.html">聯絡客服</a></p>
@@ -377,17 +361,6 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
     </div>
   </footer>
   <!-- footer 區 end -->
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="/static/vendor/jquery/jquery-3.5.1.min.js"></script>
-  <script src="/static/vendor/bootstrap-4.1.3/js/popper.min.js"></script>
-  <script src="/static/vendor/bootstrap-4.1.3/js/bootstrap.min.js"></script>
-
-  <!-- 會員帳號管理 icon button -->
-  <script>
-    $('.user-none').hover(() => $('.user-none .hide').toggle())
-  </script>
 
   <!-- loading 圖示 start  -->
   <div class="load-bgc hide">
@@ -411,8 +384,22 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
   </div>
   <!-- message box end  -->
 
+  <!-- third parties -->
+  <script src="/static/vendor/jquery/jquery-3.5.1.min.js"></script>
+  <script src="/static/vendor/bootstrap-4.1.3/js/popper.min.js"></script>
+  <script src="/static/vendor/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+
+  <!-- 會員帳號管理 icon button -->
+  <script>
+    $('.user-none').hover(() => $('.user-none .hide').toggle())
+  </script>
+
+  <!-- local js files -->
+  <script src="/static/js/global.js"></script>
+  <script src="/static/js/config.js"></script>
+  <script src="/static/js/helpers.js"></script>
+  <script src="/static/js/views/view.js"></script>
+  <script src="/static/js/views/accountView.js"></script>
+  <script src="/static/js/controllers/accountController.js"></script>
 </body>
-
-
-
 </html>

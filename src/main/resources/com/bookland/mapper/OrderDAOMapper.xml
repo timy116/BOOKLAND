@@ -44,7 +44,7 @@
 
     <select id="retrieveByOrderNumber" resultMap="OrderResultMap" parameterType="java.lang.Integer">
         SELECT a.id, a.orderNumber, a.price, a.quantity, a.createTime,
-               b.userName, b.phone, b.address,
+               b.userName, b.name, b.phone, b.address,
                c.last4, c.brand
         FROM `bookstore`.`order` AS a
         JOIN `bookstore`.`user` AS b ON a.userId = b.id

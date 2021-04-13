@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -150,6 +151,7 @@ public class AccountController {
     @GetMapping("/account/order-list")
     @ResponseBody
     public String orderList(String orderNumber) throws JsonProcessingException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Order order = orderService.retrieveByOrderNumber(Integer.parseInt(orderNumber));
         com.bookland.entity.User user = order.getUser();
         CreditCard card = order.getCreditCard();
@@ -163,13 +165,15 @@ public class AccountController {
         Map<String, Object> cardObj = new HashMap<>();
         Map<String, Object> userObj = new HashMap<>();
 
+        orderObj.put("orderNumber", order.getOrderNumber());
         orderObj.put("price", order.getPrice());
-        orderObj.put("createTime", order.getCreateTime());
+        orderObj.put("createTime", sdf.format(order.getCreateTime()));
 
         cardObj.put("last4", card.getLast4());
         cardObj.put("brand", card.getBrand());
 
         userObj.put("userName", user.getUserName());
+        userObj.put("name", user.getName());
         userObj.put("phone", user.getPhone());
         userObj.put("address", user.getAddress());
 

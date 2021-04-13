@@ -1,20 +1,19 @@
 class BaseView {
   _data
+  _spinner = document.querySelector('.load-bgc')
 
-  render(data, render = true) {
-    if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError()
+  toggleSpinner() {
+    this._spinner.classList.toggle('hide')
+  }
+
+  render(data, render = true, where = 'beforeend') {
+    if (!data) return
 
     this._data = data
     const makeup = this._generateMarkup()
     if (!render) return makeup
 
-    this._parentElement.insertAdjacentHTML('beforeend', makeup)
-  }
-
-  renderSpinner() {
-    const markup = ``
-    this._clear()
-    this._parentElement.insertAdjacentHTML('afterbegin', markup)
+    this._parentElement.insertAdjacentHTML(where, makeup)
   }
 
   _clear() {

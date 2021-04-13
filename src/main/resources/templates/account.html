@@ -27,43 +27,49 @@
         <div class="icon-3 order-num">
           <li sec:authorize="${isAuthenticated()}" class="user-none">
             <a href="javascript:void(0);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
               </svg>
-            <p sec:authentication="name"></p>
-          </a>
-          <ul class="list-group hide">
-            <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
-            <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
-            <li class="list-group-item"><a href="/logout">登出</a></li>
-          </ul>
+              <p sec:authentication="name"></p>
+            </a>
+            <ul class="list-group hide">
+              <li class="list-group-item "><a href="account.html">帳戶資訊</a></li>
+              <li class="list-group-item"><a href="newpass.html">更改密碼</a></li>
+              <li class="list-group-item"><a href="/logout">登出</a></li>
+            </ul>
           </li>
           <li sec:authorize="${!isAuthenticated()}" class="login-none"><a href="/login">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
-              <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
-              <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
-            </svg>
-          </a>
-        </li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor"
+                class="bi bi-door-closed" viewBox="0 0 16 16">
+                <path
+                  d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
+                <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
+              </svg>
+            </a>
+          </li>
           <li class="list-cart">
-            <p th:each="cookie:${#httpServletRequest.getCookies()}"
-               th:if="${cookie.getName().equals('cart')}"
-               th:class="'order-number'"
-               th:text="${cookie.getValue().split(',').length}"></p>
+            <p th:each="cookie:${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('cart')}"
+              th:class="'order-number'" th:text="${cookie.getValue().split(',').length}"></p>
             <a href="/cart">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart"
+                viewBox="0 0 16 16">
+                <path
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
               </svg>
             </a>
           </li>
           <li>
             <a href="message.html">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-                <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                <path
+                  d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
               </svg>
-          </a>
-        </li>
+            </a>
+          </li>
         </div>
         </ul>
       </div>
@@ -147,14 +153,14 @@
   <div class="wrap">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a th:class="${isSuccess} ? 'nav-link' : 'nav-link active show'" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member"
-          aria-selected="true">個人資訊</a>
+        <a th:class="${isSuccess} ? 'nav-link' : 'nav-link active show'" id="member-tab" data-toggle="tab"
+          href="#member" role="tab" aria-controls="member" aria-selected="true">個人資訊</a>
       </li>
 
       <!-- 會員訂單 -->
       <li class="nav-item">
-        <a th:class="${isSuccess} ? 'nav-link active show' : 'nav-link'" id="order-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order"
-          aria-selected="false">訂單查詢</a>
+        <a th:class="${isSuccess} ? 'nav-link active show' : 'nav-link'" id="order-tab" data-toggle="tab" href="#order"
+          role="tab" aria-controls="order" aria-selected="false">訂單查詢</a>
       </li>
     </ul>
 
@@ -167,7 +173,8 @@
       </div>
 
       <div class="tab-content" id="myTabContent">
-        <div th:class="${isSuccess} ? 'tab-pane fade' : 'tab-pane fade show active'" id="member" role="tabpanel" aria-labelledby="member-tab">
+        <div th:class="${isSuccess} ? 'tab-pane fade' : 'tab-pane fade show active'" id="member" role="tabpanel"
+          aria-labelledby="member-tab">
           <div class="user-edit">
             <img src="/static/css/icon/edit.svg" alt="" width="20px">
             <span class="user-info">編輯個人資料</span>
@@ -213,7 +220,8 @@
         </div>
 
         <!--  會員訂單  -->
-        <div th:class="${isSuccess} ? 'tab-pane fade show active' : 'tab-pane fade'" id="order" role="tabpanel" aria-labelledby="order-tab">
+        <div th:class="${isSuccess} ? 'tab-pane fade show active' : 'tab-pane fade'" id="order" role="tabpanel"
+          aria-labelledby="order-tab">
           <form class="memberform">
             <div class="form-group orderquery-form">
               <div class="inputerror or-button">
@@ -235,126 +243,14 @@
                         <td scope="row"><span th:text="${order.orderNumber}"></span></td>
                         <td><span th:text="${#dates.format(order.createTime, 'yyyy/MM/dd hh:mm:ss')}"></span></td>
                         <td class="complete">完成</td>
-                        <!-- 訂單一明細彈出視窗 start -->
-                        <td><button type="button" class="btn btn-primarynew" data-toggle="modal"
+                        <!-- 訂單一明細彈出視窗 button start -->
+                        <td>
+                          <button type="button" class="btn btn-primarynew" data-toggle="modal"
                             data-target=".bd-example-modal-lg">
                             <img src="/static/css/icon/order.svg" width="25px">
-                          </button>
-
-                          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                              <div class="modal-content">
-                                <div class="btn-close">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="item-order">
-                                  <div class="item-orderdetail">
-                                    <div class="order">
-                                      <p class="number">訂單編號 : #00001</p>
-                                    </div>
-                                    <div class="order-items">
-                                      <table class="table">
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">訂單日期</th>
-                                            <td>2021/04/02</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">訂單狀態</th>
-                                            <td>完成</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">收件人姓名</th>
-                                            <td>虎子</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">收件人電話</th>
-                                            <td>0913111000</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">收件人地址</th>
-                                            <td>台北市大安區仁愛路三段122號B1</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">留言</th>
-                                            <td>中午前送達</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">付款卡號</th>
-                                            <td>111**********000</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">運費</th>
-                                            <td>0</td>
-                                            <!-- 訂單金額2000元以上,顯示0元運費 -->
-                                            <!-- 訂單金額2000元以下,顯示80元運費 -->
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">結帳金額</th>
-                                            <td>3270</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                  <div class="item-productdetail">
-                                    <div class="pro-items">
-                                      <p class="products">商品明細</p>
-                                    </div>
-                                    <div class="products-detail">
-                                      <table class="table">
-                                        <thead>
-                                          <tr class="titcolor">
-                                            <th scope="col">書名</th>
-                                            <th scope="col">書號</th>
-                                            <th scope="col">單價</th>
-                                            <th scope="col">數量</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr class="bgcolor">
-                                            <td><a href="#">Paul Gauguin</a></td>
-                                            <td>f01</td>
-                                            <td>700</td>
-                                            <td>1</td>
-                                          </tr>
-                                          <tr class="bgcolor">
-                                            <td><a href="#">Alfred Sisley 1839-1899</a></td>
-                                            <td>f18</td>
-                                            <td>1090</td>
-                                            <td>1</td>
-                                          </tr>
-                                          <tr class="bgcolor">
-                                            <td><a href="#">The Boston</a></td>
-                                            <td>d15</td>
-                                            <td>790</td>
-                                            <td>1</td>
-                                          </tr>
-                                          <tr class="bgcolor">
-                                            <td><a href="#">Cat Daily</a></td>
-                                            <td>p04</td>
-                                            <td>690</td>
-                                            <td>1</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="order-footer">
-                                  <img src="/static/css/icon/msg3.svg">
-                                  <p><a href="message.html">聯絡客服</a></p>
-                                  <img src="/static/css/icon/print.svg">
-                                  <p><a href="javascript:void(0);">列印明細</a></p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          </button> 
                         </td>
-                        <!-- 訂單一明細彈出視窗 end -->
+                        <!-- 訂單一明細彈出視窗  button end -->
                       </tr>
                     </tbody>
                   </table>
@@ -368,8 +264,110 @@
   </div>
   <!-- 會員資訊 & 會員訂單 end -->
 
-
-
+<!-- 訂單明細 modal start-->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="btn-close">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="item-order">
+      <div class="item-orderdetail">
+        <div class="order">
+          <p class="number">訂單編號 : #00001</p>
+        </div>
+        <div class="order-items">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">訂單日期</th>
+                <td>2021/04/02</td>
+              </tr>
+              <tr>
+                <th scope="row">訂單狀態</th>
+                <td>完成</td>
+              </tr>
+              <tr>
+                <th scope="row">收件人姓名</th>
+                <td>虎子</td>
+              </tr>
+              <tr>
+                <th scope="row">收件人電話</th>
+                <td>0913111000</td>
+              </tr>
+              <tr>
+                <th scope="row">收件人地址</th>
+                <td>台北市大安區仁愛路三段122號B1</td>
+              </tr>
+              <tr>
+                <th scope="row">付款卡號</th>
+                <td>111**********000</td>
+              </tr>
+              <tr>
+                <th scope="row">結帳金額</th>
+                <td>3270</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="item-productdetail">
+        <div class="pro-items">
+          <p class="products">商品明細</p>
+        </div>
+        <div class="products-detail">
+          <table class="table">
+            <thead>
+              <tr class="titcolor">
+                <th scope="col">書名</th>
+                <th scope="col">書號</th>
+                <th scope="col">單價</th>
+                <th scope="col">數量</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bgcolor">
+                <td><a href="#">Paul Gauguin</a></td>
+                <td>f01</td>
+                <td>700</td>
+                <td>1</td>
+              </tr>
+              <tr class="bgcolor">
+                <td><a href="#">Alfred Sisley 1839-1899</a></td>
+                <td>f18</td>
+                <td>1090</td>
+                <td>1</td>
+              </tr>
+              <tr class="bgcolor">
+                <td><a href="#">The Boston</a></td>
+                <td>d15</td>
+                <td>790</td>
+                <td>1</td>
+              </tr>
+              <tr class="bgcolor">
+                <td><a href="#">Cat Daily</a></td>
+                <td>p04</td>
+                <td>690</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="order-footer">
+      <img src="/static/css/icon/msg3.svg">
+      <p><a href="message.html">聯絡客服</a></p>
+      <img src="/static/css/icon/print.svg">
+      <p><a href="javascript:void(0);">列印明細</a></p>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 訂單明細 modal end-->
 
 
   <!-- footer 區 start -->
@@ -386,32 +384,32 @@
   <script src="/static/vendor/bootstrap-4.1.3/js/popper.min.js"></script>
   <script src="/static/vendor/bootstrap-4.1.3/js/bootstrap.min.js"></script>
 
-   <!-- 會員帳號管理 icon button -->
-   <script>
+  <!-- 會員帳號管理 icon button -->
+  <script>
     $('.user-none').hover(() => $('.user-none .hide').toggle())
   </script>
 
-<!-- loading 圖示 start  -->
-<div class="load-bgc hide">
-  <div class="load-item ">
-    <div class="load-pic">
-      <img src="/static/css/icon/colorbook-load.png" class="book-p">
+  <!-- loading 圖示 start  -->
+  <div class="load-bgc hide">
+    <div class="load-item ">
+      <div class="load-pic">
+        <img src="/static/css/icon/colorbook-load.png" class="book-p">
+      </div>
+      <div class="load-txt">
+        <small><i class="bi-hourglass-split"></i>&nbsp;Loading ...</small>
+      </div>
     </div>
-    <div class="load-txt">
-      <small><i class="bi-hourglass-split"></i>&nbsp;Loading ...</small>
-    </div>
-  </div> 
-</div>
-<!-- loading 圖示 end  -->
-
-<!-- message box start  -->
-<div class="message-box">
-  <div>
-    <i class="bi-folder-plus"></i>
-    <small>&nbsp;資料已儲存成功</small>
   </div>
-</div>
-<!-- message box end  -->
+  <!-- loading 圖示 end  -->
+
+  <!-- message box start  -->
+  <div class="message-box">
+    <div>
+      <i class="bi-folder-plus"></i>
+      <small>&nbsp;資料已儲存成功</small>
+    </div>
+  </div>
+  <!-- message box end  -->
 
 </body>
 

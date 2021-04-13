@@ -1,10 +1,14 @@
 class BookView extends CartView {
   _parentElement = document.querySelector('.container .row')
   _messageBox = document.querySelector('.message-box')
-
+  _spinner = document.querySelector('.load-bgc')
   _timerDelay
   _timerMsgBox
   _delay = false
+
+  toggleSpinner() {
+    this._spinner.classList.toggle('hide')
+  }
 
   addHandlerRender(handler) {
     const el = document.querySelector('.observer')

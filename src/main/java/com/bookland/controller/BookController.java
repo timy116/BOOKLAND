@@ -2,6 +2,8 @@ package com.bookland.controller;
 
 import com.bookland.entity.Book;
 import com.bookland.service.BookService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +29,14 @@ public class BookController {
     @GetMapping("/{category}")
     // 依據點選分類顯示書籍
     public String booksPage(Model model, @PathVariable String category) {
-        if (category.equals("all")) {
-            model.addAttribute("books", bookService.retrieveAll());
-        } else {
-            model.addAttribute("books", bookService.retrieveBooks(category));
-        }
+        List<Book> books;
+
+        if (category.equals("all"))
+            books = bookService.retrieveAll();
+        else
+            books = bookService.retrieveBooks(category);
+
+        model.addAttribute("books", books);
 
         switch (category) {
             case "fine-art":
@@ -54,9 +61,10 @@ public class BookController {
     @GetMapping("/{category}/page{num}")
     @ResponseBody
     // 對書籍分頁
-    public List<Book> listBooksByPage(@PathVariable String category, @PathVariable String num, Integer pageSize) {
+    public String listBooksByPage(@PathVariable String category, @PathVariable String num, Integer pageSize) throws JsonProcessingException {
         int pageNum = Integer.parseInt(num);
         List<Book> books;
+        List<Object> objects = new ArrayList<>();
 
         if (pageSize == null) {
             // 一頁最多出現 12 本書
@@ -68,8 +76,16 @@ public class BookController {
         } else {
             books = bookService.listBooksByPage(category, pageNum, pageSize);
         }
-        log.debug("books pagination: " + books);
-        return books;
+        books.forEach(book -> {
+            Map<String, Object> obj = new HashMap<>();
+            obj.put("name", book.getName());
+            obj.put("slug", book.getSlug());
+            obj.put("price", book.getPrice());
+            obj.put("imageUrl", book.getImageUrl());
+            objects.add(obj);
+        });
+
+        return new ObjectMapper().writeValueAsString(objects);
     }
 
     @GetMapping("/insidepage/{slug}")

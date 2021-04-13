@@ -14,18 +14,22 @@ async function controlBook(entries, observer) {
   const category = list[list.length - 1]
 
   try {
+    bookView.toggleSpinner()
     const data = await loadBook(category)
 
     // 若資料長度小於 12，代表已經是最後一頁
     if (data.length < BOOK_SIZE_PER_PAGE) {
-      if (data.length !== 0)
+      if (data.length !== 0) {
         // 如果長度不為零，則做最後一次的 render
         bookView.render(data)
+        bookView.toggleSpinner()
+      }
 
       observer.unobserve(entry.target)
       return
     }
     bookView.render(data)
+    bookView.toggleSpinner()
   } catch (error) {
     console.log(error)
   }

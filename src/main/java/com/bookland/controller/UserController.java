@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,11 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginPage(HttpServletRequest request, String error, String next, Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+            return "redirect:/";
+
+
+
         if (next != null && next.equals("checkout")) {
             request.getSession().setAttribute("checkout", true);
         } else if (error == null) {

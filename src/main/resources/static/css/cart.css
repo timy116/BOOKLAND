@@ -92,7 +92,7 @@
     padding: 0 15px;
 }
 .total-bow{
-    border-top: 2px solid #5e5e5e;
+    /* border-top: 2px solid #5e5e5e; */
     padding-bottom: 10px;
 }
 .cart-summary,.cart-shipping,.order-total,.cart-discount{
@@ -130,6 +130,14 @@
 .con-shop a:hover{
     color:#e79e02;
 }
+.info .btn-checkout{
+    width: 70%;
+    margin-bottom: 20px;
+}
+.info-detail{
+    text-align: center;
+    padding: 20px;
+}
 @media(max-width:420px){
     .total{
         padding: 0 20px;
@@ -137,15 +145,81 @@
 }
 /* 結帳小計 end */
 
+/* 寄件資料 start */
+.s-info{
+    margin-top: 100px;
+}
+.s-info h5{
+    text-align: center;
+}
+.info{
+    /* 結帳與寄件資訊的外框樣式 */
+    width: 100%;
+    height: auto;
+    border:1px solid rgb(211, 211, 211);
+    border-radius: 2rem;
+}
+.accordion{
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+.card{
+    border:none;
+}
+.card-header{
+    background-color: #fff;    
+}
+.mb-0{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mb-0 button{
+    padding: 0;
+}
+.mb-0 button p{
+    color:#17a2b8;
+    font-weight: bold;
+}
+.mb-0 button p:hover{
+    color:#fc4445;
+    
+}
+.mb-0 p{
+    margin-bottom: 0px;
+    color:rgb(75, 75, 75);
+    
+}
+.text-left{
+    
+    background-color: #fff;
+}
+.mb-0 .address-txt{
+    width:50%;
+}
+.card-bottom{
+    margin-bottom: 30px;
+}
+@media(max-width:576px){
+   .mb-0{
+       display:block;
+   }
+   .mb-0 .address-txt{
+    width:100%;
+}
+}
+/*  寄件資料 end */ 
+
 /* 收藏清單  start */
 .row-wish{
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
 }
 .wish-list{
     width: 100%;
     margin-top: 100px;
     text-align: center; 
-    padding-left: 0px;
+    /* padding-left: 0px; */
 }
 /* 收藏清單  end */
 

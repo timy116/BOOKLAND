@@ -34,7 +34,7 @@
               <p sec:authentication="name"></p>
             </a>
             <ul class="list-group hide">
-              <li class="list-group-item list-item"><a href="account.html">帳戶資訊</a></li>
+              <li class="list-group-item list-item"><a href="/account">帳戶資訊</a></li>
               <li class="list-group-item list-item"><a href="newpass.html">更改密碼</a></li>
               <li class="list-group-item list-item"><a href="/logout">登出</a></li>
             </ul>
@@ -48,9 +48,12 @@
               <!-- <img src="/static/css/icon/login.svg" width="30px" class="login"> -->
             </a>
           </li>
-          <li>
-            <p class="order-number">0</p>
-            <a href="cart.html">
+          <li class="list-cart">
+            <p th:each="cookie:${#httpServletRequest.getCookies()}"
+               th:if="${cookie.getName().equals('cart')}"
+               th:class="'order-number'"
+               th:text="${cookie.getValue().split(',').length}"></p>
+            <a href="/cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
               </svg>
@@ -133,8 +136,8 @@
             <a class="nav-link " href="about.html">ABOUT</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Key Words" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Key Words" aria-label="Search">
           <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>

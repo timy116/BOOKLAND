@@ -1,7 +1,7 @@
 /* 購物車訂單明細  start */
 
 .detail{
-    padding: 20px 15px 10px;    
+    padding: 30px 15px 10px;    
 }
 .detail h5{
     text-align: center;
@@ -30,7 +30,8 @@
 }
 .bcov-text img{
     padding-right: 10px;
-    height: 80px;
+    width: 80px;
+    height:auto;
     
 }
 .quantity{
@@ -70,21 +71,78 @@
     margin-top: 5px;
 }
 @media(max-width:420px){
+    /* 購物車的樣式 */
     .cart-item{
         flex-direction: column;
         align-items: flex-start;
         background-color:#ececec;
         padding: 10px;
+        border-bottom: none;
+    }
+    .bcov-text img{
+        margin-right: 25px;
+    }
+    .bcov-text p{
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .bcov-text{
+        width: 100%;
+        border-bottom: 1px solid #fff;
+    }
+    .cart-align, .price-align{
+        /* 購物車與收藏清單共用樣式 */
+        padding-top: 10px;
+    }
+    .actions{
+        display: inline-flex;
+    }
+    .actions .remove-btn{
+        padding-right: 10px;
     }
     .bcov-text, .price , .amount-price , .actions{
         padding-bottom: 10px;
-    }   
+
+    }  
+    .cartitem-align, .item-align{
+        /* 購物車與收藏清單共用樣式 */
+        width: 80%;
+        margin: auto;
+        border-radius: 1rem;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    } 
+    /* 希望清單的樣式 */
+    .item-align img{
+        margin-right: 25px;
+    }
+   
 }
 @media(max-width:767.98px){
     .con-shop{
         margin-bottom: 50px;
     }
 }
+@media(min-width:421px){
+    .cartitem-align{
+        position: relative;
+        
+    }
+    .cart-align{
+        position: absolute;
+        left:50%;
+    }
+    .amount-align{
+        position: absolute;
+        left:75%
+    }
+}
+@media (min-width:421px) and (max-width:768px) {
+    .bcov-text p{
+        width: 50%;
+    }
+}
+
 /* 購物車訂單明細  end */
 
 /* 結帳小計 start */
@@ -140,7 +198,7 @@
 }
 .info-detail{
     text-align: center;
-    padding: 20px;
+    padding: 40px;
 }
 @media(max-width:420px){
     .total{
@@ -151,7 +209,7 @@
 
 /* 寄件資料 start */
 .s-info{
-  padding: 20px 10px 0;
+  padding: 30px 15px 0;
 }
 .s-info h5{
     text-align: center;
@@ -222,20 +280,20 @@
 .wish-list{
     width: 100%;
     margin-top: 100px;
-    text-align: center; 
+   
     /* padding-left: 0px; */
 }
+.wish-list h5{
+    text-align: center;
+}
+@media(min-width:421px){
 .item-align{
    position: relative;
 }
 .price-align{
     position: absolute;
-    left:60%
+    left:50%
 }
-@media(max-width:420px){
-    .price-align{
-        left:0 
-    }
 }
 /* 收藏清單  end */
 

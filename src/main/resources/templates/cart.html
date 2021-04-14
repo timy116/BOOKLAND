@@ -157,7 +157,7 @@
 
   <!-- 購物車訂單明細  start -->
   <div class="container">
-    <div class="row">
+    <div class="row ">
       <div class="col-12 col-lg-8 detail">
         <h5><strong class="strong-cart">購物車</strong></h5>
         <div class="dropdown-divider bow"></div>
@@ -208,18 +208,18 @@
         <!--            </a>-->
         <!--          </div>-->
         <!--        </div>-->
-
         <!-- 第一本書明細 end -->
+
         <div th:if="${books}" class="cart-item-container">
-          <div th:each="book, stat:${books}" class="cart-item cart-v" th:id="'cart-item-'+${book.id}">
+          <div th:each="book, stat:${books}" class="cart-item cartitem-align cart-v" th:id="'cart-item-'+${book.id}">
             <div class="bcov-text">
               <a th:href="'/book/insidepage/'+${book.slug}"><img th:src="${book.imageUrl}"></a>
               <p th:text="${book.name}" class="bookname"></p>
             </div>
-            <div class="price">
+            <div class="price cart-align">
               <p class="unit-price">
                 <b><span class="money">
-                    <p><small>NT</small></p>
+                    <p><small>$</small></p>
                     <p th:text="${book.price}" class="book-price"></p>
                   </span></b>
               </p>
@@ -229,10 +229,10 @@
                   id="form-cart">
               </p>
             </div>
-            <div class="amount-price">
+            <div class="amount-price amount-align ">
               <p>
                 <b><span class="money">
-                    <p><small>NT </small></p>
+                    <p><small>$ </small></p>
                     <p th:text="${items.get(book.id+'') * book.price}" class="item-price"></p>
                   </span></b>
               </p>
@@ -375,7 +375,7 @@
             <div class="total-price">
               <b>
                 <span class="money">
-                  <p><small>NT</small><span th:text="${total}"></span></p>
+                  <p><small>$</small><span th:text="${total}"></span></p>
                 </span>
               </b>
             </div>
@@ -385,7 +385,7 @@
             <div class="shipping-price">
               <b>
                 <span class="money">
-                  <p><small>NT</small>80</p>
+                  <p><small>$</small>80</p>
                 </span>
               </b>
             </div>
@@ -396,13 +396,13 @@
               <b>
                 <span class="minus"> - </span>
                 <span class="money">
-                  <p><small>NT</small>80</p>
+                  <p><small>$</small>80</p>
                 </span>
               </b>
             </div>
           </div>
           <div class="description ">
-            <p><small>&lowast;消費滿NT 2,000以上免運</small></p>
+            <p><small>&lowast;消費滿$ 2,000以上免運</small></p>
           </div>
           <div class="dropdown-divider order-bow"></div>
           <div class="order-total">
@@ -410,7 +410,7 @@
             <div class="order-price">
               <b>
                 <span class="money">
-                  <p><small>NT</small><span th:text="${total gt 1999} ? ${total - 80} : ${total + 80}"></span></p>
+                  <p><small>$</small><span th:text="${total gt 1999} ? ${total} : ${total + 80}"></span></p>
                 </span>
               </b>
             </div>
@@ -443,14 +443,14 @@
             <p class="unit-price">
               <b>
                 <span class="money">
-                  <p><small>NT</small></p>
+                  <p><small>$</small></p>
                   <p>490</p>
                 </span>
               </b>
             </p>
           </div>
           <div class="actions">
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" class="remove-btn">
               <li class="remove">&otimes;刪除</li>
             </a>
             <a href="javascript:void(0);">
@@ -470,14 +470,14 @@
             <p class="unit-price">
               <b>
                 <span class="money">
-                  <p><small>NT</small></p>
+                  <p><small>$</small></p>
                   <p>1390</p>
                 </span>
               </b>
             </p>
           </div>
           <div class="actions">
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" class="remove-btn">
               <li class="remove">&otimes;刪除</li>
             </a>
             <a href="javascript:void(0);">

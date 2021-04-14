@@ -1,6 +1,7 @@
 package com.bookland.service;
 
 import com.bookland.dao.OrderDetailDAO;
+import com.bookland.entity.Book;
 import com.bookland.entity.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public List<OrderDetail> retrieveOrderDetailsByOrderId(Integer orderId) {
         return orderDetailDAO.retrieveOrderDetailsByOrderId(orderId);
+    }
+
+    @Override
+    public List<OrderDetail> retrieveBooksByOrderDetail() {
+        return orderDetailDAO.retrieveBooksByOrderDetail();
     }
 }

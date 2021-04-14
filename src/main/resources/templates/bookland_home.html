@@ -289,95 +289,14 @@
   <div class="wrap-bg">
     <div class="container top10">
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div th:each="detail:${details}" class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/d04.jpg" alt="its owl right_bookcover"></a>
+            <a th:href="'/book/insidepage/'+${detail.book.slug}">
+              <img class="card-img-top" th:src="${detail.book.imageUrl}" alt="its owl right_bookcover">
+            </a>
             <div class="card-body">
-              <p class="card-text"><small>It's OWL Right</small></p>
-              <p>NT 480</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f02.jpg"
-                alt="Paul Gauguin-French Post-Impressionist "></a>
-            <div class="card-body">
-              <p class="card-text"><small>Paul Gauguin</small></p>
-              <p>NT 900</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f03.jpg"
-                alt="Gustave Caillebotte-Painter and Patron of Impressionism "></a>
-            <div class="card-body">
-              <p class="card-text"><small>Gustave Caillebotte</small></p>
-              <p>NT 850</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f04.jpg" alt="Henri de Toulouse-Lautrec"></a>
-            <div class="card-body">
-              <p class="card-text"><small>Henri de Toulouse-Lautrec</small></p>
-              <p>NT 1200</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f05.jpg" alt="Jules Adolphe Breton"></a>
-            <div class="card-body">
-              <p class="card-text"><small>Jules Adolphe Breton</small></p>
-              <p>NT 680</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/d05.jpg" alt="Edgar’s Cathartic Confection"></a>
-            <div class="card-body more">
-              <p class="card-text"><small>Edgar’s Cathartic Confection</small></p>
-              <p>NT 500</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f07.jpg" alt="Vincent van Gogh"></a>
-            <div class="card-body">
-              <p class="card-text"><small>Vincent van Gogh:Portrait painting</small></p>
-              <p>NT 1350</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f06.jpg" alt="Paul Cézanne_still life"></a>
-            <div class="card-body">
-              <p class="card-text"><small>Paul Cézanne : Still Life</small></p>
-              <p>NT 1050</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/f15.jpg" alt="ITALIAN OLD MASTER PRINTS"></a>
-            <div class="card-body">
-              <p class="card-text"><small>Italian Old Master Prints</small></p>
-              <p>NT 990</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card">
-            <a href="javascript:void(0);"><img class="card-img-top" src="/static/img/books/p01.jpg" alt="CHANGING NEW YORK"></a>
-            <div class="card-body">
-              <p class="card-text"><small>Changing NEW YORK</small></p>
-              <p>NT 1500</p>
+              <p class="card-text"><small th:text="${detail.book.name}"></small></p>
+              <p>NT <span th:text="${detail.book.price}"></span></p>
             </div>
           </div>
         </div>

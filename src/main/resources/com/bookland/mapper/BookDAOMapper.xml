@@ -40,12 +40,20 @@
         WHERE category = #{category} LIMIT 12
     </select>
 
-    <!-- 根據類別查詢書籍 -->
+    <!-- 查詢最新上架的前十本書 -->
     <select id="retrieveNewBooks" resultType="com.bookland.entity.Book">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
         FROM book
         ORDER BY `createTime` DESC
         LIMIT 12
+    </select>
+
+    <!-- 查詢被購買數兩最高的十本書 -->
+    <select id="retrieveBooksByOrderDetail" resultType="com.bookland.entity.Book">
+        SELECT `bookId`, sum(`quantity`) AS `quantity`
+        FROM `bookstore`.`order_detail`
+        ORDER BY `createTime` DESC
+        LIMIT 10
     </select>
 
     <!-- 根據 slug 查詢書籍 -->

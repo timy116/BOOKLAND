@@ -13,6 +13,18 @@
         </association>
     </resultMap>
 
+    <resultMap id="BookResultMap" type="com.bookland.entity.OrderDetail">
+        <id column="id" property="id"/>
+        <result column="quantity" property="quantity"/>
+        <association property="book" javaType="com.bookland.entity.Book">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="slug" property="slug"/>
+            <result column="price" property="price"/>
+            <result column="imageUrl" property="imageUrl"/>
+        </association>
+    </resultMap>
+
     <insert id="create" parameterType="com.bookland.entity.OrderDetail">
         INSERT INTO `order_detail` (`orderId`, `bookId`, `quantity`)
         VALUES (#{orderId}, #{bookId}, #{quantity})
@@ -29,5 +41,14 @@
         FROM `bookstore`.`order_detail` AS a
         JOIN `bookstore`.`book` AS b ON a.bookId = b.id
         WHERE a.orderId = #{orderId}
+    </select>
+
+    <select id="retrieveBooksByOrderDetail" parameterType="java.lang.Integer" resultMap="BookResultMap">
+        SELECT  sum(a.`quantity`) AS `quantity`, b.`name`, b.`slug`, b.`price`, b.`imageUrl`
+        FROM `bookstore`.`order_detail` AS a
+        JOIN `bookstore`.`book` AS b ON a.`bookId` = b.`id`
+        GROUP BY a.`bookId`
+        ORDER BY `quantity` DESC
+        LIMIT 10
     </select>
 </mapper>

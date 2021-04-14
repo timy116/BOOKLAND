@@ -1,5 +1,6 @@
 package com.bookland.controller;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -21,5 +22,10 @@ public class IndexController {
         }
 
         return "bookland_home";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
     }
 }

@@ -4,7 +4,6 @@ async function controlBook(entries, observer) {
   const [entry] = entries
 
   if (!entry.isIntersecting) return
-  console.log(entry)
   paginator.page += 1
 
   // 取得網址列並且做切片
@@ -16,6 +15,12 @@ async function controlBook(entries, observer) {
   try {
     bookView.toggleSpinner()
     const data = await loadBook(category)
+
+    // new 類別不做分頁
+    if (category === 'new') {
+      bookView.render(data)
+      bookView.toggleSpinner()
+    }
 
     // 若資料長度小於 12，代表已經是最後一頁
     if (data.length < BOOK_SIZE_PER_PAGE) {

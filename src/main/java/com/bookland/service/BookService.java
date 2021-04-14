@@ -12,4 +12,5 @@ public interface BookService {
     List<Book> listBooksByPage(String category, int pageNum, int pageSize);
     List<Book> searchBook(String keyword);
     List<Book> retrieveBooksById(List<Integer> idList);
+    List<Book> retrieveNewBooks();
 }

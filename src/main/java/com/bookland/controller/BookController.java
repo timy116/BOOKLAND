@@ -33,6 +33,9 @@ public class BookController {
 
         if (category.equals("all"))
             books = bookService.retrieveAll();
+        else if (category.equals("new")) {
+            books = bookService.retrieveNewBooks();
+        }
         else
             books = bookService.retrieveBooks(category);
 
@@ -50,6 +53,9 @@ public class BookController {
                 break;
             case "magazine":
                 category = "Magazine";
+                break;
+            case "new":
+                category = "new";
                 break;
             default:
                 category = "All";

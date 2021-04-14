@@ -104,6 +104,7 @@ public class CheckoutController {
 
             // 運費
             if (p.get("s") == 1) {
+                request.getSession().setAttribute("s", 1);
                 Map<String, Object> lineItem = new HashMap<>();
 
                 Map<String, Object> productParams = new HashMap<>();

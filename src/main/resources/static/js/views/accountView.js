@@ -1,10 +1,8 @@
 class AccountView extends BaseView {
   _cardMap = new Map([
     ['visa', 'https://js.stripe.com/v3/fingerprinted/img/visa-365725566f9578a9589553aa9296d178.svg'],
-    ['jcb', 'https://js.stripe.com/v3/fingerprinted/img/jcb-271fd06e6e7a2c52692ffa91a95fb64f.svg'],
     ['mastercard', 'https://js.stripe.com/v3/fingerprinted/img/mastercard-4d8844094130711885b5e41b28c9848f.svg'],
-    ['discover', 'https://js.stripe.com/v3/fingerprinted/img/discover-ac52cd46f89fa40a29a0bfb954e33173.svg'],
-    ['Diners Club', 'https://js.stripe.com/v3/fingerprinted/img/diners-fbcbd3360f8e3f629cdaa80e93abdb8b.svg'],
+    ['amex', 'https://js.stripe.com/v3/fingerprinted/img/amex-a49b82f46c5cd6a96a6e418a6ca1717c.svg'],
   ])
   _parentElement = document.querySelector('.order-container')
   _modal = $('.order-modal')

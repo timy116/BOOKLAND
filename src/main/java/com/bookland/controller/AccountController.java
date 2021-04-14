@@ -84,6 +84,10 @@ public class AccountController {
         total = books.stream().mapToInt(book -> book.getPrice() * cart.get(Integer.toString(book.getId()))).sum();
         cart.forEach((s, integer) -> quantity.addAndGet(integer));
 
+        if (!ObjectUtils.isEmpty(request.getSession().getAttribute("s")))
+            total += 80;
+
+
         // 取得當前使用者
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         com.bookland.entity.User currentUser = userService.retrieveByUserName(user.getUsername());

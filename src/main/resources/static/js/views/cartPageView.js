@@ -153,7 +153,7 @@ class CartPageView extends CartView {
 
     // 判斷是否免運
     if (total > 1999) {
-      this._orderPriceEl.innerText = total - 80
+      this._orderPriceEl.innerText = total
       this._discountEl.style.visibility = 'visible'
     } else {
       this._orderPriceEl.innerText = total + 80

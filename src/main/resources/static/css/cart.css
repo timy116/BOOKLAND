@@ -225,6 +225,18 @@
     text-align: center; 
     /* padding-left: 0px; */
 }
+.item-align{
+   position: relative;
+}
+.price-align{
+    position: absolute;
+    left:60%
+}
+@media(max-width:420px){
+    .price-align{
+        left:0 
+    }
+}
 /* 收藏清單  end */
 
 

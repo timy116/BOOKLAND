@@ -1,11 +1,13 @@
 package com.bookland.controller;
 
 import com.bookland.service.OrderDetailService;
+import com.bookland.utils.UserUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -30,6 +32,9 @@ public class IndexController {
             return "redirect:/cart";
         }
 
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+        model.addAttribute("username", userName);
         model.addAttribute("details", orderDetailService.retrieveBooksByOrderDetail());
         return "bookland_home";
     }

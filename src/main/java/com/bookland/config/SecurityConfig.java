@@ -1,8 +1,10 @@
 package com.bookland.config;
 
+import com.bookland.Google.GoogleOauth2UserService;
 import com.bookland.facebook.FacebookConnectionSignup;
 import com.bookland.facebook.FacebookSignInAdapter;
 import com.bookland.handler.CustomSavedRequestAwareAuthenticationSuccessHandler;
+import com.bookland.handler.Oauth2LoginSuccessHandler;
 import com.bookland.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +23,6 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
-import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.SignInAdapter;
@@ -68,13 +69,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/", "/about", "/login", "/inspect", "/search/**", "/cart/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST, "/register", "/login", "/cart/**")
+                .antMatchers(HttpMethod.POST, "/register", "/login", "/cart/**" ,"/oauth2/**")
                 .permitAll()
                 // facebook
                 .antMatchers("/signin/**", "/signup/**")
                 .permitAll()
+                // google
+                .antMatchers("/oauth2/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint().userService(googleOauth2UserService)
+                .and()
+                .successHandler(oauth2LoginSuccessHandler)
                 .and()
                 .formLogin()
                 .successHandler(customSavedRequestAwareAuthenticationSuccessHandler)
@@ -102,6 +112,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return jdbcTokenRepository;
     }
 
+    @Autowired
+    private Oauth2LoginSuccessHandler oauth2LoginSuccessHandler;
+
+//    @Bean
+//    public  Oauth2LoginSuccessHandler oauth2LoginSuccessHandler(){
+//        return new Oauth2LoginSuccessHandler();
+//    }
     @Bean
     public CustomSavedRequestAwareAuthenticationSuccessHandler customSavedRequestAwareAuthenticationSuccessHandler() {
         return new CustomSavedRequestAwareAuthenticationSuccessHandler();
@@ -123,6 +140,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         );
     }
 
+
+
     @Bean
     SignInAdapter signInAdapter() {
         return new FacebookSignInAdapter();
@@ -133,6 +152,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         registry.addConnectionFactory(new FacebookConnectionFactory(appId, appSecret));
         return registry;
     }
+
+
+    @Autowired
+    private GoogleOauth2UserService googleOauth2UserService;
 
     // 使用 Jdbc 當作 repository
     private UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {

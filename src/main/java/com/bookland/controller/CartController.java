@@ -4,6 +4,7 @@ import com.bookland.entity.Book;
 import com.bookland.entity.User;
 import com.bookland.service.BookService;
 import com.bookland.service.UserService;
+import com.bookland.utils.UserUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -36,27 +37,29 @@ public class CartController {
     @GetMapping("")
     public String cartPage(HttpServletRequest request, Model model) throws JsonProcessingException {
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int total = 0;
 
         if (!obj.equals("anonymousUser")) {
-            org.springframework.security.core.userdetails.User userDetail
-                    = (org.springframework.security.core.userdetails.User) obj;
-
-            User user = userService.retrieveByUserName(userDetail.getUsername());
+            String userName = new UserUtil().getUserName(obj);
+            User user = userService.retrieveByUserName(userName);
             model.addAttribute("user", user);
         }
         Cookie cookie = getCookie(request, "cart");
         List<Integer> idList = new ArrayList<>();
 
         if (!ObjectUtils.isEmpty(cookie)) {
-            int total;
+
             Map<String, Integer> cart = getCartItems(cookie);
             cart.keySet().forEach(s -> idList.add(Integer.parseInt(s)));
             List<Book> books = bookService.retrieveBooksById(idList);
-            total = books.stream().mapToInt(book -> book.getPrice() * cart.get(Integer.toString(book.getId()))).sum();
+            if(books.size() != 0)
+                total = books.stream().mapToInt(book -> book.getPrice() * cart.get(Integer.toString(book.getId()))).sum();
+
             model.addAttribute("total", total);
             model.addAttribute("items", cart);
             model.addAttribute("books", books);
         } else {
+            model.addAttribute("total", total);
             model.addAttribute("items", null);
             model.addAttribute("books", null);
         }

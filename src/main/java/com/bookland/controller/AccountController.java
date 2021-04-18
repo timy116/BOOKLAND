@@ -6,6 +6,7 @@ import com.bookland.entity.Order;
 import com.bookland.entity.OrderDetail;
 import com.bookland.service.*;
 import com.bookland.utils.SnowFlakeUtil;
+import com.bookland.utils.UserUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.exception.StripeException;
@@ -89,8 +90,9 @@ public class AccountController {
 
 
         // 取得當前使用者
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        com.bookland.entity.User currentUser = userService.retrieveByUserName(user.getUsername());
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+        com.bookland.entity.User currentUser = userService.retrieveByUserName(userName);
         String last4 = card.getLast4();
         CreditCard creditCard = creditCardService.retrieveByLast4(last4);
 
@@ -139,9 +141,10 @@ public class AccountController {
     @GetMapping("/account")
     public String accountInformation(String username, Model model, String success){
         if (!ObjectUtils.isEmpty(success)) model.addAttribute("isSuccess", true);
-        User userDetail = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        com.bookland.entity.User user = userService.retrieveByUserName(userDetail.getUsername());
-        model.addAttribute("orders", orderService.retrieveOrdersByUserId(user.getId()));
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+        com.bookland.entity.User User = userService.retrieveByUserName(userName);
+        model.addAttribute("orders", orderService.retrieveOrdersByUserId(User.getId()));
         return "account";
     }
 

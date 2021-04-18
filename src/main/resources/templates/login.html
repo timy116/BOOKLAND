@@ -160,9 +160,9 @@
           <form class="loginform login-form" method="post" action="/perform_login">
             <button type="button" class="btn btn-primary btn-lg btn-block fb-btn"><img
                 src="/static/css/icon/fb-icon-w.svg" width="30px">Sign in with Facebook</button>
-            <button type="button" class="btn btn-danger btn-block go-btn"><img src="/static/css/icon/google.svg"
-                width="30px">Sign
-              in with Google</button>
+            <a type="button" class="btn btn-danger btn-block go-btn" th:href="@{/oauth2/authorization/google}"><img src="/static/css/icon/google.svg"
+                                                                                                                    width="30px">Sign
+              in with Google</a>
             <div class="form-group email-form">
               <label for="username">User Name</label>
               <div class="inputerror">

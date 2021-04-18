@@ -2,19 +2,18 @@ package com.bookland.controller;
 
 import com.bookland.service.OrderDetailService;
 import com.bookland.utils.UserUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static com.bookland.config.SecurityConfig.PREFIX;
 
 
 @Controller
@@ -23,6 +22,12 @@ public class IndexController {
 
     @Autowired
     OrderDetailService orderDetailService;
+
+    @Value("${spring.profiles.active:}")
+    String mode;
+
+    @Value("${AWS_S3:}")
+    String S3;
 
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model) {
@@ -36,11 +41,16 @@ public class IndexController {
         String userName = new UserUtil().getUserName(user);
         model.addAttribute("username", userName);
         model.addAttribute("details", orderDetailService.retrieveBooksByOrderDetail());
+        model.addAttribute("prefix", mode.equals(PREFIX) ? S3 : "");
         return "bookland_home";
     }
 
     @GetMapping("/about")
-    public String about() {
+    public String about(Model model) {
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+        model.addAttribute("prefix", mode.equals(PREFIX) ? S3 : "");
+        model.addAttribute("username", userName);
         return "about";
     }
 }

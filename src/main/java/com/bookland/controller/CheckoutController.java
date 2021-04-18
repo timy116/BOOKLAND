@@ -23,7 +23,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-import static com.bookland.utils.CookUtil.getCartItems;
+import static com.bookland.utils.CookieUtil.getCartItems;
 import static org.springframework.web.util.WebUtils.getCookie;
 
 @Controller
@@ -33,13 +33,13 @@ public class CheckoutController {
     @Autowired
     BookService bookService;
 
-    @Value("${stripe.secretKey}")
+    @Value("${stripe.secretKey:}")
     String secretKey;
 
-    @Value("${domain}")
+    @Value("${domain:}")
     String domain;
 
-    @Value("${AWS_S3}")
+    @Value("${AWS_S3:}")
     String S3;
 
     @PostMapping("checkout")

@@ -33,7 +33,7 @@
                 <path fill-rule="evenodd"
                   d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
               </svg>
-              <p sec:authentication="name"></p>
+              <p th:text="${username}"></p>
             </a>
             <ul class="list-group hide">
               <li class="list-group-item "><a href="/account">帳戶資訊</a></li>
@@ -169,7 +169,7 @@
       <!-- 會員資訊 -->
       <div class="username-info">
         <img src="/static/css/icon/account.svg" alt="" width="20px">
-        <span class="user-name"><span sec:authentication="name"></span></span>
+        <span class="user-name"><span th:text="${username}"></span></span>
       </div>
 
       <div class="tab-content" id="myTabContent">

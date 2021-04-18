@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
-import static com.bookland.utils.CookUtil.getCartItems;
-import static com.bookland.utils.CookUtil.getCookie;
+import static com.bookland.config.SecurityConfig.PREFIX;
+import static com.bookland.utils.CookieUtil.getCartItems;
+import static com.bookland.utils.CookieUtil.getCookie;
 
 @Controller
 @Slf4j
@@ -33,6 +35,12 @@ public class CartController {
 
     @Autowired
     UserService userService;
+
+    @Value("${spring.profiles.active:}")
+    String mode;
+
+    @Value("${AWS_S3:}")
+    String S3;
 
     @GetMapping("")
     public String cartPage(HttpServletRequest request, Model model) throws JsonProcessingException {
@@ -48,7 +56,6 @@ public class CartController {
         List<Integer> idList = new ArrayList<>();
 
         if (!ObjectUtils.isEmpty(cookie)) {
-
             Map<String, Integer> cart = getCartItems(cookie);
             cart.keySet().forEach(s -> idList.add(Integer.parseInt(s)));
             List<Book> books = bookService.retrieveBooksById(idList);
@@ -63,6 +70,7 @@ public class CartController {
             model.addAttribute("items", null);
             model.addAttribute("books", null);
         }
+        model.addAttribute("prefix", mode.equals(PREFIX) ? S3 : "");
         return "cart";
     }
 

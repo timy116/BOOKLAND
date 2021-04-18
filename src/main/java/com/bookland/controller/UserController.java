@@ -2,6 +2,7 @@ package com.bookland.controller;
 
 import com.bookland.entity.User;
 import com.bookland.service.UserService;
+import com.bookland.utils.UserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -87,10 +88,9 @@ public class UserController {
     @PostMapping("/user-info-update")
     @ResponseBody
     public String userInfoUpdate(@RequestBody Map<String, String> params) {
-        String username = ((org.springframework.security.core.userdetails.User)
-                SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        Object userDetail = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = new User();
-        user.setUserName(username);
+        user.setUserName(new UserUtil().getUserName(userDetail));
         user.setName(params.get("name"));
         user.setPhone(params.get("phone"));
         user.setAddress(params.get("address"));

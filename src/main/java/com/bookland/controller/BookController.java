@@ -1,11 +1,15 @@
 package com.bookland.controller;
 
+import com.bookland.config.SecurityConfig;
 import com.bookland.entity.Book;
 import com.bookland.service.BookService;
+import com.bookland.utils.UserUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.bookland.config.SecurityConfig.PREFIX;
+
 @Controller
 @Slf4j
 @RequestMapping("/book")
@@ -26,9 +32,18 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Value("${spring.profiles.active}")
+    String mode;
+
+    @Value("${AWS_S3}")
+    String S3;
+
     @GetMapping("/{category}")
     // 依據點選分類顯示書籍
     public String booksPage(Model model, @PathVariable String category) {
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+
         List<Book> books;
 
         if (category.equals("all"))
@@ -61,6 +76,8 @@ public class BookController {
                 category = "All";
         }
         model.addAttribute("category", category);
+        model.addAttribute("prefix", mode.equals(PREFIX) ? S3 : "");
+        model.addAttribute("username", userName);
         return "book-cat";
     }
 
@@ -88,7 +105,7 @@ public class BookController {
             obj.put("name", book.getName());
             obj.put("slug", book.getSlug());
             obj.put("price", book.getPrice());
-            obj.put("imageUrl", book.getImageUrl());
+            obj.put("imageUrl",  (mode.equals(PREFIX) ? S3 : "") + book.getImageUrl());
             objects.add(obj);
         });
 
@@ -98,7 +115,12 @@ public class BookController {
     @GetMapping("/insidepage/{slug}")
     // 書籍內頁
     public String bookDetail(Model model, @PathVariable String slug) {
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+
         model.addAttribute("book", bookService.retrieveBySlug(slug));
+        model.addAttribute("prefix", mode.equals(PREFIX) ? S3 : "");
+        model.addAttribute("username", userName);
         return "insidepage";
     }
 }

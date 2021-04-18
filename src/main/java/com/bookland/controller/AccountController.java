@@ -34,8 +34,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.bookland.utils.CookUtil.getCartItems;
-import static com.bookland.utils.CookUtil.getCookie;
+import static com.bookland.utils.CookieUtil.getCartItems;
+import static com.bookland.utils.CookieUtil.getCookie;
 
 @Controller
 @Slf4j
@@ -145,6 +145,7 @@ public class AccountController {
         String userName = new UserUtil().getUserName(user);
         com.bookland.entity.User User = userService.retrieveByUserName(userName);
         model.addAttribute("orders", orderService.retrieveOrdersByUserId(User.getId()));
+        model.addAttribute("username", userName);
         return "account";
     }
 

@@ -152,23 +152,23 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <a href="/book/insidepage/edouard-vuillard">
-        <img class="d-block w-100" src="/static/img/banner1.jpg" alt="Edouard Vuillard">
+        <img class="d-block w-100" th:src="${prefix}+'/static/img/banner1.jpg'" alt="Edouard Vuillard">
       </a>
       </div>
       <div class="carousel-item">
         <a href="/book/insidepage/paul-c-zanne">
-        <img class="d-block w-100" src="/static/img/banner3.jpg" alt="Paul Cézanne">
+        <img class="d-block w-100" th:src="${prefix}+'/static/img/banner3.jpg'" alt="Paul Cézanne">
         </a>
       </div>
       <div class="carousel-item trans-txt">
         <a href="/book/insidepage/alfred-stieglitz">
         <p class="as-txt">Alfred Stieglitz</p>
-        <img class="d-block w-100" src="/static/img/banner6.jpg" alt="Alfred Stieglitz">
+        <img class="d-block w-100" th:src="${prefix}+'/static/img/banner6.jpg'" alt="Alfred Stieglitz">
       </a>
       </div>
       <div class="carousel-item">
         <a href="/book/insidepage/landscape-painting">
-        <img class="d-block w-100" src="/static/img/banner7.jpg" alt="Landscape painting">
+        <img class="d-block w-100" th:src="${prefix}+'/static/img/banner7.jpg'" alt="Landscape painting">
       </a>
       </div>
       
@@ -192,7 +192,7 @@
     <div class="row">
       <div class="col-12  col-md-4">
         <div class="card" style="width:100%;padding:10px 10px 0px 10px;">
-          <img class="card-img-top" src="/static/img/f01-index.jpg" alt="Paul Gauguin_bookcover">
+          <img class="card-img-top" th:src="${prefix}+'/static/img/f01-index.jpg'" alt="Paul Gauguin_bookcover">
           <div class="card-body">
             <h5>Paul Gauguin <small>1848-1903</small></h5>
             <p class="card-text">
@@ -209,7 +209,7 @@
       </div>
       <div class="col-12  col-md-8">
         <div class="card" style="width:100%;">
-          <img class="card-img-top" src="/static/img/news_himid.png" alt="Lubaina Himid_exhibition_message">
+          <img class="card-img-top" th:src="${prefix}+'/static/img/news_himid.png'" alt="Lubaina Himid_exhibition_message">
           <div class="card-body">
             <p class="card-text">2021年不能錯過的展覽：倫敦泰特現代美術館（Tate Modern）- Lubaina Himid</p>
           </div>
@@ -235,7 +235,7 @@
 
                   <h6>展覽時間 : 2021年11月25日至2022年5月22日</h6>
                   <h6>展覽地點 : 泰特現代美術館</h6>
-                  <img src="/static/img/news_himid-1.png" alt="Lubaina Himid襯衫抽屜中的男人2017–18©Lubaina Himid ">
+                  <img th:src="${prefix}+'/static/img/news_himid-1.png'" alt="Lubaina Himid襯衫抽屜中的男人2017–18©Lubaina Himid ">
                   <p><small>圖片:Lubaina Himid襯衫抽屜中的男人2017–18©Lubaina Himid </small></p>
                   <h5><strong>特納獎得主，文化活動家的戲劇展覽</strong></h5>
                   <p>泰特現代美術館（Tate Modern）預計在今年秋天舉辦盧拜納·希米德（Lubaina Himid）的展覽，主題為描述〝戲劇〞，
@@ -264,13 +264,13 @@
   <div class="container obj-books">
     <div class="row">
       <div class="col-12 col-sm-4">
-        <a href="/book/insidepage/poster-calendar"><img src="/static/img/obj_bookcover1.png" alt="book1-about-poster-bookcover"></a>
+        <a href="/book/insidepage/poster-calendar"><img th:src="${prefix}+'/static/img/obj_bookcover1.png'" alt="book1-about-poster-bookcover"></a>
       </div>
       <div class="col-12 col-sm-4">
-        <a href="/book/insidepage/d-m-ferry-cos"><img src="/static/img/obj_bookcover3.png" alt="book3-about-poster-bookcover"></a>
+        <a href="/book/insidepage/d-m-ferry-cos"><img th:src="${prefix}+'/static/img/obj_bookcover3.png'" alt="book3-about-poster-bookcover"></a>
       </div>
       <div class="col-12 col-sm-4">
-        <a href="/book/insidepage/the-new-york"><img src="/static/img/obj_bookcover2.png" alt="book2-about-poster-bookcover"></a>
+        <a href="/book/insidepage/the-new-york"><img th:src="${prefix}+'/static/img/obj_bookcover2.png'" alt="book2-about-poster-bookcover"></a>
       </div>
     </div>
   </div>
@@ -316,7 +316,7 @@
   <div class="container ">
     <div class="row">
       <div class="col-12 col-md-6">
-        <img src="/static/img/comingup1.jpg" alt="The Echo" width="100%">
+        <img th:src="${prefix}+'/static/img/comingup1.jpg'" alt="The Echo" width="100%">
       </div>
       <div class="col-12 col-md-6 text-booklaunch">
         <h5 class="date">上架日 : 5/5</h5>
@@ -340,7 +340,7 @@
   <div class="container ">
     <div class="row">
       <div class="col-12 col-md-6">
-        <img src="/static/img/comingup2.jpg" alt="Alfred Sisley" width="100%">
+        <img th:src="${prefix}+'/static/img/comingup2.jpg'" alt="Alfred Sisley" width="100%">
       </div>
       <div class="col-12 col-md-6 text-booklaunch">
         <h5 class="date">上架日 : 6/10</h5>

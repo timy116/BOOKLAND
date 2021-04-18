@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class CookUtil {
+public class CookieUtil {
     static public Cookie getCookie(HttpServletRequest request, String cookieName) {
         Optional<Cookie> opt = Arrays.stream(request.getCookies())
                 .filter(c -> c.getName().equals(cookieName))

@@ -1,0 +1,30 @@
+spring:
+  # facebook
+  social:
+    facebook:
+      appId: ${FB_APP_ID}
+      appSecret: ${FB_APP_SECRET}
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?serverTimezone=Asia/Taipei&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+
+# Stripe API
+stripe:
+  publicKey: ${STRIPE_PUBLIC_KEY}
+  secretKey: ${STRIPE_SECRET_KEY}
+
+domain: ${DOMAIN_NAME}
+
+# AWS S3
+AWS_S3: ${AWS_S3}

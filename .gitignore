@@ -32,4 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
+### In project ###
 /src/main/resources/application.yml
+heroku-config.sh
+

@@ -1,0 +1,4 @@
+src/main/resources/static/img/
+target/
+.idea/
+.mvn/

@@ -69,8 +69,9 @@ class LoginAndRegisterView {
 
   getInspectQuery() {
     return [
-      this._formElement.querySelector('#reg-username').value.trim(),
-      this._formElement.querySelector('#email').value.trim(),
+      // 轉成 Base64
+      btoa(this._formElement.querySelector('#reg-username').value.trim()),
+      btoa(this._formElement.querySelector('#email').value.trim()),
     ]
   }
 }

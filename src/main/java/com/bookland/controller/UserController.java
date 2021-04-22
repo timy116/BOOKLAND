@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,14 +59,14 @@ public class UserController {
     @GetMapping("/inspect")
     @ResponseBody
     // 檢查帳號與 email 是否重複
-    public Map<String, Integer> userInspect(String username, String email) {
+    public Map<String, Integer> userInspect(String u, String e) {
         Map<String, Integer> status = new HashMap<>();
-        User user = userService.retrieveByUserName(username);
+        User user = userService.retrieveByUserName(new String(Base64.getDecoder().decode(u)));
 
         if (!ObjectUtils.isEmpty(user))
             status.put("u", 1);
 
-        user = userService.retrieveByEmail(email);
+        user = userService.retrieveByEmail(new String(Base64.getDecoder().decode(e)));
         if (!ObjectUtils.isEmpty(user))
             status.put("e", 1);
         return status;

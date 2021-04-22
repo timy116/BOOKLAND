@@ -62,8 +62,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 設定 CSS 防護
         http
-//                .csrf().disable()
+                .headers()
+                .xssProtection();
+
+        http
                 .authorizeRequests()
                 .antMatchers("/static/**")
                 .permitAll()

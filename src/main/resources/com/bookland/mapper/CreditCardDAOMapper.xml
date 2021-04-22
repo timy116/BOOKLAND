@@ -11,7 +11,7 @@
 
     <select id="retrieveByLast4" resultType="com.bookland.entity.CreditCard" parameterType="String">
         SELECT `id`, `last4`, `cardExpMonth`, `cardExpYear`, `brand`
-        FROM bookstore.credit_card
+        FROM `credit_card`
         WHERE `last4` = #{last4}
     </select>
 

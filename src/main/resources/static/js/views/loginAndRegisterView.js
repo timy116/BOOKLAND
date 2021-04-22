@@ -1,7 +1,10 @@
 function addHandlerFacebook(handler) {
+  const csrf = document.querySelector('.login-form input')
+
   document.querySelector('.fb-btn').addEventListener('click', function () {
     const markup = `
       <form method="post" action="/signin/facebook" class="fb-form" style="display:none;">
+        <input type="hidden" name="_csrf" value="${csrf.value}">
         <input type="hidden" name="scope" value="public_profile">
       </form>
     `

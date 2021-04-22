@@ -20,6 +20,7 @@ import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
@@ -33,6 +34,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    public static String PREFIX = "prod";
 
     @Autowired
     private DataSource dataSource;
@@ -52,16 +54,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     FacebookSignInAdapter facebookSignInAdapter;
 
-    @Value("${spring.social.facebook.appSecret}")
+    @Value("${spring.social.facebook.appSecret:}")
     String appSecret;
 
-    @Value("${spring.social.facebook.appId}")
+    @Value("${spring.social.facebook.appId:}")
     String appId;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+//                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/static/**")
                 .permitAll()
@@ -72,7 +74,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register", "/login", "/cart/**" ,"/oauth2/**")
                 .permitAll()
                 // facebook
-                .antMatchers("/signin/**", "/signup/**")
+                .antMatchers(HttpMethod.POST, "/signin/**", "/signup/**")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/signin/**", "/signup/**")
                 .permitAll()
                 // google
                 .antMatchers("/oauth2/**")
@@ -97,7 +101,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenRepository(persistentTokenRepository)
                 .userDetailsService(userDetailService)
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .logout()
+                .logoutSuccessUrl("/")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"));
     }
 
     @Bean

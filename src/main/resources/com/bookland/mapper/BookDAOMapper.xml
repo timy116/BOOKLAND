@@ -36,14 +36,14 @@
     <!-- 根據類別查詢書籍 -->
     <select id="retrieveBooks" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
-        FROM book
+        FROM `book`
         WHERE category = #{category} LIMIT 12
     </select>
 
     <!-- 查詢最新上架的前十本書 -->
     <select id="retrieveNewBooks" resultType="com.bookland.entity.Book">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
-        FROM book
+        FROM `book`
         ORDER BY `createTime` DESC
         LIMIT 12
     </select>
@@ -51,7 +51,7 @@
     <!-- 查詢被購買數兩最高的十本書 -->
     <select id="retrieveBooksByOrderDetail" resultType="com.bookland.entity.Book">
         SELECT `bookId`, sum(`quantity`) AS `quantity`
-        FROM `bookstore`.`order_detail`
+        FROM `order_detail`
         ORDER BY `createTime` DESC
         LIMIT 10
     </select>
@@ -59,14 +59,14 @@
     <!-- 根據 slug 查詢書籍 -->
     <select id="retrieveBySlug" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `bookNumber`, `price`, `publisher`, `description`, `category`, `imageUrl`
-        FROM book
+        FROM `book`
         WHERE slug = #{slug}
     </select>
 
     <!-- 關鍵字查詢 -->
     <select id="searchBook" resultType="com.bookland.entity.Book" parameterType="java.lang.String">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
-        FROM book
+        FROM `book`
         where name like CONCAT('%','${keyword}','%')
            OR
               description like CONCAT('%','${keyword}','%') LIMIT 12;
@@ -74,7 +74,7 @@
 
     <select id="retrieveBooksById" resultType="com.bookland.entity.Book">
         SELECT `id`, `name`, `slug`, `price`, `imageUrl`
-        FROM book
+        FROM `book`
         WHERE id IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}

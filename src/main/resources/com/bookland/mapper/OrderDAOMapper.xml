@@ -46,9 +46,9 @@
         SELECT a.id, a.orderNumber, a.price, a.quantity, a.createTime,
                b.userName, b.name, b.phone, b.address,
                c.last4, c.brand
-        FROM `bookstore`.`order` AS a
-        JOIN `bookstore`.`user` AS b ON a.userId = b.id
-        JOIN `bookstore`.`credit_card` AS c ON a.creditCardId = c.id
+        FROM `order` AS a
+        JOIN `user` AS b ON a.userId = b.id
+        JOIN `credit_card` AS c ON a.creditCardId = c.id
         WHERE orderNumber = #{orderNumber};
     </select>
 

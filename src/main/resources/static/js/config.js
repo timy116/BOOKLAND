@@ -1,4 +1,4 @@
-const DOMAIN = 'http://localhost:8080'
+const DOMAIN = window.location.href.split('/').slice(0, 3).join('/')
 const TIMEOUT_SEC = 10
 const BOOK_SIZE_PER_PAGE = 12
 const AJAX_BOOK_URL = '/book/{category}/page{num}'

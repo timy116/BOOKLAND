@@ -15,9 +15,9 @@ async function controlCartItemRemove(url) {
   }
 }
 
-async function controlCartItemUpdate(data) {
+async function controlCartItemUpdate(data, csrf) {
   try {
-    const result = await AJAX(AJAX_CART_ITEM_UPDATE, data)
+    const result = await AJAX(AJAX_CART_ITEM_UPDATE, data, csrf)
     console.log(result)
 
     if (result.cart) {
@@ -30,6 +30,7 @@ async function controlCartItemUpdate(data) {
 }
 
 async function controlCheckout(hasShipping, hasInfo, set, inputMap) {
+  const csrf = cartPageView.csrfToken
   const data = {}
 
   // 驗證寄件資訊是否有效
@@ -71,7 +72,7 @@ async function controlCheckout(hasShipping, hasInfo, set, inputMap) {
   // 如果不存在寄送資訊，則發送 AJAX 到後端寫入資料庫
   if (!hasInfo) {
     try {
-      const result = await AJAX(AJAX_USER_INFO_UPDATE, data)
+      const result = await AJAX(AJAX_USER_INFO_UPDATE, data, csrf)
       if (Number(result.status) !== 200)
         return
     } catch (e) {
@@ -82,7 +83,7 @@ async function controlCheckout(hasShipping, hasInfo, set, inputMap) {
   const stripe = Stripe(STRIPE_PUBLIC_KEY);
   try {
     const param = hasShipping ? {s: 1} : {s: 0}
-    const session = await AJAX(AJAX_STRIPE_URL, param)
+    const session = await AJAX(AJAX_STRIPE_URL, param, csrf)
     const id = {sessionId: session.id};
 
     if (id)

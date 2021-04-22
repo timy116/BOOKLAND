@@ -12,14 +12,16 @@ function timeout(s) {
  *
  * @param url: AJAX 請求網址
  * @param formData: POST 傳輸資料
+ * @param csrf: 如果請求為 POST 則需要傳入 csrf token
  * @return data: JSON 資料
  */
-async function AJAX(url, formData = undefined) {
+async function AJAX(url, formData = undefined, csrf = undefined) {
   try {
     const fetchPro = formData ? fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': csrf,
       },
       body: JSON.stringify(formData),
     }) : fetch(url)
@@ -46,4 +48,3 @@ async function CheckoutAJAX() {
     console.error("Error:", error);
   }
 }
-

@@ -31,22 +31,22 @@
     </insert>
     <select id="retrieveByOrderId"  resultType="com.bookland.entity.OrderDetail" parameterType="java.lang.Integer">
         SELECT *
-        FROM bookstore.order_detail
+        FROM `order_detail`
         where orderId = #{orderId};
     </select>
 
     <select id="retrieveOrderDetailsByOrderId" parameterType="java.lang.Integer" resultMap="OrderDetailResultMap">
         SELECT a.quantity,
                b.name, b.slug, b.bookNumber, b.price
-        FROM `bookstore`.`order_detail` AS a
-        JOIN `bookstore`.`book` AS b ON a.bookId = b.id
+        FROM `order_detail` AS a
+        JOIN `book` AS b ON a.bookId = b.id
         WHERE a.orderId = #{orderId}
     </select>
 
     <select id="retrieveBooksByOrderDetail" parameterType="java.lang.Integer" resultMap="BookResultMap">
         SELECT  sum(a.`quantity`) AS `quantity`, b.`name`, b.`slug`, b.`price`, b.`imageUrl`
-        FROM `bookstore`.`order_detail` AS a
-        JOIN `bookstore`.`book` AS b ON a.`bookId` = b.`id`
+        FROM `order_detail` AS a
+        JOIN `book` AS b ON a.`bookId` = b.`id`
         GROUP BY a.`bookId`
         ORDER BY `quantity` DESC
         LIMIT 10

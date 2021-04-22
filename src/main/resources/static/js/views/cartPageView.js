@@ -51,6 +51,7 @@ class CartPageView extends CartView {
   addHandlerCartItemUpdate(handler) {
     const self = this
     this._quantityNum.forEach(function (el) {
+      const csrf = this.csrfToken
       // 一進入 input 時立刻存下當前數量
       el.addEventListener('focus', function () {
         self._currentQty = el.value
@@ -65,9 +66,9 @@ class CartPageView extends CartView {
         handler({
           id: self._currentItemEl.id.split('-')[2],
           qty: +el.value,
-        })
+        }, csrf)
       })
-    })
+    }.bind(this))
   }
 
   // 結帳按鈕事件註冊
@@ -93,11 +94,16 @@ class CartPageView extends CartView {
         hasInfo,
         new Set([this.name, this.phone, this.address]),
         new Map([
-        [this.name, document.querySelector(this.name).innerHTML],
-        [this.phone, document.querySelector(this.phone).innerHTML],
-        [this.address, document.querySelector(this.address).innerHTML],
-      ]))
+          [this.name, document.querySelector(this.name).innerHTML],
+          [this.phone, document.querySelector(this.phone).innerHTML],
+          [this.address, document.querySelector(this.address).innerHTML],
+        ])
+      )
     })
+  }
+
+  get csrfToken() {
+    return document.querySelector(`meta[name="_csrf"]`)?.getAttribute('content');
   }
 
   get name() {

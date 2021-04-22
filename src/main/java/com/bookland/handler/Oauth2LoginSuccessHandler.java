@@ -34,7 +34,7 @@ public class Oauth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             final User user = new User();
             user.setUserName(googleOauth2User.getEmail());
             user.setPassword(encoder.encode(randomAlphanumeric(32)));
-            user.setEmail(googleOauth2User.getEmail());
+            user.setEmail("!" + googleOauth2User.getEmail());
             userService.create(user);
         }
         userService.updateTime(email);

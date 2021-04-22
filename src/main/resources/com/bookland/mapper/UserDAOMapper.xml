@@ -25,15 +25,13 @@
     </resultMap>
 
     <insert id="create" parameterType="com.bookland.entity.User">
-    SET `time_zone` = "+8:00";
-    INSERT INTO `user` (`userName`, `password`, `email`)
-    VALUES (#{userName}, #{password}, #{email})
+    INSERT INTO `user` (`userName`, `password`, `email`, `createTime`)
+    VALUES (#{userName}, #{password}, #{email}, now() + Interval 8 Hour)
     </insert>
 
     <update id="updateLoginTime" parameterType="java.lang.String">
-    SET `time_zone` = "+8:00";
     UPDATE `user`
-    SET `lastLogin` = now()
+    SET `lastLogin` = now() + Interval 8 Hour
     WHERE `userName` = #{userName}
     </update>
 

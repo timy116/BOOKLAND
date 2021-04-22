@@ -24,9 +24,8 @@
 
 
     <insert id="create" parameterType="com.bookland.entity.Order">
-        SET `time_zone` = "+8:00";
         INSERT INTO `order` (`orderNumber`, `price`, `quantity`, `userId`, `creditCardId`, `createTime`)
-        VALUES (#{orderNumber}, #{price}, #{quantity}, #{userId}, #{creditCardId}, now())
+        VALUES (#{orderNumber}, #{price}, #{quantity}, #{userId}, #{creditCardId}, now() + Interval 8 Hour)
     </insert>
 
     <select id="retrieveByLatest" resultType="com.bookland.entity.Order">

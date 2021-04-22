@@ -24,6 +24,7 @@
 
 
     <insert id="create" parameterType="com.bookland.entity.Order">
+        SET `time_zone` = "+8:00";
         INSERT INTO `order` (`orderNumber`, `price`, `quantity`, `userId`, `creditCardId`, `createTime`)
         VALUES (#{orderNumber}, #{price}, #{quantity}, #{userId}, #{creditCardId}, now())
     </insert>

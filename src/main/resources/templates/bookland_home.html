@@ -294,7 +294,7 @@
         <div th:each="detail:${details}" class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="card">
             <a th:href="'/book/insidepage/'+${detail.book.slug}">
-              <img class="card-img-top" th:src="${detail.book.imageUrl}" alt="its owl right_bookcover">
+              <img class="card-img-top" th:src="${prefix} + ${detail.book.imageUrl}" alt="its owl right_bookcover">
             </a>
             <div class="card-body">
               <p class="card-text"><small th:text="${detail.book.name}"></small></p>

@@ -150,8 +150,8 @@ public class AccountController {
     }
 
     @PostMapping("/accountUpdate")
-    public String accountUpdete(String userName,String name,String email,String phone,String address){
-        userService.updateUser(userName,name,email,phone,address);
+    public String accountUpdate(String userName,String name,String email,String phone,String address){
+        userService.updateUser(userName, name, email, phone, address);
         return "account";
     }
 

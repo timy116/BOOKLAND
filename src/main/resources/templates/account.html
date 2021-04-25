@@ -62,7 +62,7 @@
             </a>
           </li>
           <li>
-            <a href="message.html">
+            <a href="/message">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                 <path
@@ -179,7 +179,7 @@
             <img src="/static/css/icon/edit.svg" alt="" width="20px">
             <span class="user-info">編輯個人資料</span>
           </div>
-          <form class="memberform" action="/accountUpdate" method="post">
+          <form class="memberform">
             <div class="form-froup name-form">
               <input type="hidden" name="userName" th:value="${#authentication.name}">
               <label>姓名 (選填)</label>
@@ -344,7 +344,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <!--    </div>-->
     <div class="order-footer">
       <img src="/static/css/icon/msg3.svg">
-      <p><a href="message.html">聯絡客服</a></p>
+      <p><a href="/message">聯絡客服</a></p>
       <img src="/static/css/icon/print.svg">
       <p><a href="javascript:void(0);">列印明細</a></p>
     </div>

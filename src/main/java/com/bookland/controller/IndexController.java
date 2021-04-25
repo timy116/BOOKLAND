@@ -53,4 +53,13 @@ public class IndexController {
         model.addAttribute("username", userName);
         return "about";
     }
+
+    @GetMapping("/message")
+    public String message(Model model) {
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = new UserUtil().getUserName(user);
+        model.addAttribute("prefix", mode.equals(PREFIX) ? S3 : "");
+        model.addAttribute("username", userName);
+        return "message";
+    }
 }

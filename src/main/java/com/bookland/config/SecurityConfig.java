@@ -68,6 +68,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .xssProtection();
 
         http
+                .csrf()
+                .ignoringAntMatchers("/linebot/**")
+                .and()
                 .authorizeRequests()
                 .antMatchers("/static/**")
                 .permitAll()
@@ -75,10 +78,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/", "/about", "/login", "/inspect", "/search/**", "/cart/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST, "/register", "/login", "/cart/**" ,"/oauth2/**")
+                .antMatchers(HttpMethod.POST, "/register", "/login", "/cart/**", "/oauth2/**")
                 .permitAll()
                 // facebook
-                .antMatchers(HttpMethod.POST, "/signin/**", "/signup/**")
+                .antMatchers(HttpMethod.POST, "/signin/**", "/signup/**", "/linebot/**")
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/signin/**", "/signup/**")
                 .permitAll()
@@ -125,7 +128,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private Oauth2LoginSuccessHandler oauth2LoginSuccessHandler;
 
-//    @Bean
+    //    @Bean
 //    public  Oauth2LoginSuccessHandler oauth2LoginSuccessHandler(){
 //        return new Oauth2LoginSuccessHandler();
 //    }
@@ -149,7 +152,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 connectionFactoryLocator, usersConnectionRepository, facebookSignInAdapter
         );
     }
-
 
 
     @Bean

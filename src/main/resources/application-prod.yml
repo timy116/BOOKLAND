@@ -28,3 +28,9 @@ domain: ${DOMAIN_NAME}
 
 # AWS S3
 AWS_S3: ${AWS_S3}
+
+# Line Bot
+line.bot:
+  channel-token: ${CHANNEL_TOKEN}
+  channel-secret: ${CHANNEL_SECRET}
+  handler.path: ${HANDLER_PATH}

@@ -48,3 +48,9 @@ domain: {YOUR_DOMAIN_NAME}
 
 # AWS S3
 AWS_S3: {YOUR_AWS_S3}
+
+# Line Bot
+line.bot:
+  channel-token: {YOUR_CHANNEL_TOKEN}
+  channel-secret: {YOUR_CHANNEL_SECRET}
+  handle.path: {YOUR_CALLBACK_URL}

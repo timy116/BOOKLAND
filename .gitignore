@@ -35,4 +35,4 @@ build/
 ### In project ###
 /src/main/resources/application.yml
 heroku-config.sh
-
+application-dev.yml

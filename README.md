@@ -29,6 +29,38 @@ Demo: https://book--land.herokuapp.com/
 - 刷卡結帳(使用第三方金流(Stripe))
 - 簡易聊天機器人(Line Bot) 
 
+<br>
+
+### 刷卡結帳 demo
+
+- Stripe 測試模式下只接受 VISA、Mastercard 和 American Express
+
+- Email 與 卡上的姓名必填，但是隨便填就好
+
+- 信用卡到期日輸入至少為今年當月，否則會出現過期錯誤
+
+- CVC 檢查碼任意輸入三碼即可
+
+測試卡號:
+```text
+4242 4242 4242 4242 VISA
+4000 0566 5566 5556 VISA
+5555 5555 5555 4444 Mastercard
+3782 822463 10005 American Express
+```
+
+其餘測試卡號: https://stripe.com/docs/testing
+
+![img_1.png](checkout.png)
+
+<br>
+
+### 聊天機器人 Demo
+
+輸入指定數字回覆訊息，其餘訊息則不認得
+
+![img.png](line-bot.png)
+
 
 ## Development
 
